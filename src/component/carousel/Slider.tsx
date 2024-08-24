@@ -22,6 +22,9 @@ const Slider = () => {
                 <div>
                     <img src="https://i.ibb.co/1fzN29P/banner-image-165838484769234.jpg" />
                 </div>
+                <div>
+                    <img src="https://i.ibb.co/7nDmRGQ/banner-image-165838506472374.jpg" />
+                </div>
 
             </Carousel>
         </div>

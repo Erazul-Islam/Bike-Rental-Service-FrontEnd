@@ -4,6 +4,8 @@ import Footer from '../../component/Footer/Footer';
 import Contact from '../../component/contact/Contact';
 import Testimonial from './Testimonial/Testimonial';
 import Choose from './Choose/Choose';
+import Discount from './Discount/Discount';
+import ContactSection from '../../component/contact/ContactSection';
 
 const Home = () => {
     return (
@@ -12,6 +14,8 @@ const Home = () => {
             <Contact />
             <Testimonial />
             <Choose />
+            <Discount />
+            <ContactSection />
             <Footer></Footer>
         </div>
     );
