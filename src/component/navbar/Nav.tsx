@@ -1,30 +1,25 @@
 import { NavbarBrand, NavbarContent, NavbarItem, } from '@nextui-org/navbar';
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Link, Navbar } from '@nextui-org/react';
 import React from 'react';
-import AcmeLogo from './AcmeLogo';
+import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
     return (
         <div>
             <Navbar isBordered>
-                <NavbarContent justify="start">
+                <NavbarContent justify="end">
                     <NavbarBrand className="mr-4">
-                        <img src="https://i.ibb.co/RSDDchJ/Suzuki-Logo.png" alt="" />
+                        <NavLink to='/'><img src="https://i.ibb.co/4s7JnXV/logo-1-1.png" alt="" /></NavLink>
                     </NavbarBrand>
                     <NavbarContent className="hidden sm:flex gap-3">
                         <NavbarItem>
-                            <Link color="foreground" href="#">
+                            <Link color="foreground" href='/'>
                                 Home
                             </Link>
                         </NavbarItem>
-                        <NavbarItem isActive>
-                            <Link href="#" aria-current="page" color="secondary">
-                                About
-                            </Link>
-                        </NavbarItem>
                         <NavbarItem>
-                            <Link color="foreground" href="#">
-                                Integrations
+                            <Link color="foreground" href="/about">
+                                About
                             </Link>
                         </NavbarItem>
                     </NavbarContent>

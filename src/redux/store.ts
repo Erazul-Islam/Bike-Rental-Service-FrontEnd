@@ -1,10 +1,11 @@
-// import { persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import { configureStore } from "@reduxjs/toolkit";
+import { productApi } from "./feature/productApi/ProductApi";
 
 
-// const persistConfig = {
-//     key:'auth',
-//     storage
-// }
-
-// const persistedAuthReducer = persistReducer(persistConfig)
+export const store = configureStore({
+    reducer: {
+        [productApi.reducerPath] : productApi.reducer
+    },
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware().concat(productApi.middleware)
+})
