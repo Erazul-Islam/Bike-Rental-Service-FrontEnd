@@ -2,8 +2,23 @@ import { NavbarBrand, NavbarContent, NavbarItem, } from '@nextui-org/navbar';
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Link, Navbar } from '@nextui-org/react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../redux/hook';
+import { useCurrentToken } from '../../redux/feature/auth/authSlice';
+import { verifyToken } from '../../utils/verifyToken';
 
 const Nav = () => {
+
+
+    const token = useAppSelector(useCurrentToken);
+
+    let user;
+
+    if (token) {
+        user = verifyToken(token);
+    }
+
+    console.log(user)
+
     return (
         <div>
             <Navbar isBordered>
@@ -28,14 +43,11 @@ const Nav = () => {
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link color="foreground" href="/signup">
-                                Signup
-                            </Link>
-                        </NavbarItem>
-                        <NavbarItem>
-                            <Link color="foreground" href="/user/dashboard">
+                            {user.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
                                 Dashboard
-                            </Link>
+                            </Link> : <Link color="foreground" href="/user/dashboard">
+                                Dashboard
+                            </Link>}
                         </NavbarItem>
                     </NavbarContent>
                 </NavbarContent>
@@ -82,7 +94,7 @@ const Nav = () => {
                     </Dropdown>
                 </NavbarContent>
             </Navbar>
-        </div>
+        </div >
     );
 };
 

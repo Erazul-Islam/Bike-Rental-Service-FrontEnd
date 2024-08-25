@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hook';
 import { useLoginMutation } from '../../redux/feature/auth/authApi';
 import { FieldValues, useForm } from "react-hook-form"
@@ -70,6 +70,12 @@ const Login = () => {
                 <Button type="submit" color="secondary">
                     Login
                 </Button>
+                <div>
+                    Don't you have account ? <br />
+
+                    <Link className='text-red-600' to='/signup'>Create Account</Link>
+
+                </div>
             </form>
         </div>
     );

@@ -86,10 +86,6 @@ const router = createBrowserRouter([
       {
         path: '/user/dashboard/bike-list',
         element: <BikeList />
-      },
-      {
-        path: '/user/dashboard/manage-user',
-        element: <UserManagement />
       }
     ]
   }
