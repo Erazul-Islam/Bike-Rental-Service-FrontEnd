@@ -22,6 +22,21 @@ const Nav = () => {
                                 About
                             </Link>
                         </NavbarItem>
+                        <NavbarItem>
+                            <Link color="foreground" href="/login">
+                                Login
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="foreground" href="/signup">
+                                Signup
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="foreground" href="/user/dashboard">
+                                Dashboard
+                            </Link>
+                        </NavbarItem>
                     </NavbarContent>
                 </NavbarContent>
 
