@@ -8,15 +8,24 @@ import { FaCcDinersClub } from "react-icons/fa";
 import { GiCalendarHalfYear } from "react-icons/gi";
 import { MdOutlineModelTraining } from "react-icons/md";
 import { TbBrandAdobe } from "react-icons/tb";
-import { Button } from 'antd';
+import { Button, Form, Input, Modal,  } from 'antd';
 
 const BikeDetail = () => {
 
     const { _id } = useParams()
     const { data } = useGetAllBikesQuery({})
+    const [form] = Form.useForm();
+
+    const date = new Date().getTime()
+    console.log(date)
 
     const [product, setProduct] = useState<TBike>()
-    console.log(product)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+
+    };
 
     useEffect(() => {
         const findProduct = data?.data?.find((product: { _id: string | undefined; }) => product._id === _id)
@@ -60,9 +69,34 @@ const BikeDetail = () => {
                 </div>
                 <div className='text-center'>
                     {product?.description}
-                    <div className='text-center'><Button className='h-12 '>Book Now</Button></div>
+                    <div onClick={() => setIsModalVisible(true)} className='text-center'><Button className='h-12'>Book Now</Button></div>
                 </div>
             </div>
+            <Modal
+                title="For Rental"
+                open={isModalVisible}
+                footer={null}
+                onCancel={() => setIsModalVisible(false)}
+            >
+                <Form
+                    form={form}
+                    layout="vertical"
+                >
+                    <Form.Item
+                        name="name"
+                        label="Start Time"
+                    >
+                        <Input defaultValue={date} />
+                    </Form.Item>
+                    <Button className='pb-4 h-12' type="primary" >
+                        Pay Now
+                    </Button>
+                    <Button className='pb-4 h-12' onClick={handleCancel} >
+                        Cancel
+                    </Button>
+
+                </Form>
+            </Modal>
         </div>
     );
 };
