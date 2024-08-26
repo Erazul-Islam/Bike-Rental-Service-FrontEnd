@@ -10,6 +10,7 @@ const Nav = () => {
 
 
     const token = useAppSelector(useCurrentToken);
+    console.log(token)
 
     let user;
 

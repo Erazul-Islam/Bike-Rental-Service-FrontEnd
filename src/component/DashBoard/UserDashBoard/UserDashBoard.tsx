@@ -9,12 +9,12 @@ const UserDashBoard = () => {
 
     return (
         <div>
-            <div className="min-h-screen bg-gray-100">
-                <header className="bg-green-600 text-white p-4">
-                    <h1 className="text-2xl">User Dashboard</h1>
+            <div className="min-h-screen bg-gray-900">
+                <header className="bg-slate-800 text-white p-4">
+                    <h1 className="text-2xl">Welcome {user?.name}</h1>
                 </header>
                 <div className='flex'>
-                    <nav className="my-4 bg-red-700 w-56 h-screen">
+                    <nav className="my-4 bg-stone-600 w-56 h-screen">
                         <ul className='pl-12 pt-8 text-2xl '>
                             <li><Link to="/user/dashboard/profile" className="text-white hover:underline">Profile</Link></li>
                             <li><Link to="/user/dashboard/my-rental" className="text-white hover:underline">My Rental</Link></li>
@@ -24,8 +24,6 @@ const UserDashBoard = () => {
                         </ul>
                     </nav>
                     <main className="p-4">
-                        <h2 className="text-xl font-bold mb-4">Welcome,  {user?.name}</h2>
-                        {/* <p>Here you can view your profile, check your orders, and perform other user-related tasks.</p> */}
                         <Outlet />
                     </main>
                 </div>

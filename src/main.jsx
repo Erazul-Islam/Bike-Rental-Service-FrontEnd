@@ -20,6 +20,7 @@ import AdminProfile from './component/DashBoard/AdminDashBoard/AdminProfile.tsx'
 import BikeManagement from './component/DashBoard/AdminDashBoard/BikeManagement.tsx'
 import UserManagement from './component/DashBoard/AdminDashBoard/UserManagement.tsx'
 import Coupon from './component/DashBoard/AdminDashBoard/Coupon.tsx'
+import BikeDetail from './component/DashBoard/UserDashBoard/BikeDetail.tsx'
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       },
+      {
+        path: '/bikes/:_id',
+        element: <BikeDetail />
+      }
     ]
   },
   {

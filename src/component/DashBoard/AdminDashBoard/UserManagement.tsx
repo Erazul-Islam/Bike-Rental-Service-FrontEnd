@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDeleteUserMutation, useGetAllProfileQuery } from '../../../redux/feature/Enpoints/Enpoints';
-import axios from 'axios';
-import { Button, Card, Descriptions } from 'antd';
+import React from 'react';
+import { useDeleteUserMutation, useGetAllProfileQuery, useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
+import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
 import Swal from 'sweetalert2';
 
 
 const UserManagement = () => {
 
     const { data, refetch } = useGetAllProfileQuery(null);
-    console.log(data)
-
     const [deleteUser] = useDeleteUserMutation()
 
     const handleDelete = (_id: string) => {
@@ -37,6 +34,8 @@ const UserManagement = () => {
             }
         });
     }
+
+    
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:ml-28'>
