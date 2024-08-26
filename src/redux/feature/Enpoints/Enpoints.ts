@@ -7,13 +7,20 @@ const authApi = baseApi.injectEndpoints({
             query: () => {
                 return { url: '/bikes', method: 'GET' };
             },
-            transformResponse: (response : TResponseRedux<TBike[]>) => {
+            transformResponse: (response: TResponseRedux<TBike[]>) => {
                 return {
                     data: response.data
                 };
             },
         }),
+        createBikes: builder.mutation({
+            query: (newBike) => ({
+                url: 'bikes',
+                method: 'POST',
+                body: newBike
+            })
+        })
     }),
 });
 
-export const { useGetAllBikesQuery } = authApi;
+export const { useGetAllBikesQuery, useCreateBikesMutation } = authApi;
