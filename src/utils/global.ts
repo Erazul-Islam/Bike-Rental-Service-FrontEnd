@@ -11,15 +11,26 @@ export type TError = {
 };
 
 export type TBike = {
+    _id: string,
     name: string,
     description: string,
     pricePerHour: number,
     cc: number,
+    image:string,
     year: number,
     model: string,
     brand: string,
     isAvailable: boolean
 };
+
+export type TUser = {
+    _id: string,
+    name: string,
+    role: string,
+    email: string,
+    address: string,
+    phone: string
+}
 
 export type TResponse<T> = {
     data?: T;

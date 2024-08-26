@@ -16,6 +16,7 @@
     "@nextui-org/react": "^2.4.6",
     "@reduxjs/toolkit": "^2.2.7",
     "antd": "^5.20.2",
+    "axios": "^1.7.5",
     "framer-motion": "^11.3.2",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",

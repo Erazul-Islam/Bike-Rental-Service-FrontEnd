@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../../redux/hook';
 import { RootState } from '../../../redux/store';
+import { Card, Descriptions } from 'antd';
 
 const AdminProfile = () => {
 
@@ -8,12 +9,14 @@ const AdminProfile = () => {
 
     return (
         <div>
-            <div>
-                <h1 className='text-xl font-bold text-black'>Name: {user?.name}</h1>
-                <h1 className='text-xl font-bold text-black'>Email: {user?.email}</h1>
-                <h1 className='text-xl font-bold text-black'>Address: {user?.address}</h1>
-                <h1 className='text-xl font-bold text-black'>Phone: {user?.phone}</h1>
-            </div>
+            <Card title="Admin Profile" style={{ maxWidth: 600, margin: '0 auto' }}>
+                <Descriptions bordered column={1}>
+                    <Descriptions.Item label="Name">{user?.name}</Descriptions.Item>
+                    <Descriptions.Item label="Email">{user?.email}</Descriptions.Item>
+                    <Descriptions.Item label="Phone">{user?.phone}</Descriptions.Item>
+                    <Descriptions.Item label="Address">{user?.address}</Descriptions.Item>
+                </Descriptions>
+            </Card>
         </div>
     );
 };

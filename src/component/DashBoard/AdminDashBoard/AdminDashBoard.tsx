@@ -12,12 +12,12 @@ const AdminDashBoard = () => {
 
     return (
         <div>
-            <div className="min-h-screen bg-gray-100 p-6">
-                <header className="bg-blue-600 text-white p-4">
+            <div className="min-h-screen bg-gray-900 p-6">
+                <header className="bg-gray-700 text-white p-4">
                     <h1 className="text-2xl">Admin Dashboard</h1>
                 </header>
                 <div className='flex'>
-                    <nav className="my-4 h-screen w-64 pl-12 pt-12 bg-red-600">
+                    <nav className="my-4 h-screen w-64 pl-12 pt-12 bg-gray-700">
                         <ul className='text-xl'>
                             <li><Link to="/admin/dashboard/admin-profile" className="text-white hover:underline">Profile</Link></li>
                             <li><Link to="/admin/dashboard/user-management" className="text-white hover:underline">Manage Users</Link></li>
