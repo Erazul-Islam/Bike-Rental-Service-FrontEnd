@@ -16,12 +16,22 @@ export type TBike = {
     description: string,
     pricePerHour: number,
     cc: number,
-    image:string,
+    image: string,
     year: number,
     model: string,
     brand: string,
     isAvailable: boolean
 };
+
+export type TRental = {
+    bikeId: string,
+    userId: Object | undefined
+    startTime: string,
+    returnTime: Date,
+    totalCost: number,
+    isReturned: boolean
+};
+
 
 export type TUser = {
     _id: string,

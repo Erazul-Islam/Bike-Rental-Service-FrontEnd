@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDeleteUserMutation, useGetAllProfileQuery, useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
-import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
+import { Button, Card, Descriptions, Form, Input, message, Modal, notification } from 'antd';
 import Swal from 'sweetalert2';
 
 
@@ -8,6 +8,27 @@ const UserManagement = () => {
 
     const { data, refetch } = useGetAllProfileQuery(null);
     const [deleteUser] = useDeleteUserMutation()
+    const [updateUserRole, { isSuccess, isError }] = useUpdateUserProfileMutation()
+    // console.log(updateUserRole)
+
+    const handleUpdateRole = async (userId: string) => {
+        // console.log(userId)
+        try {
+            await updateUserRole({ userId, role: 'admin' }).unwrap();
+            // console.log(updateUserRole)
+            if (isSuccess) {
+                console.log(isSuccess)
+                message.success('User role updated successfully.');
+                refetch(); 
+            }
+        } catch (err) {
+            if (isError) {
+                console.log(isError)
+                message.error(`Error updating user role: ${err.message}`);
+            }
+        }
+    };
+
 
     const handleDelete = (_id: string) => {
         Swal.fire({
@@ -35,7 +56,7 @@ const UserManagement = () => {
         });
     }
 
-    
+
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:ml-28'>
@@ -50,7 +71,11 @@ const UserManagement = () => {
                         </Descriptions>
                         <div className='flex justify-between'>
                             <Button className='pb-4 h-12' onClick={() => handleDelete(one._id)}>Delete</Button>
-                            <Button className='pb-4 h-12' >{one.role}</Button>
+                            {one.role === 'admin' ? (
+                                <Button className='pb-4 h-12' type="default">Admin</Button>
+                            ) : (
+                                <Button onClick={() => handleUpdateRole(one._id)} className='pb-4 h-12' type="default">Make Admin</Button>
+                            )}
                         </div>
                     </Card>
                 </div>)

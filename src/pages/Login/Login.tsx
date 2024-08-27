@@ -5,7 +5,7 @@ import { useLoginMutation } from '../../redux/feature/auth/authApi';
 import { FieldValues, useForm } from "react-hook-form"
 import "./Style.css"
 import Swal from 'sweetalert2';
-import { setUser, TUser } from '../../redux/feature/auth/authSlice';
+import { setUser } from '../../redux/feature/auth/authSlice';
 import { Button, Input } from '@nextui-org/react';
 
 type Inputs = {

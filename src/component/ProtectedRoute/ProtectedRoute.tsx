@@ -23,10 +23,10 @@ type TProtectedRoute = {
   
     if (role !== undefined && role !== user?.role) {
       dispatch(logout());
-    //   return <Navigate to="/login" replace={true} />;
+      return <Navigate to="/login" replace={true} />;
     }
     if (!token) {
-    //   return <Navigate to="/login" replace={true} />;
+      return <Navigate to="/login" replace={true} />;
     }
   
     return children;

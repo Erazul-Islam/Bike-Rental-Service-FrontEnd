@@ -2,6 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { RootState } from '../../../redux/store';
+import { Avatar, Layout, Menu } from 'antd';
+import Sider from 'antd/es/layout/Sider';
+import { UserOutlined, BookOutlined, HomeOutlined, LikeOutlined } from '@ant-design/icons';
+import { Content, Header } from 'antd/es/layout/layout';
 
 const UserDashBoard = () => {
 
@@ -9,25 +13,38 @@ const UserDashBoard = () => {
 
     return (
         <div>
-            <div className="min-h-screen bg-gray-900">
-                <header className="bg-slate-800 text-white p-4">
-                    <h1 className="text-2xl">Welcome {user?.name}</h1>
-                </header>
-                <div className='flex'>
-                    <nav className="my-4 bg-stone-600 w-56 h-screen">
-                        <ul className='pl-12 pt-8 text-2xl '>
-                            <li><Link to="/user/dashboard/profile" className="text-white hover:underline">Profile</Link></li>
-                            <li><Link to="/user/dashboard/my-rental" className="text-white hover:underline">My Rental</Link></li>
-                            <li><Link to="/user/dashboard/booking" className="text-white hover:underline">My Booking</Link></li>
-                            <li><Link to="/user/dashboard/bike-list" className="text-white hover:underline">All Bike</Link></li>
-                            <li><Link to="/" className="text-white hover:underline">Home</Link></li>
-                        </ul>
-                    </nav>
-                    <main className="p-4">
+            <Layout style={{ minHeight: '100vh' }}>
+                <Sider collapsible>
+                    <div className="logo" style={{ padding: '16px', textAlign: 'center' }}>
+                        <Avatar size="large" icon={<UserOutlined />} />
+                        <h2 style={{ color: 'white', marginTop: '8px' }}>{user?.name}</h2>
+                    </div>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['profile']}>
+                        <Menu.Item key="profile" icon={<UserOutlined />}>
+                            <Link to="/user/dashboard/profile">Profile</Link>
+                        </Menu.Item>
+                        <Menu.Item key="booking" icon={<BookOutlined />}>
+                            <Link to="/user/dashboard/booking">My Booking</Link>
+                        </Menu.Item>
+                        <Menu.Item key="bike-list" icon={<LikeOutlined />}>
+                            <Link to="/user/dashboard/bike-list">All Bikes</Link>
+                        </Menu.Item>
+                        <Menu.Item key="home" icon={<HomeOutlined />}>
+                            <Link to="/">Home</Link>
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+                <Layout>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                        <div style={{ padding: '0 16px', fontSize: '24px', fontWeight: 'bold' }}>
+                            User Dashboard
+                        </div>
+                    </Header>
+                    <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
                         <Outlet />
-                    </main>
-                </div>
-            </div>
+                    </Content>
+                </Layout>
+            </Layout>
         </div>
     );
 };

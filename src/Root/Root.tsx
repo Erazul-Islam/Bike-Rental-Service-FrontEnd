@@ -4,7 +4,7 @@ import Nav from '../component/navbar/Nav';
 
 const Root = () => {
     return (
-        <div className='dark text-foreground bg-background'>
+        <div className=''>
             <Nav />
             <Outlet />
         </div>

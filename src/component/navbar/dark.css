@@ -1,0 +1,24 @@
+/* Light Mode */
+.light-mode {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --button-background: #e0e0e0;
+}
+
+/* Dark Mode */
+.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --button-background: #333333;
+}
+
+/* Applying the variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--button-background);
+    color: var(--text-color);
+}

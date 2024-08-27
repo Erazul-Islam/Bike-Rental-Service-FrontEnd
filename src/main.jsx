@@ -21,12 +21,21 @@ import BikeManagement from './component/DashBoard/AdminDashBoard/BikeManagement.
 import UserManagement from './component/DashBoard/AdminDashBoard/UserManagement.tsx'
 import Coupon from './component/DashBoard/AdminDashBoard/Coupon.tsx'
 import BikeDetail from './component/DashBoard/UserDashBoard/BikeDetail.tsx'
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import Error from './pages/ErrorPage/Error.tsx'
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute.tsx'
+
+
+
+const stripePromise = loadStripe('pk_test_51OEWQiI8i8m69lNjPL8a3QNQtS31dfaIR6lr00gHoVxSTvtZpjdNVv186ZG7pYGfTwqchyWoClqvbBLGmdzA4Oxr00lZCJmnc7');
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -46,13 +55,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/bikes/:_id',
-        element: <BikeDetail />
-      }
+        element: (
+          <Elements stripe={stripePromise}>
+            <BikeDetail />
+          </Elements>
+        )
+      },
     ]
   },
   {
     path: '/admin/dashboard',
-    element: <AdminDashBoard />,
+    element: <ProtectedRoute>
+      <AdminDashBoard />
+    </ProtectedRoute>,
     children: [
       {
         path: '/admin/dashboard/admin-profile',
@@ -74,7 +89,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/user/dashboard',
-    element: <UserDashBoard />,
+    element: <ProtectedRoute><UserDashBoard /></ProtectedRoute>,
     children: [
       {
         path: '/user/dashboard/profile',

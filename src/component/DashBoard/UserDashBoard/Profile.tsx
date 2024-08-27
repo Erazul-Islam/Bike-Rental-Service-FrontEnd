@@ -22,7 +22,6 @@ const Profile = () => {
     const handleSubmit = async (values) => {
         try {
             await updateUserProfile(values).unwrap();
-            // disPatch(setUser(updateUserProfile))
             notification.success({
                 message: 'Profile Updated',
                 description: 'Your profile has been successfully updated.',
