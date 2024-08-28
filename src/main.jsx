@@ -25,6 +25,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import Error from './pages/ErrorPage/Error.tsx'
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute.tsx'
+import ReturnBike from './component/DashBoard/AdminDashBoard/ReturnBike.tsx'
 
 
 
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
         element: <UserManagement />
       },
       {
+        path: '/admin/dashboard/return',
+        element: <ReturnBike />
+      },
+      {
         path: '/admin/dashboard/coupon-management',
         element: <Coupon />
       }
@@ -101,7 +106,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/user/dashboard/booking',
-        element: <Booking />
+        element: (
+          <Elements stripe={stripePromise}>
+            <Booking />
+          </Elements>
+        )
       },
       {
         path: '/user/dashboard/bike-list',

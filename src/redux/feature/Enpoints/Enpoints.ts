@@ -13,6 +13,16 @@ const authApi = baseApi.injectEndpoints({
                 };
             },
         }),
+        getAllRentals: builder.query({
+            query: () => {
+                return { url: '/rentals/all-rental', method: 'GET' };
+            },
+            transformResponse: (response: TResponseRedux<TRental[]>) => {
+                return {
+                    data: response.data
+                };
+            },
+        }),
         getRentals: builder.query<TRental[], string>({
             query: (token) => ({
                 url: '/rentals',
@@ -65,6 +75,13 @@ const authApi = baseApi.injectEndpoints({
                 body: updatedBike
             })
         }),
+        updateRental: builder.mutation({
+            query: ({ rentalId, isReturned }) => ({
+                url: `rentals/${rentalId}/return`,
+                method: 'PUT',
+                body: { isReturned }
+            })
+        }),
         updateUserProfile: builder.mutation({
             query: (updatedUser) => ({
                 url: '/auth/me',
@@ -88,6 +105,13 @@ const authApi = baseApi.injectEndpoints({
                 body: { amount }
             })
         }),
+        createFullPaymentIntent: builder.mutation({
+            query: (amount) => ({
+                url: '/payement/create-full-payment-intent',
+                method: 'POST',
+                body: { amount }
+            })
+        }),
         updateBikeAvailability: builder.mutation({
             query: ({ id, isAvailable }) => ({
                 url: `bikes/${id}/availability`,
@@ -95,7 +119,14 @@ const authApi = baseApi.injectEndpoints({
                 body: { isAvailable },
             }),
         }),
+        updatePayementStatus: builder.mutation({
+            query: ({ id, isPaid }) => ({
+                url: `rentals/${id}`,
+                method: 'PATCH',
+                body: { isPaid },
+            }),
+        }),
     }),
 });
 
-export const { useGetAllBikesQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;
+export const { useGetAllBikesQuery, useCreateFullPaymentIntentMutation ,useUpdatePayementStatusMutation ,useUpdateRentalMutation, useGetAllRentalsQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;

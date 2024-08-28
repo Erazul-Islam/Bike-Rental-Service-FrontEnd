@@ -24,12 +24,14 @@ export type TBike = {
 };
 
 export type TRental = {
+    _id: string
     bikeId: string,
     userId: Object | undefined
     startTime: string,
     returnTime: Date,
     totalCost: number,
-    isReturned: boolean
+    isReturned: boolean,
+    isPaid: boolean
 };
 
 

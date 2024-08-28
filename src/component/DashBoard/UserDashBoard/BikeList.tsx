@@ -26,7 +26,7 @@ const BikeList = () => {
             let filtered = data?.data
                 .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
                 .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
-            // .filter((product: TBike) => (filters.isAvailable ? product.model === filters.model : true))
+            // .filter((product: TBike) => (filters.isAvailable ? product. === filters.model : true))
             setFilteredProducts(filtered);
             setLoading(false);
         }, 3000);
@@ -109,8 +109,9 @@ const BikeList = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='ml-32 '>
+                            <div className='flex justify-between pl-6 pr-6 '>
                                <Link to={`/bikes/${one._id}`} > <Button className='pb-4 h-12'> View Detail</Button></Link>
+                               <p className='pt-14'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</p>
                             </div>
                         </div>))
                     }

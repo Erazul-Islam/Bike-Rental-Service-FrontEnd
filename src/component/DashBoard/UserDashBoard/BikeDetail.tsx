@@ -23,9 +23,6 @@ const BikeDetail = () => {
     const elements = useElements();
     const navigate = useNavigate()
 
-    const date = new Date().getTime()
-    console.log(date)
-
     const [product, setProduct] = useState<TBike>()
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -76,13 +73,14 @@ const BikeDetail = () => {
             } else if (paymentIntent?.status === 'succeeded') {
                 message.success('Payment successful!');
                 await createRental({ bikeId: _id, startTime: new Date() }).unwrap()
-                .then(() =>{
-                    message.success(' Booking confirmed.');
-                })
-                .catch((err) =>{
-                    message.error('Failed to create Rental: ' + err.message);
-                })
-                await updateBikeAvailability({ id: _id, isAvailable: false })
+                    .then(() => {
+                        message.success(' Booking confirmed.');
+                    })
+
+                    .catch((err) => {
+                        message.error('Failed to create Rental: ' + err.message);
+                    })
+                await updateBikeAvailability({ id: _id })
                     .unwrap()
                     .then(() => {
                         console.log()
@@ -137,7 +135,7 @@ const BikeDetail = () => {
                 </div>
                 <div className='text-center'>
                     {product?.description}
-                    <div onClick={() => setIsModalVisible(true)} className='text-center'><Button className='h-12'>Book Now</Button></div>
+                    <div onClick={() => setIsModalVisible(true)} className='text-center'><Button disabled={product?.isAvailable === false} className='h-12'>Book Now</Button></div>
                 </div>
             </div>
             <Modal
