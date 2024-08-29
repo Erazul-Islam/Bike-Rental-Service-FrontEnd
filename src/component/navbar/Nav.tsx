@@ -56,6 +56,11 @@ const Nav = () => {
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
+                            <Link color="foreground" href="/spin">
+                                Spinner
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
                             {user ? <div className='cursor-pointer' onClick={handleLogout}>Logout</div> : <Link color="foreground" href="/login">
                                 Login
                             </Link>}

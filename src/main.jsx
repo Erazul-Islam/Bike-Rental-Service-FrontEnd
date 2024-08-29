@@ -26,6 +26,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Error from './pages/ErrorPage/Error.tsx'
 import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute.tsx'
 import ReturnBike from './component/DashBoard/AdminDashBoard/ReturnBike.tsx'
+import SpinWheelComponent from './component/spin-while/SpinWheel.tsx'
 
 
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/spin',
+        element: <SpinWheelComponent />
       },
       {
         path: '/signup',

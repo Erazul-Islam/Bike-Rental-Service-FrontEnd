@@ -32,7 +32,7 @@ const Signup = () => {
 
             Swal.fire({
                 title: "Good job!",
-                text: "Login Successfully",
+                text: "Sign up Successfully",
                 icon: "success"
             });
 

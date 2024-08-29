@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDeleteUserMutation, useGetAllProfileQuery, useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { Button, Card, Descriptions, Form, Input, message, Modal, notification } from 'antd';
 import Swal from 'sweetalert2';
@@ -8,26 +8,29 @@ const UserManagement = () => {
 
     const { data, refetch } = useGetAllProfileQuery(null);
     const [deleteUser] = useDeleteUserMutation()
-    const [updateUserRole, { isSuccess, isError }] = useUpdateUserProfileMutation()
+    const [updateUserRole, { isSuccess, isError, error }] = useUpdateUserProfileMutation()
     // console.log(updateUserRole)
 
     const handleUpdateRole = async (userId: string) => {
-        // console.log(userId)
+        console.log(userId)
         try {
-            await updateUserRole({ userId, role: 'admin' }).unwrap();
-            // console.log(updateUserRole)
-            if (isSuccess) {
-                console.log(isSuccess)
-                message.success('User role updated successfully.');
-                refetch(); 
-            }
+            const role = await updateUserRole({ userId, role: 'admin' }).unwrap();
+            console.log(role)
         } catch (err) {
-            if (isError) {
-                console.log(isError)
-                message.error(`Error updating user role: ${err.message}`);
-            }
+            console.error('Error updating user role:', err);
         }
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            message.success('User role updated successfully.');
+            refetch();  // Refetch the user data after updating the role
+        }
+        if (isError) {
+            // message.error(`Error updating user role: ${error?.data?.message || error.message}`);
+            console.log(isError)
+        }
+    }, [isSuccess, isError, error, refetch]);
 
 
     const handleDelete = (_id: string) => {
