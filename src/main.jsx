@@ -52,6 +52,10 @@ const router = createBrowserRouter([
         element: <Login />
       },
       {
+        path: '/all-bike',
+        element: <BikeList />
+      },
+      {
         path: '/spin',
         element: <SpinWheelComponent />
       },

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Button, message } from 'antd';
+import { Table,  message, DatePicker } from 'antd';
+import { Button } from '@nextui-org/button';
+import moment from 'moment';
+import './Rentaltable.css'
 
 const RentalTable = ({ rentals, onCalculate }) => {
     const [endTimes, setEndTimes] = useState({});
@@ -16,24 +19,26 @@ const RentalTable = ({ rentals, onCalculate }) => {
         setEndTimes(initialEndTimes);
     }, [rentals]);
 
-    const handleInputChange = (value, id) => {
-        setEndTimes({ ...endTimes, [id]: value });
+   const handleDateChange = (date, dateString, id) => {
+        setEndTimes({ ...endTimes, [id]: dateString });
     };
-
     const columns = [
         {
             title: 'Start Time',
             dataIndex: 'startTime',
             key: 'startTime',
+            render: (text) => moment(text).format('YYYY-MM-DD HH:mm:ss')
         },
         {
             title: 'End Time',
             key: 'endTime',
             render: (text, record) => (
-                <Input
-                    placeholder="Enter End Time"
-                    value={endTimes[record._id] || new Date().toISOString()}
-                    onChange={(e) => handleInputChange(e.target.value, record._id)}
+                <DatePicker 
+                    showTime
+                    format="YYYY-MM-DD HH:mm:ss"
+                    value={endTimes[record._id] ? moment(endTimes[record._id]) : moment()}
+                    onChange={(date, dateString) => handleDateChange(date, dateString, record._id)}
+                    className="responsive-input"
                 />
             ),
         },
@@ -42,12 +47,13 @@ const RentalTable = ({ rentals, onCalculate }) => {
             key: 'action',
             render: (text, record) => (
                 <Button
-                    type="primary"
+                    color='success'
+                    className='h-12'
                     onClick={() => {
                         if (endTimes[record._id]) {
                             onCalculate(record._id, endTimes[record._id]);
-                        } else {
-                            message.warning('Please enter the end time');
+                        }else{
+                            message.warning('Please put end time')
                         }
                     }}
                 >
@@ -62,7 +68,7 @@ const RentalTable = ({ rentals, onCalculate }) => {
             columns={columns}
             dataSource={rentals}
             rowKey="_id"
-            pagination={{ pageSize: 5 }}
+            pagination={{ pageSize: 4 }}
             scroll={{ x: true }}
         />
     );

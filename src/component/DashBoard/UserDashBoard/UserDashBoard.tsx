@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { RootState } from '../../../redux/store';
@@ -10,6 +10,17 @@ import { Content, Header } from 'antd/es/layout/layout';
 const UserDashBoard = () => {
 
     const user = useSelector((state: RootState) => state.auth.user)
+
+    const [theme, setTheme] = useState('dark')
+
+    useEffect(() => {
+        document.documentElement.classList.remove('dark', 'light');
+        document.documentElement.classList.add(theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
 
     return (
         <div>

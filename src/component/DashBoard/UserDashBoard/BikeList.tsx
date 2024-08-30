@@ -26,7 +26,6 @@ const BikeList = () => {
             let filtered = data?.data
                 .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
                 .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
-            // .filter((product: TBike) => (filters.isAvailable ? product. === filters.model : true))
             setFilteredProducts(filtered);
             setLoading(false);
         }, 3000);
@@ -43,9 +42,9 @@ const BikeList = () => {
     };
 
     return (
-        <div>
+        <div className='mb-12'>
             <div className='justify-center'>
-                <div className='flex' style={{ marginBottom: 20 }}>
+                <div className='flex ml-8 mt-8 ' style={{ marginBottom: 20 }}>
                     <Select
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
@@ -74,38 +73,38 @@ const BikeList = () => {
                 </div>
             </div>
             {
-                loading ? <Spinner className='text-center'></Spinner> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-52'>
+                loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 ml-12 lg:grid-cols-3 gap-14 lg:ml-52'>
                     {
-                        filteredProducts?.map(one => (<div key={one._id} className='h-[550px] w-96 bg-black'>
-                            <h1 className='pt-3 pl-4 text-left'>Name: {one.name}</h1>
+                        filteredProducts?.map(one => (<div key={one._id} className='h-[550px] w-96 dark:dark light:light'>
+                            <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1>
                             <img className='pl-14 h-64' src={one.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
                                 <div>
                                     <div className='flex gap-2'>
                                         <h1 className='text-red-600 text-2xl'><RiMotorbikeFill /> </h1>
-                                        <h2 className="text-white">{one.name}</h2>
+                                        <h2 className="dark:text-white">{one.name}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
                                         <h1 className='text-red-600 text-2xl'><FaCcDinersClub /> </h1>
-                                        <h2 className="text-white">{one.cc}</h2>
+                                        <h2 className="dark:text-white">{one.cc}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
                                         <h1 className='text-red-600 text-2xl'><GiCalendarHalfYear /> </h1>
-                                        <h2 className="text-white">{one.year}</h2>
+                                        <h2 className="dark:text-white">{one.year}</h2>
                                     </div>
                                 </div>
                                 <div>
                                     <div className='flex gap-2'>
                                         <h1 className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </h1>
-                                        <h2 className="text-white">{one.pricePerHour}</h2>
+                                        <h2 className="dark:text-white">{one.pricePerHour}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
                                         <h1 className='text-red-600 text-2xl'><MdOutlineModelTraining /> </h1>
-                                        <h2 className="text-white">{one.model}</h2>
+                                        <h2 className="dark:text-white">{one.model}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
                                         <h1 className='text-red-600 text-2xl'><TbBrandAdobe /> </h1>
-                                        <h2 className="text-white">{one.brand}</h2>
+                                        <h2 className="dark:text-white">{one.brand}</h2>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hook';
 import { RootState } from '../../../redux/store';
@@ -9,6 +9,11 @@ import { UserOutlined, BookOutlined, HomeOutlined, LikeOutlined } from '@ant-des
 import { RiCoupon5Fill } from "react-icons/ri";
 import { RiMotorbikeFill } from "react-icons/ri";
 import { GrDeliver } from "react-icons/gr";
+import { Switch } from '@nextui-org/react';
+import { MoonIcon } from '../../navbar/sunIcon';
+import { SunIcon } from '../../navbar/moonIcon';
+import Nav from '../../navbar/Nav';
+import '../../navbar/dark.css'
 
 
 
@@ -16,9 +21,20 @@ const AdminDashBoard = () => {
 
     const user = useAppSelector((state: RootState) => state.auth.user)
 
+    const [theme, setTheme] = useState('dark')
+
+    useEffect(() => {
+        document.documentElement.classList.remove('dark', 'light');
+        document.documentElement.classList.add(theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
 
     return (
         <div>
+            {/* <Nav/> */}
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible>
                     <div className="logo" style={{ padding: '16px', textAlign: 'center' }}>
@@ -44,15 +60,27 @@ const AdminDashBoard = () => {
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
+                        <Switch 
+                            defaultSelected={theme === 'dark'}
+                            size="lg"
+                            color="secondary"
+                            className='ml-3'
+                            thumbIcon={({ isSelected, className }) =>
+                                isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
+                            }
+                            onChange={toggleTheme}
+                        >
+
+                        </Switch>
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Header style={{  padding: 0 }}>
                         <div style={{ padding: '0 16px', fontSize: '24px', fontWeight: 'bold' }}>
-                            User Dashboard
+                            Admin Dashboard
                         </div>
                     </Header>
-                    <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+                    <Content style={{ margin: '24px 16px', padding: 24 , minHeight: 280 }}>
                         <Outlet />
                     </Content>
                 </Layout>

@@ -7,6 +7,8 @@ import { logout, useCurrentToken } from '../../redux/feature/auth/authSlice';
 import { verifyToken } from '../../utils/verifyToken';
 import { MoonIcon } from './sunIcon';
 import { SunIcon } from './moonIcon';
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Drawer } from 'antd';
 
 const Nav = () => {
 
@@ -37,6 +39,17 @@ const Nav = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
     };
 
+    const [visible, setVisible] = useState(false);
+
+    const showDrawer = () => {
+        setVisible(true);
+    };
+
+    const onClose = () => {
+        setVisible(false);
+    };
+
+
     return (
         <div>
             <Navbar isBordered>
@@ -53,6 +66,11 @@ const Nav = () => {
                         <NavbarItem>
                             <Link color="foreground" href="/about">
                                 About
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="foreground" href="/all-bike">
+                                Bike
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
@@ -77,14 +95,59 @@ const Nav = () => {
                         defaultSelected={theme === 'dark'}
                         size="lg"
                         color="secondary"
+                        className=''
                         thumbIcon={({ isSelected, className }) =>
                             isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
                         }
                         onChange={toggleTheme}
                     >
-                        {/* Dark mode */}
+
                     </Switch>
+                    <div className='md:hidden'>
+                        <Button className='md:hidden bg-none' type="text" icon={<MenuOutlined />} onClick={showDrawer} />
+                    </div>
+                    <Drawer
+                        title="Menu"
+                        placement="right"
+                        onClose={onClose}
+                        open={visible}
+                        className="md:hidden dark:dark light:light"
+                    >
+                        <NavbarItem>
+                            <Link color="warning" href='/'>
+                                Home
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="warning" href="/about">
+                                About
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="warning" href="/all-bike">
+                                Bike
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            <Link color="warning" href="/spin">
+                                Spinner
+                            </Link>
+                        </NavbarItem>
+                        <NavbarItem>
+                            {user ? <div className='cursor-pointer' onClick={handleLogout}>Logout</div> : <Link color="warning" href="/login">
+                                Login
+                            </Link>}
+                        </NavbarItem>
+                        <NavbarItem>
+                            {user?.role === 'admin' ? < Link color="warning" href="/admin/dashboard">
+                                Dashboard
+                            </Link> : <Link color="warning" href="/user/dashboard">
+                                Dashboard
+                            </Link>}
+                        </NavbarItem>
+                    </Drawer>
                 </NavbarContent>
+
             </Navbar>
         </div >
     );

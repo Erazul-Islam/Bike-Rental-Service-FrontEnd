@@ -55,14 +55,14 @@ const Login = () => {
     return (
         <div className="dark h-screen flex justify-center items-center">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <Input
-                    className="w-64"
+                <input
+                    className="w-64 text-orange-500"
                     placeholder="Email"
                     type="email"
                     {...register('email', { required: true })}
                 />
-                <Input
-                    className="w-64"
+                <input
+                    className="w-64 text-orange-500"
                     placeholder="Password"
                     type="password"
                     {...register('password', { required: true })}

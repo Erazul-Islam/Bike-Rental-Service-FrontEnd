@@ -16,7 +16,8 @@ const coupons = [
 
 const CouponsAndDiscounts = () => {
     return (
-        <div className='dark:dark light:light' style={{ padding: '20px', }}>
+        <div className='dark:dark light:light
+        ' style={{ padding: '20px', }}>
             <Title level={2}>Coupons & Discounts</Title>
             <Paragraph>Apply the following coupon codes at checkout to receive discounts on your rentals:</Paragraph>
 

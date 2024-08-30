@@ -23,6 +23,12 @@ export type TBike = {
     isAvailable: boolean
 };
 
+export type TCoupon = {
+    _id: string,
+    code : string,
+    discount: number
+}
+
 export type TRental = {
     _id: string
     bikeId: string,

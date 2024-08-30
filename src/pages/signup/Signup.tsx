@@ -5,7 +5,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { TUser } from '../../redux/feature/auth/authSlice';
 import Swal from 'sweetalert2';
 import { useSignupMutation } from '../../redux/feature/auth/authSignup';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -51,32 +51,32 @@ const Signup = () => {
         <div>
             <div className="dark h-screen flex items-center justify-center">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <Input
-                        className="w-full"
+                    <input
+                        className="w-full text-orange-500"
                         placeholder="Email"
                         type="email"
                         {...register('email', { required: true })}
                     />
-                    <Input
-                        className="w-full"
+                    <input
+                        className="w-full text-orange-500"
                         placeholder="Name"
                         type="text"
                         {...register('name', { required: true })}
                     />
-                    <Input
-                        className="w-full"
+                    <input
+                        className="w-full text-orange-500"
                         placeholder="Password"
                         type="password"
                         {...register('password', { required: true })}
                     />
-                    <Input
-                        className="w-full"
+                    <input
+                        className="w-full text-orange-500"
                         placeholder="Phone"
                         type="text"
                         {...register('phone', { required: true })}
                     />
-                    <Input
-                        className="w-full"
+                    <input
+                        className="w-full text-orange-500"
                         placeholder="Address"
                         type="text"
                         {...register('address', { required: true })}
@@ -89,6 +89,12 @@ const Signup = () => {
                     >
                         {isSubmitting ? 'Signing Up...' : 'Sign Up'}
                     </Button>
+                    <div>
+                        If you have account ? <br />
+
+                        <Link className='text-red-600' to='/login'>Login Now</Link>
+
+                    </div>
                 </form>
             </div>
         </div>

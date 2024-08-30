@@ -12,9 +12,9 @@ const SpinWheelComponent = () => {
     const dispatch = useDispatch();
 
     const segments = [
-        { name: '10% Off', code: 'DISCOUNT10' },
-        { name: '20% Off', code: 'DISCOUNT20' },
-        { name: '30% Off', code: 'DISCOUNT30' },
+        { name: '10% Off', code: 'TAOSIF10' },
+        { name: '20% Off', code: 'TAOSIF20' },
+        { name: '30% Off', code: 'TAOSIF30' },
     ];
 
     const handleSpin = () => {
@@ -52,15 +52,15 @@ const SpinWheelComponent = () => {
                     open={visible}
                     onCancel={() => setVisible(false)}
                     footer={[
-                        <Button key="copy" onClick={copyToClipboard}>
+                        <Button className='h-12 ' key="copy" onClick={copyToClipboard}>
                             Copy <CopyOutlined />
                         </Button>,
-                        <Button key="close" type="primary" onClick={() => setVisible(false)}>
+                        <Button className='h-12 ' key="close" type="primary" onClick={() => setVisible(false)}>
                             Close
                         </Button>,
                     ]}
                 >
-                    <p>Your coupon code: {couponCode}</p>
+                    <div>Your coupon code: {couponCode}</div>
                 </Modal>
             </div>
             <h1 className='text-2xl font-bold mt-12 text-orange-400  '>Spin the wheel and get attractive Discount</h1>

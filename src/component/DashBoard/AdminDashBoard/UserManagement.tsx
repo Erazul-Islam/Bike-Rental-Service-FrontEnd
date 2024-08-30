@@ -65,9 +65,9 @@ const UserManagement = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:ml-28'>
             {
                 data?.data?.map(one => <div >
-                    <Card key={one._id} title="User Profile" style={{ maxWidth: 600, margin: '0 auto' }}>
-                        <Descriptions bordered column={1}>
-                            <Descriptions.Item label="Name">{one?.name}</Descriptions.Item>
+                    <Card className='' key={one._id} title="User Profile" style={{ maxWidth: 600, margin: '0 auto',backgroundColor:'Highlight' }}>
+                        <Descriptions className='card-description' bordered column={1}>
+                            <Descriptions.Item className='card-description' label="Name">{one?.name}</Descriptions.Item>
                             <Descriptions.Item label="Email">{one?.email}</Descriptions.Item>
                             <Descriptions.Item label="Phone">{one?.phone}</Descriptions.Item>
                             <Descriptions.Item label="Address">{one?.address}</Descriptions.Item>

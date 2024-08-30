@@ -14,7 +14,7 @@ const Discount = () => {
                     </Content>
                 </Layout>
                 <div className=''>
-                    <img className='md:ml-28 ml-14' src="https://i.ibb.co/SdZSZ81/baptiste-david-Xfbj-Tax-Snuw-unsplash.jpg" alt="" />
+                    <img className='md:ml-28 mt-10 ' src="https://i.ibb.co/SdZSZ81/baptiste-david-Xfbj-Tax-Snuw-unsplash.jpg" alt="" />
                 </div>
             </div>
         </div>

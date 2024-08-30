@@ -6,6 +6,7 @@ import Testimonial from './Testimonial/Testimonial';
 import Choose from './Choose/Choose';
 import Discount from './Discount/Discount';
 import ContactSection from '../../component/contact/ContactSection';
+import BikeList from '../../component/DashBoard/UserDashBoard/BikeList';
 
 const Home = () => {
 
@@ -13,10 +14,11 @@ const Home = () => {
     return (
         <div>
             <Slider></Slider>
+            <BikeList />
             <Contact />
             <Testimonial />
             <Choose />
-            <Discount />           
+            <Discount />
             <ContactSection />
             <Footer></Footer>
         </div>
