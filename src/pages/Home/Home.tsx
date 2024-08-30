@@ -8,13 +8,15 @@ import Discount from './Discount/Discount';
 import ContactSection from '../../component/contact/ContactSection';
 
 const Home = () => {
+
+
     return (
         <div>
             <Slider></Slider>
             <Contact />
             <Testimonial />
             <Choose />
-            <Discount />
+            <Discount />           
             <ContactSection />
             <Footer></Footer>
         </div>

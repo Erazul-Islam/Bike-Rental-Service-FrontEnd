@@ -129,9 +129,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <NextUIProvider>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
+      <main className="dark:dark light:light text-foreground bg-background">
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
+      </main>
     </NextUIProvider>
-  </StrictMode>,
+  </StrictMode >,
 )

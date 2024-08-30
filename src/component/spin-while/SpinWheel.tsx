@@ -38,29 +38,32 @@ const SpinWheelComponent = () => {
 
 
     return (
-        <div className="spin-wheel-container">
-            <div className={`spin-wheel ${spinning ? 'spinning' : ''}`} onClick={handleSpin}>
-                {segments.map((segment, index) => (
-                    <div key={index} className="segment">
-                        {segment.name}
-                    </div>
-                ))}
+        <div>
+            <div className="spin-wheel-container">
+                <div className={` mt-20 spin-wheel ${spinning ? 'spinning' : ''}`} onClick={handleSpin}>
+                    {segments.map((segment, index) => (
+                        <div key={index} className="segment">
+                            {segment.name}
+                        </div>
+                    ))}
+                </div>
+                <Modal
+                    title="Congratulations!"
+                    open={visible}
+                    onCancel={() => setVisible(false)}
+                    footer={[
+                        <Button key="copy" onClick={copyToClipboard}>
+                            Copy <CopyOutlined />
+                        </Button>,
+                        <Button key="close" type="primary" onClick={() => setVisible(false)}>
+                            Close
+                        </Button>,
+                    ]}
+                >
+                    <p>Your coupon code: {couponCode}</p>
+                </Modal>
             </div>
-            <Modal
-                title="Congratulations!"
-                open={visible}
-                onCancel={() => setVisible(false)}
-                footer={[
-                    <Button key="copy" onClick={copyToClipboard}>
-                        Copy <CopyOutlined />
-                    </Button>,
-                    <Button key="close" type="primary" onClick={() => setVisible(false)}>
-                        Close
-                    </Button>,
-                ]}
-            >
-                <p>Your coupon code: {couponCode}</p>
-            </Modal>
+            <h1 className='text-2xl font-bold mt-12 text-orange-400  '>Spin the wheel and get attractive Discount</h1>
         </div>
     );
 };
