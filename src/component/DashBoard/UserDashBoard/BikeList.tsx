@@ -6,7 +6,7 @@ import { FaCcDinersClub } from "react-icons/fa";
 import { GiCalendarHalfYear } from "react-icons/gi";
 import { MdOutlineModelTraining } from "react-icons/md";
 import { TbBrandAdobe } from "react-icons/tb";
-import { Button, Select } from 'antd';
+import { Button, Checkbox, Modal, Select } from 'antd';
 import { TBike } from '../../../utils/global';
 import { Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,8 @@ const BikeList = () => {
     const [filters, setFilters] = useState({ brand: '', model: '', isAvailable: '' });
     const [filteredProducts, setFilteredProducts] = useState(data?.data);
     const [loading, setLoading] = useState(true);
+    const [selectedBike, setSelectedBike] = useState([])
+    const [isModalVisible, setIsModalVisible] = useState(false)
 
     const controls = useAnimation();
     const [ref, inView] = useInView({
@@ -54,6 +56,25 @@ const BikeList = () => {
         setFilters({ brand: '', model: '', isAvailable: '' });
     };
 
+
+    const handleCheckBoxChange = (bike) => {
+        setSelectedBike((prevSelected) => {
+            if (prevSelected.includes(bike)) {
+                return prevSelected.filter((item) => item !== bike)
+            } else {
+                return [...prevSelected, bike]
+            }
+        })
+    }
+
+    const handleCompare = () => {
+        setIsModalVisible(true)
+    }
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
     return (
         <div className='mb-12 '>
             <div className='justify-center'>
@@ -81,10 +102,14 @@ const BikeList = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-
                     <Button className='pb-4 mt-0 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
+                    <Button style={{backgroundColor:'aqua'}} className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                        Compare ({selectedBike.length})
+                    </Button>
                 </div>
+                <h1 className='text-center text-green-400 text-3xl'>Select at least two to compare</h1>
             </div>
+
             {
                 loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
                     {
@@ -123,12 +148,36 @@ const BikeList = () => {
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
                                 <Link to={`/bikes/${one._id}`} > <Button className='pb-4 h-12'> View Detail</Button></Link>
-                                <p className='pt-14'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</p>
+                                <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
+                                    
+                                </Checkbox>
+                                <h1 className='pt-14 text-orange-400'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
                             </div>
                         </ motion.div>))
                     }
                 </div>
             }
+            <Modal
+                title="Bike Comparison"
+                open={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+                width={800}
+            >
+                <div className='flex justify-around'>
+                    {selectedBike.map((bike) => (
+                        <div key={bike?._id} className='border p-4'>
+                            <h2 className='text-orange-500'>{bike.name}</h2>
+                            <img src={bike.image} alt={bike.name} className='h-40' />
+                            <h1 className='text-orange-500'>Brand: {bike.brand}</h1>
+                            <h1 className='text-orange-500'>Model: {bike.model}</h1>
+                            <h1 className='text-orange-500'>CC: {bike.cc}</h1>
+                            <h1 className='text-orange-500'>Year: {bike.year}</h1>
+                            <h1 className='text-orange-500'>Price per Hour: {bike.pricePerHour}</h1>
+                        </div>
+                    ))}
+                </div>
+            </Modal>
         </div>
     );
 };
