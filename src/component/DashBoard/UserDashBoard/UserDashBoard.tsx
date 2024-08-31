@@ -6,6 +6,9 @@ import { Avatar, Layout, Menu } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { UserOutlined, BookOutlined, HomeOutlined, LikeOutlined } from '@ant-design/icons';
 import { Content, Header } from 'antd/es/layout/layout';
+import { Switch } from '@nextui-org/react';
+import { MoonIcon } from '../../navbar/sunIcon';
+import { SunIcon } from '../../navbar/moonIcon';
 
 const UserDashBoard = () => {
 
@@ -43,15 +46,27 @@ const UserDashBoard = () => {
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
+                        <Switch
+                            defaultSelected={theme === 'dark'}
+                            size="lg"
+                            color="secondary"
+                            className='ml-3'
+                            thumbIcon={({ isSelected, className }) =>
+                                isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
+                            }
+                            onChange={toggleTheme}
+                        >
+
+                        </Switch>
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Header style={{  padding: 0 }}>
                         <div style={{ padding: '0 16px', fontSize: '24px', fontWeight: 'bold' }}>
-                            User Dashboard
+                            Welcome {user?.name}
                         </div>
                     </Header>
-                    <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+                    <Content style={{ margin: '24px 16px', padding: 24, minHeight: 280 }}>
                         <Outlet />
                     </Content>
                 </Layout>

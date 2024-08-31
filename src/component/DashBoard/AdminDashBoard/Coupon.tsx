@@ -32,17 +32,6 @@ const Coupon = () => {
         }
     };
 
-    const handleUpdateCoupon = async (id) => {
-
-        try {
-            updateCoupon({ _id: id })
-            message.success('Successfully updated')
-            setVisible(false)
-        }
-        catch (err) {
-            message.error('Failed to update')
-        }
-    }
 
     const handleDeleteCoupon = async (id: string) => {
         console.log()
@@ -102,23 +91,12 @@ const Coupon = () => {
                 </Button>
             ),
         },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <Button color='' className='h-12'
-                    onClick={() => handleDeleteCoupon(record._id)}
-                >
-                    Update
-                </Button>
-            ),
-        },
     ];
 
     return (
         <div>
             <div className=''>
-                <Button type="dashed" icon={<PlusOutlined />} onClick={() => setIsModalVisible(true)}>
+                <Button type="dashed" className='h-12' icon={<PlusOutlined />} onClick={() => setIsModalVisible(true)}>
                     Add Coupon
                 </Button>
 
@@ -155,32 +133,6 @@ const Coupon = () => {
                         <Form.Item>
                             <Button type="primary" htmlType="submit">
                                 Add
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </Modal>
-                <Modal
-                    title="Updated Coupon"
-                    open={visible}
-                    onCancel={() => setVisible(false)}
-                    footer={null}
-                >
-                    <Form form={form} layout="vertical" onFinish={handleUpdateCoupon}>
-                        <Form.Item
-                            name="code"
-                            label="Coupon Code"
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item
-                            name="discount"
-                            label="Discount"
-                        >
-                            <Input />
-                        </Form.Item>
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit">
-                                UPDATE
                             </Button>
                         </Form.Item>
                     </Form>

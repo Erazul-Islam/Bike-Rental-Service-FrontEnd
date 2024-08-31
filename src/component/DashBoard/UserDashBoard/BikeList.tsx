@@ -10,6 +10,8 @@ import { Button, Select } from 'antd';
 import { TBike } from '../../../utils/global';
 import { Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const BikeList = () => {
 
@@ -19,6 +21,17 @@ const BikeList = () => {
     const [filteredProducts, setFilteredProducts] = useState(data?.data);
     const [loading, setLoading] = useState(true);
 
+    const controls = useAnimation();
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.1,
+    });
+
+    useEffect(() => {
+        if (inView) {
+            controls.start('visible');
+        }
+    }, [controls, inView]);
 
     useEffect(() => {
         setLoading(true);
@@ -42,14 +55,14 @@ const BikeList = () => {
     };
 
     return (
-        <div className='mb-12'>
+        <div className='mb-12 '>
             <div className='justify-center'>
                 <div className='flex ml-8 mt-8 ' style={{ marginBottom: 20 }}>
                     <Select
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
                         value={filters.brand}
-                        style={{ width: 150, marginRight: 10,height:48, }}
+                        style={{ width: 150, marginRight: 10, height: 48, }}
                     >
                         <Option value="">Model</Option>
                         <Option value="Xixer">Xixer</Option>
@@ -60,7 +73,7 @@ const BikeList = () => {
                         placeholder="Select Brand"
                         onChange={(value) => handleFilterChange('brand', value)}
                         value={filters.model}
-                        style={{ width: 150, marginRight: 10,height:48 }}
+                        style={{ width: 150, marginRight: 10, height: 48 }}
                     >
                         <Option value="">Brand</Option>
                         <Option value="Suzuki">Suzuki</Option>
@@ -69,13 +82,13 @@ const BikeList = () => {
                         <Option value="Platina">Platina</Option>
                     </Select>
 
-                    <Button  className='pb-4 mt-0 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
+                    <Button className='pb-4 mt-0 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
                 </div>
             </div>
             {
-                loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 ml-12 lg:grid-cols-3 gap-14 lg:ml-52'>
+                loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
                     {
-                        filteredProducts?.map(one => (<div key={one._id} className='h-[550px] w-96 dark:dark light:light'>
+                        filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] w-96 dark:dark light:light'>
                             <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1>
                             <img className='pl-14 h-64' src={one.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
@@ -109,10 +122,10 @@ const BikeList = () => {
                                 </div>
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
-                               <Link to={`/bikes/${one._id}`} > <Button className='pb-4 h-12'> View Detail</Button></Link>
-                               <p className='pt-14'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</p>
+                                <Link to={`/bikes/${one._id}`} > <Button className='pb-4 h-12'> View Detail</Button></Link>
+                                <p className='pt-14'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</p>
                             </div>
-                        </div>))
+                        </ motion.div>))
                     }
                 </div>
             }

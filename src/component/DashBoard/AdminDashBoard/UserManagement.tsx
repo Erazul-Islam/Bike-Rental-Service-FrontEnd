@@ -1,37 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDeleteUserMutation, useGetAllProfileQuery, useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { Button, Card, Descriptions, Form, Input, message, Modal, notification } from 'antd';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 const UserManagement = () => {
 
     const { data, refetch } = useGetAllProfileQuery(null);
     const [deleteUser] = useDeleteUserMutation()
-    const [updateUserRole, { isSuccess, isError, error }] = useUpdateUserProfileMutation()
-    // console.log(updateUserRole)
 
-    const handleUpdateRole = async (userId: string) => {
-        console.log(userId)
-        try {
-            const role = await updateUserRole({ userId, role: 'admin' }).unwrap();
-            console.log(role)
-        } catch (err) {
-            console.error('Error updating user role:', err);
-        }
-    };
-
-    useEffect(() => {
-        if (isSuccess) {
-            message.success('User role updated successfully.');
-            refetch();  // Refetch the user data after updating the role
-        }
-        if (isError) {
-            // message.error(`Error updating user role: ${error?.data?.message || error.message}`);
-            console.log(isError)
-        }
-    }, [isSuccess, isError, error, refetch]);
-
+    const handleAdmin = user => {
+        axios.patch(`http://localhost:5000/api/users/${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.success === true) {
+                    refetch()
+                    Swal.fire({
+                        title: "Good job!",
+                        text: `You made ${res.data.data.name} as admin!`,
+                        icon: "success"
+                    });
+                }
+            })
+    }
 
     const handleDelete = (_id: string) => {
         Swal.fire({
@@ -65,7 +57,7 @@ const UserManagement = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:ml-28'>
             {
                 data?.data?.map(one => <div >
-                    <Card className='' key={one._id} title="User Profile" style={{ maxWidth: 600, margin: '0 auto',backgroundColor:'Highlight' }}>
+                    <Card className='' key={one._id} title="User Profile" style={{ maxWidth: 600, margin: '0 auto', backgroundColor: 'Highlight' }}>
                         <Descriptions className='card-description' bordered column={1}>
                             <Descriptions.Item className='card-description' label="Name">{one?.name}</Descriptions.Item>
                             <Descriptions.Item label="Email">{one?.email}</Descriptions.Item>
@@ -74,11 +66,7 @@ const UserManagement = () => {
                         </Descriptions>
                         <div className='flex justify-between'>
                             <Button className='pb-4 h-12' onClick={() => handleDelete(one._id)}>Delete</Button>
-                            {one.role === 'admin' ? (
-                                <Button className='pb-4 h-12' type="default">Admin</Button>
-                            ) : (
-                                <Button onClick={() => handleUpdateRole(one._id)} className='pb-4 h-12' type="default">Make Admin</Button>
-                            )}
+                            {one.role === 'admin' ? <Button className="bg-green-400 h-12" type="default">Admin</Button> : <Button onClick={() => handleAdmin(one)} className="bg-green-400 h-12" type="default">Make Admin</Button>}
                         </div>
                     </Card>
                 </div>)

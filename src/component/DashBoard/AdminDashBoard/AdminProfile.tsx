@@ -3,6 +3,8 @@ import {  useAppSelector } from '../../../redux/hook';
 import { RootState } from '../../../redux/store';
 import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/feature/auth/authSlice';
 
 const AdminProfile = () => {
 
@@ -11,7 +13,8 @@ const AdminProfile = () => {
 
 
     const [form] = Form.useForm();
-    const [updateUserProfile, { isLoading }] = useUpdateUserProfileMutation();
+    const dispatch = useDispatch()
+    const [updateUserProfile, { isLoading, }] = useUpdateUserProfileMutation();
     const [errorMsg, setErrorMsg] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -22,8 +25,8 @@ const AdminProfile = () => {
 
     const handleSubmit = async (values) => {
         try {
-            await updateUserProfile(values).unwrap();
-            // disPatch(setUser(updateUserProfile))
+            const updatedUser =  await updateUserProfile(values).unwrap();
+            dispatch(setUser(updatedUser))
             notification.success({
                 message: 'Profile Updated',
                 description: 'Your profile has been successfully updated.',

@@ -60,7 +60,7 @@ const ContactSection = () => {
                         <input placeholder='Your name' className='md:h-16 md:w-1/2 pl-3 bg-rose-500 dark:dark light:light ' type="text" />
                         <input placeholder='Your Email' className='md:h-16 bg-rose-500 md:w-1/2 pl-3 ' type="text" />
                     </div>
-                    <div className='ml-8 mr-8 md:mr-0'><textarea placeholder='Your message' className='w-full   bg-rose-500 h-32  mt-8 pt-12 pl-3' name="" id=""></textarea></div>
+                    <div className=' ml-8 md:ml-0 mr-8'><textarea placeholder='Your message' className='w-full   bg-rose-500 h-32  mt-8 pt-12 pl-3' name="" id=""></textarea></div>
                     <div className='ml-8  md:ml-0'><Button color='success' className='rounded-none bg-rose-500 mt-4 h-14 text-xl w-32' >Submit</Button></div>
                 </div>
             </div>

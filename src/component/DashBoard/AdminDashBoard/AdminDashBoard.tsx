@@ -77,7 +77,7 @@ const AdminDashBoard = () => {
                 <Layout>
                     <Header style={{  padding: 0 }}>
                         <div style={{ padding: '0 16px', fontSize: '24px', fontWeight: 'bold' }}>
-                            Admin Dashboard
+                        Welcome {user?.name}
                         </div>
                     </Header>
                     <Content style={{ margin: '24px 16px', padding: 24 , minHeight: 280 }}>

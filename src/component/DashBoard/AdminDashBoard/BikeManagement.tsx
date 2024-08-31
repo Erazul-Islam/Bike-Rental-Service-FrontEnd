@@ -7,9 +7,10 @@ import { GiCalendarHalfYear } from "react-icons/gi";
 import { MdOutlineModelTraining } from "react-icons/md";
 import { TbBrandAdobe } from "react-icons/tb";
 import { Button } from '@nextui-org/button';
-import { Form, Input, Modal } from 'antd';
+import { Form, Input, Modal, Select } from 'antd';
 import Swal from 'sweetalert2';
 import { TBike } from '../../../utils/global';
+import { Spinner } from '@nextui-org/react';
 
 
 const UpdateForm = ({ _id, refetch, form, initialValues, onCancel }: {
@@ -132,6 +133,31 @@ const BikeManagement = () => {
     const [currentProductId, setCurrentProductId] = useState(null);
     const [form] = Form.useForm();
     const [initialValues, setInitialValues] = useState({})
+    const { Option } = Select;
+    const [filters, setFilters] = useState({ brand: '', model: '', isAvailable: '' });
+    const [filteredProducts, setFilteredProducts] = useState(data?.data);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            let filtered = data?.data
+                .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
+                .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
+            setFilteredProducts(filtered);
+            setLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [data, filters]);
+
+    const handleFilterChange = (name: string, value: string) => {
+        setFilters({ ...filters, [name]: value });
+    };
+
+    const clearFilters = () => {
+        setFilters({ brand: '', model: '', isAvailable: '' });
+    };
 
 
     const handleUpdate = (_id: string) => {
@@ -207,11 +233,41 @@ const BikeManagement = () => {
 
     return (
         <div>
-            <Button className="lg:ml-96 lg:mt-14 mb-12" onClick={() => setCreateVisible(true)}>Create Product</Button>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
+            <div className='justify-center'>
+                <div className='md:flex ml-8 mt-8 ' style={{ marginBottom: 20 }}>
+                    <Select
+                        placeholder="Select Category"
+                        onChange={(value) => handleFilterChange('model', value)}
+                        value={filters.brand}
+                        style={{ width: 150, marginRight: 10, height: 48, }}
+                    >
+                        <Option value="">Model</Option>
+                        <Option value="Xixer">Xixer</Option>
+                        <Option value="MT 15">MT15</Option>
+                        <Option value="MT 14">MT14</Option>
+                    </Select>
+                    <Select
+                        placeholder="Select Brand" 
+                        className='md:mt-0 mt-4'
+                        onChange={(value) => handleFilterChange('brand', value)}
+                        value={filters.model}
+                        style={{ width: 150, marginRight: 10, height: 48 }}
+                    >
+                        <Option value="">Brand</Option>
+                        <Option value="Suzuki">Suzuki</Option>
+                        <Option value="Yamaha">Yamaha</Option>
+                        <Option value="Honda">Honda</Option>
+                        <Option value="Platina">Platina</Option>
+                    </Select>
+                    <Button className='pb-4 md:mt-0 mt-4 w-40 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
+                    <Button className="pb-4 mt-0 w-40  bg-white h-12 md:ml-4" onClick={() => setCreateVisible(true)}>Create Product</Button>
+                </div>
+            </div>
+
+            { loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
                 {
-                    data?.data?.map(one => (<div key={one._id} className='h-[550px] md:w-96 '>
-                        <h1 className='pt-3 pl-4 text-left'>Name: {one.name}</h1>
+                    filteredProducts?.map(one => (<div key={one._id} className='h-[550px] md:w-96 '>
+                        <h1 className='pt-3 pl-4 text-orange-500 text-left'>Name: {one.name}</h1>
                         <img className='md:pl-14 pl-8 h-64' src={one.image} alt="" />
                         <div className='flex justify-between pl-8 pr-8 pt-4'>
                             <div>
@@ -250,6 +306,7 @@ const BikeManagement = () => {
                     </div>))
                 }
             </div>
+            }
             <Modal
                 title="Update Product"
                 open={visible}

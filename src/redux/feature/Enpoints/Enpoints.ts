@@ -159,4 +159,4 @@ const authApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetAllBikesQuery, useUpdateCoupomnMutation ,useDeleteCouponMutation, useCreateCouponMutation, useGetAllCouponQuery, useCreateFullPaymentIntentMutation, useUpdatePayementStatusMutation, useUpdateRentalMutation, useGetAllRentalsQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;
+export const { useGetAllBikesQuery, useUpdateCoupomnMutation, useDeleteCouponMutation, useCreateCouponMutation, useGetAllCouponQuery, useCreateFullPaymentIntentMutation, useUpdatePayementStatusMutation, useUpdateRentalMutation, useGetAllRentalsQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;

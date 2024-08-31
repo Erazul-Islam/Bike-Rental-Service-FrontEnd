@@ -5,11 +5,11 @@ const Testimonial = () => {
         <div>
             <ul><h1 className='text-3xl mt-12 mb-12 text-center'>Testimonial</h1></ul>
             <div className='lg:ml-60 lg:mr-60 lg:flex gap-8'>
-                <div>
-                    <img className='' src="https://i.ibb.co/SnkyWZT/carnaby-gilany-u1-Ej-Amyww-I0-unsplash.jpg" alt="" />
+                <div  >
+                    <img className=''  src="https://i.ibb.co/SnkyWZT/carnaby-gilany-u1-Ej-Amyww-I0-unsplash.jpg" alt="" />
                     <div className='flex'>
-                        <h1 className='mt-4 ml-8 md:ml-0 text-xl'>May 1 2023</h1>
-                        <h2 className='mt-4 text-xl md:ml-64'>-  Michael Jac</h2>
+                        <h1 className='mt-4  ml-8 md:ml-0 text-xl'>May 1 2023</h1>
+                        <h2 className='mt-4 text-orange-500 text-xl md:ml-64'>-  Michael Jac</h2>
                     </div>
                     <h3 className='md:text-3xl ml-8 md:ml-0 text-xl mt-3'>On Her Bike through Tanzania and Zanzibar</h3>
                     <p className='text-xl mt-3 ml-8 md:ml-0 '>During the last ice age, the land surface of Drenthe was covered <br /> with glaciers and ice, slowly moving in from Scandinavia.</p>
@@ -21,7 +21,7 @@ const Testimonial = () => {
                         <h2 className='mt-4 text-xl md:ml-64'>-  Taosif Jackson</h2>
                     </div>
                     <h3 className='text-xl md:text-3xl ml-8 md:ml-0  mt-3'>Mountain weather beats route planning
-                   </h3>
+                    </h3>
                     <p className='text-xl ml-8 md:ml-0 mt-3'> Some visit the plance to climb and pass the Watzmann, a mountain whose striking summit towers a whopping 2713 metres into</p>
                 </div>
                 <div>
