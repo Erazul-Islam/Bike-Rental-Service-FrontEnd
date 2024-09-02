@@ -10,7 +10,7 @@ import {
 import { logout, setUser } from '../feature/auth/authSlice';
   
   const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
+    baseUrl: 'https://rental-bike-service.vercel.app/api',
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
@@ -40,7 +40,7 @@ import { logout, setUser } from '../feature/auth/authSlice';
       //* Send Refresh
       console.log('Sending refresh token');
   
-      const res = await fetch('http://localhost:5000/api/auth/refresh-token', {
+      const res = await fetch('https://project-three-ashen-63.vercel.app/api/auth/refresh-token', {
         method: 'POST',
         credentials: 'include',
       });
@@ -84,7 +84,7 @@ import { logout, setUser } from '../feature/auth/authSlice';
 // import { logout, setUser } from '../feature/auth/authSlice';
 
 // const baseQuery = fetchBaseQuery({
-//   baseUrl: 'http://localhost:5000/api',
+//   baseUrl: 'https://project-three-ashen-63.vercel.app/api',
 //   credentials: 'include',
 //   prepareHeaders: (headers, { getState }) => {
 //     const token = (getState() as RootState).auth.token;
@@ -107,7 +107,7 @@ import { logout, setUser } from '../feature/auth/authSlice';
 //   if (result?.error?.status === 401) {
 //     console.log('Sending refresh token');
 
-//     const refreshResult = await fetch('http://localhost:5000/api/auth/refresh-token', {
+//     const refreshResult = await fetch('https://project-three-ashen-63.vercel.app/api/auth/refresh-token', {
 //       method: 'POST',
 //       credentials: 'include',
 //     });

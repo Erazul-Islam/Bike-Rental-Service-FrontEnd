@@ -156,7 +156,7 @@ const Booking = () => {
                                 <div key={rental._id} className="border p-4 rounded-lg text-orange-500">
                                     <h1 className='text-orange-500'><strong>Start Time:</strong> {new Date(rental.startTime).toLocaleString()}</h1>
                                     <h1 className='text-orange-500'><strong>Return Time:</strong> {rental.returnTime ? new Date(rental.returnTime).toLocaleString() : 'Not Returned'}</h1>
-                                    <h1>Payement is done after discount</h1>
+                                    <h1 className='text-orange-500'>Payement is done after discount</h1>
                                     <h1 className='text-orange-500'><strong>Total Cost:</strong> {rental.totalCost}</h1>
                                 </div>
                             ))

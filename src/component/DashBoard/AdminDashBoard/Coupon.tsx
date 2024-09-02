@@ -85,7 +85,7 @@ const Coupon = () => {
             key: 'action',
             render: (text, record) => (
                 <Button color='' className='h-12'
-                    onClick={() => openUpdateModal(record._id)}
+                    onClick={() => handleDeleteCoupon(record._id)}
                 >
                     Delete
                 </Button>

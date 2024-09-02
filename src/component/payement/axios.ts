@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/api'
+    baseURL: 'https://rental-bike-service.vercel.app/api'
 })
 
 const useAxiosSecure = () => {

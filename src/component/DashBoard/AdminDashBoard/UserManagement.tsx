@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDeleteUserMutation, useGetAllProfileQuery, useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
-import { Button, Card, Descriptions, Form, Input, message, Modal, notification } from 'antd';
+import { useDeleteUserMutation, useGetAllProfileQuery, } from '../../../redux/feature/Enpoints/Enpoints';
+import { Button, Card, Descriptions, } from 'antd';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ const UserManagement = () => {
     const [deleteUser] = useDeleteUserMutation()
 
     const handleAdmin = user => {
-        axios.patch(`http://localhost:5000/api/users/${user._id}`)
+        axios.patch(`https://rental-bike-service.vercel.app/api/users/${user._id}`)
             .then(res => {
                 console.log(res.data)
                 if (res.data.success === true) {

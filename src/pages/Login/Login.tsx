@@ -38,9 +38,9 @@ const Login = () => {
                 icon: "success"
             });
             if (user.role === 'admin') {
-                navigate('/admin/dashboard');
+                navigate('/admin/dashboard/admin-profile');
             } else {
-                navigate('/user/dashboard');
+                navigate('/user/dashboard/profile');
             }
         } catch {
             Swal.fire({
