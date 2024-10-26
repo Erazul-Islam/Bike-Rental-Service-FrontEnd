@@ -4,7 +4,6 @@ import { useAppDispatch } from '../../redux/hook';
 import { useLoginMutation } from '../../redux/feature/auth/authApi';
 import { FieldValues, useForm } from "react-hook-form"
 import "./Style.css"
-import Swal from 'sweetalert2';
 import { setUser } from '../../redux/feature/auth/authSlice';
 import { Button, Input } from '@nextui-org/react';
 import { notification } from 'antd';
@@ -35,8 +34,8 @@ const Login = () => {
             dispatch(setUser({ user: res.data, token: res.token }))
             notification.success({
                 message: "Log in !!",
-                description : "You successfully logged in"
-           })
+                description: "You successfully logged in"
+            })
             if (user.role === 'admin') {
                 navigate('/admin/dashboard/admin-profile');
             } else {
@@ -45,8 +44,8 @@ const Login = () => {
         } catch {
             notification.error({
                 message: "Something went wrong",
-                description : "Invalid password or email"
-           })
+                description: "Invalid password or email"
+            })
         }
 
     }
@@ -59,6 +58,14 @@ const Login = () => {
             >
                 <h2 className="text-blue-800 dark:text-teal-200 text-3xl font-semibold text-center">Login</h2>
 
+                <div className=" border border-blue-300  px-4 py-3 rounded relative" role="alert">
+                    <strong className="font-bold">🚀 Try it Out!</strong>
+                    <span className="block sm:inline"> Use the demo credentials below:</span>
+                    <div className="mt-2">
+                        <strong>Email:</strong> <span className="">demo@gmail.com</span> <br />
+                        <strong>Password:</strong> <span className="">123456</span>
+                    </div>
+                </div>
                 <input
                     className="w-full px-5 py-3 bg-blue-100 dark:bg-teal-700 text-blue-800 dark:text-teal-100 placeholder-blue-400 dark:placeholder-teal-300 border border-blue-300 dark:border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-teal-400 transition duration-200"
                     placeholder="Email"
