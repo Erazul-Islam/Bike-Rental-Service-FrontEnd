@@ -1,12 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 const Slider = () => {
     return (
         <div>
-            <Carousel autoPlay >
+            <Carousel infiniteLoop autoPlay >
                 <div>
                     <img src="https://i.ibb.co/rHHfhdF/banner-image-168827119571643.jpg" />
                 </div>

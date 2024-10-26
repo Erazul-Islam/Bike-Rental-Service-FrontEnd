@@ -38,7 +38,7 @@ const BikeList = () => {
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            let filtered = data?.data
+            let filtered = data?.data 
                 .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
                 .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
             setFilteredProducts(filtered);
@@ -56,9 +56,8 @@ const BikeList = () => {
         setFilters({ brand: '', model: '', isAvailable: '' });
     };
 
-
     const handleCheckBoxChange = (bike) => {
-        setSelectedBike((prevSelected) => {
+        setSelectedBike((prevSelected : any) => {
             if (prevSelected.includes(bike)) {
                 return prevSelected.filter((item) => item !== bike)
             } else {
@@ -102,7 +101,7 @@ const BikeList = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-                    <Button className='pb-4 mt-0 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
+                    <Button className='pb-4 mt-0  h-12' onClick={clearFilters}>Clear Filters</Button>
                     <Button style={{backgroundColor:'aqua'}} className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
                         Compare ({selectedBike.length})
                     </Button>
@@ -111,7 +110,7 @@ const BikeList = () => {
             </div>
 
             {
-                loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
+                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
                     {
                         filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] w-96 dark:dark light:light'>
                             <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1>
@@ -147,7 +146,7 @@ const BikeList = () => {
                                 </div>
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
-                                <Link to={`/bikes/${one._id}`} > <Button className='pb-4 h-12'> View Detail</Button></Link>
+                                <Link to={`/bikes/${one._id}`} > <Button type='primary' className='pb-4 h-12'> View Detail</Button></Link>
                                 <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
                                     
                                 </Checkbox>
@@ -165,7 +164,7 @@ const BikeList = () => {
                 width={800}
             >
                 <div className='flex justify-around'>
-                    {selectedBike.map((bike) => (
+                    {selectedBike.map((bike : TBike) => (
                         <div key={bike?._id} className='border p-4'>
                             <h2 className='text-orange-500'>{bike.name}</h2>
                             <img src={bike.image} alt={bike.name} className='h-40' />
