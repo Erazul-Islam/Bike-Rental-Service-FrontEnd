@@ -82,7 +82,7 @@ const BikeList = () => {
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
                         value={filters.brand}
-                        style={{ width: 150, marginRight: 10, height: 48, }}
+                        style={{ width: 150, marginRight: 10, height: 48,  }}
                     >
                         <Option value="">Model</Option>
                         <Option value="Xixer">Xixer</Option>
@@ -101,10 +101,10 @@ const BikeList = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-                    <Button className='pb-4 mt-0  h-12' onClick={clearFilters}>Clear Filters</Button>
-                    <Button style={{backgroundColor:'aqua'}} className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                    <button className='pb-4 mt-0 bg-pink-700 h-12' onClick={clearFilters}>Clear Filters</button>
+                    <button  className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
                         Compare ({selectedBike.length})
-                    </Button>
+                    </button>
                 </div>
                 <h1 className='text-center text-green-400 text-3xl'>Select at least two to compare</h1>
             </div>
@@ -112,7 +112,7 @@ const BikeList = () => {
             {
                 loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
                     {
-                        filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] w-96 dark:dark light:light'>
+                        filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] shadow-lg w-96 dark:dark light:light'>
                             <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1>
                             <img className='pl-14 h-64' src={one.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
@@ -146,11 +146,10 @@ const BikeList = () => {
                                 </div>
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
-                                <Link to={`/bikes/${one._id}`} > <Button type='primary' className='pb-4 h-12'> View Detail</Button></Link>
-                                <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
-                                    
+                                <Link to={`/bikes/${one._id}`} > <button className='pb-4 dark:text-white border-none light:text-black bg-pink-700 h-12'> View Detail</button></Link>
+                                <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>   
                                 </Checkbox>
-                                <h1 className='pt-14 text-orange-400'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
+                                <h1 className='pt-14 '> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
                             </div>
                         </ motion.div>))
                     }

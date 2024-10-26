@@ -7,6 +7,7 @@ import "./Style.css"
 import Swal from 'sweetalert2';
 import { setUser } from '../../redux/feature/auth/authSlice';
 import { Button, Input } from '@nextui-org/react';
+import { notification } from 'antd';
 
 type Inputs = {
     email: string
@@ -30,54 +31,64 @@ const Login = () => {
             }
             const res = await login(userInfo).unwrap()
             console.log(res)
-            const { token, data: user } = res
+            const { data: user } = res
             dispatch(setUser({ user: res.data, token: res.token }))
-            Swal.fire({
-                title: "Good job!",
-                text: "Login Successfully",
-                icon: "success"
-            });
+            notification.success({
+                message: "Log in !!",
+                description : "You successfully logged in"
+           })
             if (user.role === 'admin') {
                 navigate('/admin/dashboard/admin-profile');
             } else {
                 navigate('/user/dashboard/profile');
             }
         } catch {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Something went wrong!",
-            });
+            notification.error({
+                message: "Something went wrong",
+                description : "Invalid password or email"
+           })
         }
 
     }
 
     return (
-        <div className="dark h-screen flex justify-center items-center">
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="h-screen flex justify-center items-center  dark:bg-navy-900 transition-colors duration-200">
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="bg-white dark:bg-teal-800 p-10 rounded-lg shadow-lg w-96 h-auto space-y-8 transition-colors duration-200"
+            >
+                <h2 className="text-blue-800 dark:text-teal-200 text-3xl font-semibold text-center">Login</h2>
+
                 <input
-                    className="w-64 text-orange-500"
+                    className="w-full px-5 py-3 bg-blue-100 dark:bg-teal-700 text-blue-800 dark:text-teal-100 placeholder-blue-400 dark:placeholder-teal-300 border border-blue-300 dark:border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-teal-400 transition duration-200"
                     placeholder="Email"
                     type="email"
                     {...register('email', { required: true })}
                 />
+
                 <input
-                    className="w-64 text-orange-500"
+                    className="w-full px-5 py-3 bg-blue-100 dark:bg-teal-700 text-blue-800 dark:text-teal-100 placeholder-blue-400 dark:placeholder-teal-300 border border-blue-300 dark:border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-teal-400 transition duration-200"
                     placeholder="Password"
                     type="password"
                     {...register('password', { required: true })}
                 />
-                <Button type="submit" color="secondary">
+
+                <Button
+                    type="submit"
+                    className="w-full py-3 mt-6 bg-blue-600 dark:bg-teal-600 text-white rounded-md hover:bg-blue-700 dark:hover:bg-teal-500 transition duration-200"
+                >
                     Login
                 </Button>
-                <div>
-                    Don't you have account ? <br />
 
-                    <Link className='text-red-600' to='/signup'>Create Account</Link>
-
+                <div className="text-center text-blue-600 dark:text-teal-200 mt-6">
+                    Don’t have an account? <br />
+                    <Link className="text-blue-500 dark:text-teal-300 hover:text-blue-400 dark:hover:text-teal-200 transition duration-200" to="/signup">
+                        Create Account
+                    </Link>
                 </div>
             </form>
         </div>
+
     );
 }
 

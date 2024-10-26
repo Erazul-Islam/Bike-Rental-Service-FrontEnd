@@ -43,6 +43,9 @@ const UserDashBoard = () => {
                         <Menu.Item key="bike-list" icon={<LikeOutlined />}>
                             <Link to="/user/dashboard/bike-list">All Bikes</Link>
                         </Menu.Item>
+                        {/* <Menu.Item key="bike-list" icon={<LikeOutlined />}>
+                            <Link to="/user/dashboard/test">test</Link>
+                        </Menu.Item> */}
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
