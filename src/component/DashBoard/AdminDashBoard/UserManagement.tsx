@@ -38,12 +38,12 @@ const UserManagement = () => {
             if (result.isConfirmed) {
                 try {
                     deleteUser(_id)
+                    refetch()
                     Swal.fire({
                         title: "Deleted!",
                         text: "You successfully delete the user",
                         icon: "success"
                     });
-                    refetch()
                 } catch (err) {
                     console.log(err)
                 }
@@ -54,23 +54,43 @@ const UserManagement = () => {
 
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:ml-28'>
-            {
-                data?.data?.map(one => <div >
-                    <Card className='' key={one._id} title="User Profile" style={{ maxWidth: 600, margin: '0 auto', backgroundColor: 'Highlight' }}>
-                        <Descriptions className='card-description' bordered column={1}>
-                            <Descriptions.Item className='card-description' label="Name">{one?.name}</Descriptions.Item>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:ml-28'>
+            {data?.data?.map((one) => (
+                <div key={one._id}>
+                    <Card
+                        title="User Profile"
+                        style={{ maxWidth: 600, margin: '0 auto' }}
+                        className="shadow-md bg-highlight"
+                    >
+                        <Descriptions bordered column={1}>
+                            <Descriptions.Item label="Name">{one?.name}</Descriptions.Item>
                             <Descriptions.Item label="Email">{one?.email}</Descriptions.Item>
                             <Descriptions.Item label="Phone">{one?.phone}</Descriptions.Item>
                             <Descriptions.Item label="Address">{one?.address}</Descriptions.Item>
                         </Descriptions>
-                        <div className='flex justify-between'>
-                            <Button className='pb-4 h-12' onClick={() => handleDelete(one._id)}>Delete</Button>
-                            {one.role === 'admin' ? <Button className="bg-green-400 h-12" type="default">Admin</Button> : <Button onClick={() => handleAdmin(one)} className="bg-green-400 h-12" type="default">Make Admin</Button>}
+                        <div className='flex justify-between mt-4'>
+                            <button
+                                className='bg-red-500 border-none text-white hover:bg-red-600 h-12'
+                                onClick={() => handleDelete(one._id)}
+                            >
+                                Delete
+                            </button>
+                            {one.role === 'admin' ? (
+                                <button className="bg-green-400 border-none text-white h-12 cursor-default" disabled>
+                                    Admin
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={() => handleAdmin(one)}
+                                    className="bg-green-500 border-none text-white hover:bg-green-600 h-12"
+                                >
+                                    Make Admin
+                                </button>
+                            )}
                         </div>
                     </Card>
-                </div>)
-            }
+                </div>
+            ))}
         </div>
     );
 };

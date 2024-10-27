@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetAllRentalsQuery, useUpdateRentalMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import RentalTable from '../../RentalTable/RentalTable';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 const ReturnBike = () => {
 
@@ -14,7 +14,10 @@ const ReturnBike = () => {
             console.log(response)
 
             if (response.success) {
-                message.success('Bike returned successfully');
+                notification.success({
+                    message : "Success",
+                    description : "Bike returned successfully"
+                });
             }
         } catch (error) {
             message.error('Failed to return bike');

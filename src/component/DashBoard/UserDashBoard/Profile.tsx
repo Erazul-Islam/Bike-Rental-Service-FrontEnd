@@ -18,7 +18,6 @@ const Profile = () => {
 
     const handleCancel = () => {
         setIsModalVisible(false);
-
     };
 
     const handleSubmit = async (values) => {

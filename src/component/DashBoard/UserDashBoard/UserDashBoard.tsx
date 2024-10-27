@@ -9,6 +9,7 @@ import { Content, Header } from 'antd/es/layout/layout';
 import { Switch } from '@nextui-org/react';
 import { MoonIcon } from '../../navbar/sunIcon';
 import { SunIcon } from '../../navbar/moonIcon';
+import { FaCartFlatbed } from 'react-icons/fa6';
 
 const UserDashBoard = () => {
 
@@ -43,9 +44,9 @@ const UserDashBoard = () => {
                         <Menu.Item key="bike-list" icon={<LikeOutlined />}>
                             <Link to="/user/dashboard/bike-list">All Bikes</Link>
                         </Menu.Item>
-                        {/* <Menu.Item key="bike-list" icon={<LikeOutlined />}>
-                            <Link to="/user/dashboard/test">test</Link>
-                        </Menu.Item> */}
+                        <Menu.Item key="cart" icon={<FaCartFlatbed />}>
+                            <Link to="/user/dashboard/cart">My cart</Link>
+                        </Menu.Item>
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>

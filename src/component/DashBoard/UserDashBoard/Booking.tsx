@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../redux/hook';
-import { useCreateFullPaymentIntentMutation, useCreatePaymentIntentMutation, useGetRentalsQuery, useUpdatePayementStatusMutation } from '../../../redux/feature/Enpoints/Enpoints';
+import { useCreateFullPaymentIntentMutation, useGetRentalsQuery, useUpdatePayementStatusMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { Button, Form, Input, message, Modal, Tabs } from 'antd';
 import TabPane from 'antd/es/tabs/TabPane';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
@@ -22,12 +22,13 @@ const Booking = () => {
     const [isValidCoupon, setIsValidCoupon] = useState(false);
 
 
-
     console.log(currentRental?.totalCost)
 
     const rentals = data?.data || [];
     const amount = Number(currentRental?.totalCost)
-    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100);
+    console.log("amount",amount)
+    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100); 
+    console.log('Cents',totalCostInCents)
 
     // console.log(rentals)
 
@@ -89,15 +90,14 @@ const Booking = () => {
     };
 
     const validateCoupon = async () => {
-        // Replace this with your actual coupon validation logic
         if (coupon === 'TAOSIF10') {
-            setDiscount(currentRental?.totalCost * 0.1); // 10% discount
+            setDiscount(currentRental?.totalCost * 0.1); 
             setIsValidCoupon(true);
         } else if (coupon === 'TAOSIF20)') {
-            setDiscount(currentRental?.totalCost * 0.2); // 20% discount
+            setDiscount(currentRental?.totalCost * 0.2); 
             setIsValidCoupon(true);
         } else if (coupon === 'TAOSIF30') {
-            setDiscount(currentRental?.totalCost * 0.3); // 30% discount
+            setDiscount(currentRental?.totalCost * 0.3);
             setIsValidCoupon(true);
         } else {
             setDiscount(0);
@@ -175,7 +175,8 @@ const Booking = () => {
                 <Form layout="vertical">
                     <Form.Item label="Coupon Code">
                         <Input value={coupon} onChange={(e) => setCoupon(e.target.value)} />
-                        {isValidCoupon === true ? <h1 className='text-green-500 mt-4'>Coupon applied! Discount: {discount}</h1> : <h1 className='text-red-600 mt-4'>Wrong Coupon</h1>}
+                        {isValidCoupon === true ? <h1 className='text-green-500 mt-4'>Coupon applied! Discount: {discount}</h1> : <h1 className='text-red-600 mt-4'>Use coupon</h1>}
+                        {/* <h1 className='text-green-500 mt-4'>After discount {totalCostInCents}</h1> */}
                     </Form.Item>
                     <CardElement />
                     <Button type="primary" onClick={handlePayment} className='pb-4 h-12'>

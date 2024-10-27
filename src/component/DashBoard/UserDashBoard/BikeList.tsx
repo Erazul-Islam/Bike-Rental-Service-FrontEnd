@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetAllBikesQuery } from '../../../redux/feature/Enpoints/Enpoints';
+import { useAddToCartMutation, useGetAllBikesQuery } from '../../../redux/feature/Enpoints/Enpoints';
 import { RiMotorbikeFill } from "react-icons/ri";
 import { MdOutlinePriceCheck } from "react-icons/md";
 import { FaCcDinersClub } from "react-icons/fa";
@@ -12,16 +12,20 @@ import { Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
 
 const BikeList = () => {
 
-    const { data } = useGetAllBikesQuery(null)
+    const { data, refetch } = useGetAllBikesQuery(null)
     const { Option } = Select;
+    const dispatch = useDispatch();
     const [filters, setFilters] = useState({ brand: '', model: '', isAvailable: '' });
     const [filteredProducts, setFilteredProducts] = useState(data?.data);
     const [loading, setLoading] = useState(true);
     const [selectedBike, setSelectedBike] = useState([])
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const [addToCart] = useAddToCartMutation()
 
     const controls = useAnimation();
     const [ref, inView] = useInView({
@@ -38,7 +42,7 @@ const BikeList = () => {
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            let filtered = data?.data 
+            let filtered = data?.data
                 .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
                 .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
             setFilteredProducts(filtered);
@@ -57,7 +61,7 @@ const BikeList = () => {
     };
 
     const handleCheckBoxChange = (bike) => {
-        setSelectedBike((prevSelected : any) => {
+        setSelectedBike((prevSelected: any) => {
             if (prevSelected.includes(bike)) {
                 return prevSelected.filter((item) => item !== bike)
             } else {
@@ -74,6 +78,25 @@ const BikeList = () => {
         setIsModalVisible(false);
     };
 
+    const handleAddTocart = async (bikeId: string) => {
+        try {
+            await addToCart({ bikeId, cartData: {} }).unwrap();
+            refetch();
+            Swal.fire({
+                icon: 'success',
+                title: 'Added!',
+                text: 'Product added successfully',
+            });
+        } catch (err) {
+            console.error(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Failed to create product',
+            });
+        }
+    }
+
     return (
         <div className='mb-12 '>
             <div className='justify-center'>
@@ -82,7 +105,7 @@ const BikeList = () => {
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
                         value={filters.brand}
-                        style={{ width: 150, marginRight: 10, height: 48,  }}
+                        style={{ width: 150, marginRight: 10, height: 48, }}
                     >
                         <Option value="">Model</Option>
                         <Option value="Xixer">Xixer</Option>
@@ -102,7 +125,7 @@ const BikeList = () => {
                         <Option value="Platina">Platina</Option>
                     </Select>
                     <button className='pb-4 mt-0 bg-pink-700 h-12' onClick={clearFilters}>Clear Filters</button>
-                    <button  className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                    <button className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
                         Compare ({selectedBike.length})
                     </button>
                 </div>
@@ -110,10 +133,13 @@ const BikeList = () => {
             </div>
 
             {
-                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-52'>
+                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-40'>
                     {
-                        filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] shadow-lg w-96 dark:dark light:light'>
-                            <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1>
+                        filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] border mt-4 shadow-lg w-96 dark:dark light:light'>
+                            <div className='flex justify-between'>
+                                <h1 className='pt-3 pl-4 text-purple-600 text-left'>Name: {one.name}</h1>
+                                <h1 className='pt-3 pr-4 text-purple-600 text-center'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
+                            </div>
                             <img className='pl-14 h-64' src={one.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
                                 <div>
@@ -146,10 +172,11 @@ const BikeList = () => {
                                 </div>
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
-                                <Link to={`/bikes/${one._id}`} > <button className='pb-4 dark:text-white border-none light:text-black bg-pink-700 h-12'> View Detail</button></Link>
-                                <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>   
+                                <Link to={`/bikes/${one._id}`} > <button className='pb-4 dark:text-white border-none rounded-sm light:text-black bg-pink-700 h-12'> View Detail</button></Link>
+                                <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
                                 </Checkbox>
-                                <h1 className='pt-14 '> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
+                                <button onClick={() => handleAddTocart(one._id)} className=' rounded-sm pb-4  text-white bg-pink-700 h-12'>Add to Cart</button>
+
                             </div>
                         </ motion.div>))
                     }
@@ -163,7 +190,7 @@ const BikeList = () => {
                 width={800}
             >
                 <div className='flex justify-around'>
-                    {selectedBike.map((bike : TBike) => (
+                    {selectedBike.map((bike: TBike) => (
                         <div key={bike?._id} className='border p-4'>
                             <h2 className='text-orange-500'>{bike.name}</h2>
                             <img src={bike.image} alt={bike.name} className='h-40' />

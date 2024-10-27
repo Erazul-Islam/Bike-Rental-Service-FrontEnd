@@ -264,7 +264,7 @@ const BikeManagement = () => {
                 </div>
             </div>
 
-            { loading ? <div className='flex justify-between'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
+            { loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
                 {
                     filteredProducts?.map(one => (<div key={one._id} className='h-[550px] md:w-96 '>
                         <h1 className='pt-3 pl-4 text-orange-500 text-left'>Name: {one.name}</h1>

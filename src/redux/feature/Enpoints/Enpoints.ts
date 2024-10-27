@@ -1,4 +1,4 @@
-import { TBike, TCoupon, TRental, TResponseRedux, TUser } from "../../../utils/global";
+import { TBike, TCart, TCoupon, TRental, TResponseRedux, TUser } from "../../../utils/global";
 import { baseApi } from "../../api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
@@ -47,6 +47,28 @@ const authApi = baseApi.injectEndpoints({
                 url: 'bikes',
                 method: 'POST',
                 body: newBike
+            })
+        }),
+        addToCart: builder.mutation({
+            query: ({ bikeId, cartData }) => ({
+                url: `/cart/${bikeId}`,
+                method: 'POST',
+                body: cartData,
+            }),
+        }),
+        getCart: builder.query<TCart[], string>({
+            query: (token) => ({
+                url: 'cart/myCart',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }),
+        }),
+        deletecart: builder.mutation({
+            query: (id) => ({
+                url: `/cart/${id}`,
+                method: 'DELETE'
             })
         }),
         createCoupon: builder.mutation({
@@ -159,4 +181,4 @@ const authApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetAllBikesQuery, useUpdateCoupomnMutation, useDeleteCouponMutation, useCreateCouponMutation, useGetAllCouponQuery, useCreateFullPaymentIntentMutation, useUpdatePayementStatusMutation, useUpdateRentalMutation, useGetAllRentalsQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;
+export const { useDeletecartMutation ,useGetCartQuery ,useAddToCartMutation ,useGetAllBikesQuery, useUpdateCoupomnMutation, useDeleteCouponMutation, useCreateCouponMutation, useGetAllCouponQuery, useCreateFullPaymentIntentMutation, useUpdatePayementStatusMutation, useUpdateRentalMutation, useGetAllRentalsQuery, useGetRentalsQuery, useCreateRentalsMutation, useCreateBikesMutation, useDeleteBikeMutation, useUpdateBikeMutation, useGetAllProfileQuery, useDeleteUserMutation, useUpdateUserProfileMutation, useCreatePaymentIntentMutation, useUpdateUserRoleMutation, useUpdateBikeAvailabilityMutation } = authApi;

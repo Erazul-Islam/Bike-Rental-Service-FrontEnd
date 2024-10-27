@@ -28,6 +28,7 @@ import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute.tsx'
 import ReturnBike from './component/DashBoard/AdminDashBoard/ReturnBike.tsx'
 import SpinWheelComponent from './component/spin-while/SpinWheel.tsx'
 import UserProfile from './assets/userProfile.tsx'
+import Cart from './component/DashBoard/UserDashBoard/Cart.tsx'
 
 
 
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
       {
         path: '/user/dashboard/test',
         element: <UserProfile />
+      },
+      {
+        path: '/user/dashboard/cart',
+        element: <Cart />
       },
       {
         path: '/user/dashboard/booking',
