@@ -98,6 +98,10 @@ const router = createBrowserRouter([
         element: <ReturnBike />
       },
       {
+        path: '/admin/dashboard/cart',
+        element: <Cart />
+      },
+      {
         path: '/admin/dashboard/coupon-management',
         element: <Coupon />
       }

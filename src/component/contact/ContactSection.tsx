@@ -52,7 +52,6 @@ const ContactSection = () => {
                     </div>
                 </div>
                 <div>
-                    <div className='ml-8  md:ml-0'><Button color='success' className='rounded-none h-12 ' >Contact</Button></div>
                     <h1 className='text-6xl mt-4 text-orange-500 font-bold'>GET IN TOUCH</h1>
                     <div className='text-xl md:mr-12  text-center mt-10'>We welcome and value your feedback. Use the form below to send us an email with your comments, questions, or <br /> 
                     concerns. Every customer is welcome to request a transfer or return call from a Senior Agent or Supervisor on an <br /> arising issue.</div>

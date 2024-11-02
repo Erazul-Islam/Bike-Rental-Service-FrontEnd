@@ -12,8 +12,8 @@ import { GrDeliver } from "react-icons/gr";
 import { Switch } from '@nextui-org/react';
 import { MoonIcon } from '../../navbar/sunIcon';
 import { SunIcon } from '../../navbar/moonIcon';
-import Nav from '../../navbar/Nav';
 import '../../navbar/dark.css'
+import { FaCartFlatbed } from 'react-icons/fa6';
 
 
 
@@ -57,10 +57,13 @@ const AdminDashBoard = () => {
                         <Menu.Item key="bike-return" icon={<GrDeliver />}>
                             <Link to="/admin/dashboard/return">Bike Return</Link>
                         </Menu.Item>
+                        <Menu.Item key="cart" icon={<FaCartFlatbed />}>
+                            <Link to="/admin/dashboard/cart">My cart</Link>
+                        </Menu.Item>
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
-                        <Switch 
+                        {/* <Switch
                             defaultSelected={theme === 'dark'}
                             size="lg"
                             color="secondary"
@@ -71,16 +74,16 @@ const AdminDashBoard = () => {
                             onChange={toggleTheme}
                         >
 
-                        </Switch>
+                        </Switch> */}
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{  padding: 0 }}>
+                    <Header style={{ padding: 0 }}>
                         <div style={{ padding: '0 16px', fontSize: '24px', fontWeight: 'bold' }}>
-                        Welcome {user?.name}
+                            Welcome {user?.name}
                         </div>
                     </Header>
-                    <Content style={{ margin: '24px 16px', padding: 24 , minHeight: 280 }}>
+                    <Content style={{ margin: '24px 16px', padding: 24, minHeight: 280 }}>
                         <Outlet />
                     </Content>
                 </Layout>
