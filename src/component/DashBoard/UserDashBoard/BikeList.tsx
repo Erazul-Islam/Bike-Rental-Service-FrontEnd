@@ -13,13 +13,11 @@ import { Link } from 'react-router-dom';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
 
 const BikeList = () => {
 
     const { data, refetch } = useGetAllBikesQuery(null)
     const { Option } = Select;
-    const dispatch = useDispatch();
     const [filters, setFilters] = useState({ brand: '', model: '', isAvailable: '' });
     const [filteredProducts, setFilteredProducts] = useState(data?.data);
     const [loading, setLoading] = useState(true);
@@ -100,12 +98,12 @@ const BikeList = () => {
     return (
         <div className='mb-12 '>
             <div className='justify-center'>
-                <div className='flex ml-8 mt-8 ' style={{ marginBottom: 20 }}>
+                <div className='flex items-center justify-center  ' style={{ marginBottom: 20 }}>
                     <Select
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
                         value={filters.brand}
-                        style={{ width: 150, marginRight: 10, height: 48, }}
+                        style={{ width: 150, marginRight: 10, height: 48 }}
                     >
                         <Option value="">Model</Option>
                         <Option value="Xixer">Xixer</Option>
@@ -124,8 +122,8 @@ const BikeList = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-                    <button className='pb-4 mt-0 bg-pink-700 h-12' onClick={clearFilters}>Clear Filters</button>
-                    <button className='mb-4 mt-0 bg-orange-600 ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                    <button className='pb-4 mt-5 text-white border-none rounded-sm bg-pink-700 h-12' onClick={clearFilters}>Clear Filters</button>
+                    <button className='pb-4 mt-5 text bg-red-700 border-none rounded-sm text-white ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
                         Compare ({selectedBike.length})
                     </button>
                 </div>
@@ -137,45 +135,45 @@ const BikeList = () => {
                     {
                         filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] border mt-4 shadow-lg w-96 dark:dark light:light'>
                             <div className='flex justify-between'>
-                                <h1 className='pt-3 pl-4 text-purple-600 text-left'>Name: {one.name}</h1>
-                                <h1 className='pt-3 pr-4 text-purple-600 text-center'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</h1>
+                                <div className='pt-3 pl-4  text-left'>Name: {one.name}</div>
+                                <div className='pt-3 pr-4  text-center'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</div>
                             </div>
                             <img className='pl-14 h-64' src={one.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
                                 <div>
                                     <div className='flex gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><RiMotorbikeFill /> </h1>
-                                        <h2 className="dark:text-white">{one.name}</h2>
+                                        <div className='text-red-600 text-2xl'><RiMotorbikeFill /> </div>
+                                            <h2 className="dark:text-white">{one.name}</h2> <br />
                                     </div>
                                     <div className='flex mt-4 gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><FaCcDinersClub /> </h1>
+                                        <div className='text-red-600 text-2xl'><FaCcDinersClub /> </div>
                                         <h2 className="dark:text-white">{one.cc}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><GiCalendarHalfYear /> </h1>
+                                        <div className='text-red-600 text-2xl'><GiCalendarHalfYear /> </div>
                                         <h2 className="dark:text-white">{one.year}</h2>
                                     </div>
                                 </div>
                                 <div>
                                     <div className='flex gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </h1>
+                                        <div className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </div>
                                         <h2 className="dark:text-white">{one.pricePerHour}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><MdOutlineModelTraining /> </h1>
+                                        <div className='text-red-600 text-2xl'><MdOutlineModelTraining /> </div>
                                         <h2 className="dark:text-white">{one.model}</h2>
                                     </div>
                                     <div className='flex mt-4 gap-2'>
-                                        <h1 className='text-red-600 text-2xl'><TbBrandAdobe /> </h1>
+                                        <div className='text-red-600 text-2xl'><TbBrandAdobe /> </div>
                                         <h2 className="dark:text-white">{one.brand}</h2>
                                     </div>
                                 </div>
                             </div>
                             <div className='flex justify-between pl-6 pr-6 '>
-                                <Link to={`/bikes/${one._id}`} > <button className='pb-4 dark:text-white border-none rounded-sm light:text-black bg-pink-700 h-12'> View Detail</button></Link>
+                                <Link to={`/bikes/${one._id}`} > <button className='pb-4 text-white border-none rounded-sm  bg-pink-700 h-12'> View Detail</button></Link>
                                 <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
                                 </Checkbox>
-                                <button onClick={() => handleAddTocart(one._id)} className=' rounded-sm pb-4  text-white bg-pink-700 h-12'>Add to Cart</button>
+                                <button onClick={() => handleAddTocart(one._id)} className=' rounded-sm pb-4 border-none text-white bg-pink-700 h-12'>Add to Cart</button>
 
                             </div>
                         </ motion.div>))
@@ -194,11 +192,11 @@ const BikeList = () => {
                         <div key={bike?._id} className='border p-4'>
                             <h2 className='text-orange-500'>{bike.name}</h2>
                             <img src={bike.image} alt={bike.name} className='h-40' />
-                            <h1 className='text-orange-500'>Brand: {bike.brand}</h1>
-                            <h1 className='text-orange-500'>Model: {bike.model}</h1>
-                            <h1 className='text-orange-500'>CC: {bike.cc}</h1>
-                            <h1 className='text-orange-500'>Year: {bike.year}</h1>
-                            <h1 className='text-orange-500'>Price per Hour: {bike.pricePerHour}</h1>
+                            <div className='text-orange-500'>Brand: {bike.brand}</div>
+                            <div className='text-orange-500'>Model: {bike.model}</div>
+                            <div className='text-orange-500'>CC: {bike.cc}</div>
+                            <div className='text-orange-500'>Year: {bike.year}</div>
+                            <div className='text-orange-500'>Price per Hour: {bike.pricePerHour}</div>
                         </div>
                     ))}
                 </div>
