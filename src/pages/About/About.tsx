@@ -10,69 +10,68 @@ const About = () => {
             <div>
                 <img className='w-full' src="https://i.ibb.co/qyqmrqt/breadcrumb.jpg" alt="" />
             </div>
-            <div className='mt-28 md:ml-60 md:flex gap-12'>
+            <div className='mt-28 md:ml-60 md:flex justify-between gap-12'>
                 <img className='md:w-1/4' src="https://i.ibb.co/6HLR1ts/harley-davidson-6-OBa-II5-Go-unsplash.jpg" alt="" />
                 <div>
-                    <h1 className='rounded-none mt-4 h-20 text-3xl' >Mission Statement</h1>
-                    <h1 className='md:text-5xl text-orange-600 font-bold mt-10'>HELPS YOU TO FIND YOUR NEXT <br /> MOTORBIKE EASILY</h1>
-                    <div className='mt-12 mr-4 ml-4 text-center text-xl'>The glamour of ten decades can be this timeless and modern. This motorcycle was, <br />
+                    <div className='rounded-none text-center h-10 mt-12 w-40 pt-2  bg-red-700 ' >Mission Statement</div>
+                    <div className='md:text-4xl  font-bold mt-10'>HELPS YOU TO FIND YOUR NEXT <br /> MOTORBIKE EASILY</div>
+                    <div className='mt-12 mr-4 text-left'>The glamour of ten decades can be this timeless and modern. This motorcycle was, <br />
                         is and remains a design icon. A statement. This limited edition is an icon thanks <br />
                         to its attention to historic details. And its willingness to be glamorous. A fair bit from being modest. <br />
                         The generous use of chrome lends it its radiance. A true masterpiece.
-
-                        <span className='mt-5'>Customized motorcycle. Not for sale. The vehicles shown <br /> are modified and equipped with third-party accessories <br /> and/or proprietary parts that are neither manufactured, distributed nor tested <br />
+                        <span className='mt-12'>Customized motorcycle. Not for sale. The vehicles shown <br /> are modified and equipped with third-party accessories <br /> and/or proprietary parts that are neither manufactured, distributed nor tested <br />
                             by BMW. BMW assumes no liability for the modifications <br /> (including the installation, characteristics and use of the accessories shown).</span>
                     </div>
                 </div>
             </div>
             <div className='md:ml-60 md:mr-60'>
-                <h1 className='rounded-none font-bold text-orange-600 mt-20 h-20 text-3xl' >OUR TEAM</h1>
-                <h1 className='text-5xl mb-20 text-orange-600  font-bold mt-10'>MEET OUR TEAM</h1>
+                <div className='rounded-none text-center h-10 mt-12 w-40 pt-2 bg-red-700 ' >OUR TEAM</div>
+                <div className='text-3xl mb-20   text-left font-bold mt-10'>MEET OUR TEAM</div>
                 <div className='md:flex gap-8'>
                     <div>
                         <img src="https://i.ibb.co/wdhVmFY/thisisengineering-raeng-DKPh3-G8-HLRU-unsplash.jpg" alt="" />
-                        <h1 className='text-center text-orange-500 mt-4 text-xl'>Taosif Mahbub</h1>
-                        <h1 className='text-center text-orange-600  mt-4'>Director of Marketing</h1>
+                        <div className='text-center  mt-4 text-xl'>Taosif Mahbub</div>
+                        <div className='text-center  mt-4'>Director of Marketing</div>
                     </div>
                     <div>
                         <img src="https://i.ibb.co/V3ZWMTx/27.jpg" alt="" />
-                        <h1 className='text-center mt-4 text-orange-500 text-xl'>RASHA ISLAM</h1>
-                        <h1 className='text-center text-orange-600 mt-4'>Media Buyer</h1>
+                        <div className='text-center mt-4  text-xl'>RASHA ISLAM</div>
+                        <div className='text-center mt-4'>Media Buyer</div>
                     </div>
                     <div>
                         <img src="https://i.ibb.co/4sWhV2j/thisisengineering-raeng-b-MTdk-0-SIw-unsplash.jpg" alt="" />
-                        <h1 className='text-center text-orange-500 mt-4 text-xl'>Sohagi Samiya</h1>
-                        <h1 className='text-center text-orange-600 mt-4'>Marketing Manager</h1>
+                        <div className='text-center  mt-4 text-xl'>Sohagi Samiya</div>
+                        <div className='text-center mt-4'>Marketing Manager</div>
                     </div>
                     <div>
                         <img src="https://i.ibb.co/nmBfhHg/thisisengineering-raeng-ov-WUKV1bt-Xk-unsplash.jpg" alt="" />
-                        <h1 className='text-center text-orange-500 mt-4 text-xl'>Sayma ISLAM</h1>
-                        <h1 className='text-center text-orange-600 mt-4'>Operations Manager</h1>
+                        <div className='text-center  mt-4 text-xl'>Sayma ISLAM</div>
+                        <div className='text-center mt-4'>Operations Manager</div>
                     </div>
                 </div>
             </div>
-            <h1 className='text-3xl mt-12 mb-12 text-center'>BIG ACHIEVEMENT</h1>
+            <div className='rounded-none md:ml-60 md:mr-60 text-center h-10 mt-12 w-40 pt-2 bg-red-700 '>BIG ACHIEVEMENT</div>
             <img className='mt-12' src="https://i.ibb.co/WfhDfn0/bike-news-image-161751501484263.jpg" alt="" />
-            <div>
-                <h1 className='text-2xl text-center mt-10 font-bold'>Contact info</h1>
-                <h1 className='pt-8 text-center text-xl pb-8'>We pride ourselves on being a <br /> helping hand for people during good days, <br /> bad days and everything in between.</h1>
-                <div className='md:flex md:justify-between ml-20 md:ml-40 md:mr-40'>
+            <div className='md:ml-60 md:mr-60'>
+                <div className='rounded-none text-center h-10 mt-12 w-40 pt-2 bg-red-700 '>Contact info</div>
+                <div className='pt-8 text-xl text-center pb-8'>We pride ourselves on being a  helping hand for people during good days,  bad days and everything in between.</div>
+                <div className=' ml-20 md:ml-40 md:mr-40'>
                     <div className='text-xl flex gap-4'>
-                        <h1><LuPhoneCall className='text-orange-600 text-xl mt-4' /></h1>
-                        <h1 className='text-cyan-600'>Need I help? Talk to an Expert 
-                            (+88) 1900 888 666</h1>
+                        <div><LuPhoneCall className='text-orange-600 text-xl mt-2' /></div>
+                        <div className=''> Talk to an Expert 
+                            (+88) 1900 888 666</div>
                     </div>
-                    <div className='text-xl flex gap-4'>
-                        <h1><SlLocationPin className='text-orange-600 mt-2' /></h1>
-                        <h1 className='text-cyan-600'>
+                    <div className='text-xl mt-6 flex gap-4'>
+                        <div><SlLocationPin className='text-orange-600 mt-2 text-xl' /></div>
+                        <div className=''>
                         
-                            1095 Howard Street, San Francisco, USA</h1>
+                            1095 Howard Street, San Francisco, USA</div>
                     </div>
-                    <div className='text-xl flex gap-4'>
-                        <h1><MdOutlineEmail className='text-orange-600 mt-2' /></h1>
-                        <h1 className='text-cyan-600'>
+                    <div className='text-xl flex mt-6 gap-4'>
+                        <div><MdOutlineEmail className='text-orange-600 mt-2 text-xl mb-12' /></div>
+                        <div className=''>
                             Email: 
-                            Info@autobike.com</h1>
+                            Info@autobike.com</div>
                     </div>
                 </div>
             </div>
