@@ -122,12 +122,12 @@ const BikeList = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-                    <button className='pb-4 mt-5 text-white border-none rounded-sm bg-pink-700 h-12' onClick={clearFilters}>Clear Filters</button>
-                    <button className='pb-4 mt-5 text bg-red-700 border-none rounded-sm text-white ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                    <button className='pb-3 mt-5 text-white border-none rounded-sm text-sm bg-pink-700 h-12' onClick={clearFilters}>Clear</button>
+                    <button className='pb-3 mt-5 text bg-red-700 border-none rounded-sm text-sm text-white ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
                         Compare ({selectedBike.length})
                     </button>
                 </div>
-                <h1 className='text-center text-green-400 text-3xl'>Select at least two to compare</h1>
+                <div className='text-center text-red-600 font-bold text-3xl'>Select at least two to compare</div>
             </div>
 
             {
@@ -185,18 +185,19 @@ const BikeList = () => {
                 open={isModalVisible}
                 onCancel={handleCancel}
                 footer={null}
+                style={{backgroundColor: 'black'}}
                 width={800}
             >
-                <div className='flex justify-around'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {selectedBike.map((bike: TBike) => (
                         <div key={bike?._id} className='border p-4'>
-                            <h2 className='text-orange-500'>{bike.name}</h2>
+                            <h2 className='text-red-600'>{bike.name}</h2>
                             <img src={bike.image} alt={bike.name} className='h-40' />
-                            <div className='text-orange-500'>Brand: {bike.brand}</div>
-                            <div className='text-orange-500'>Model: {bike.model}</div>
-                            <div className='text-orange-500'>CC: {bike.cc}</div>
-                            <div className='text-orange-500'>Year: {bike.year}</div>
-                            <div className='text-orange-500'>Price per Hour: {bike.pricePerHour}</div>
+                            <div className='text-red-600'>Brand: {bike.brand}</div>
+                            <div className='text-red-600'>Model: {bike.model}</div>
+                            <div className='text-red-600'>CC: {bike.cc}</div>
+                            <div className='text-red-600'>Year: {bike.year}</div>
+                            <div className='text-red-600'>Price per Hour: {bike.pricePerHour}</div>
                         </div>
                     ))}
                 </div>

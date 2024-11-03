@@ -7,7 +7,7 @@ import { logout, useCurrentToken } from '../../redux/feature/auth/authSlice';
 import { verifyToken } from '../../utils/verifyToken';
 import { MoonIcon } from './sunIcon';
 import { SunIcon } from './moonIcon';
-import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { MenuOutlined, } from '@ant-design/icons';
 import { Button, Drawer } from 'antd';
 
 const Nav = () => {
@@ -19,7 +19,8 @@ const Nav = () => {
     };
 
     const token = useAppSelector(useCurrentToken);
-    console.log(token)
+    console.log("token", token)
+
 
     let user;
 
@@ -27,12 +28,16 @@ const Nav = () => {
         user = verifyToken(token);
     }
 
-    console.log(user)
-    const [theme, setTheme] = useState('dark');
+    console.log("user", user)
+
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('theme') || 'dark'
+    });
 
     useEffect(() => {
         document.documentElement.classList.remove('dark', 'light');
         document.documentElement.classList.add(theme);
+        localStorage.setItem('theme', theme)
     }, [theme]);
 
     const toggleTheme = () => {
@@ -138,13 +143,15 @@ const Nav = () => {
                                 Login
                             </Link>}
                         </NavbarItem>
-                        <NavbarItem>
-                            {user?.role === 'admin' ? < Link color="warning" href="/admin/dashboard">
-                                Dashboard
-                            </Link> : <Link color="warning" href="/user/dashboard">
-                                Dashboard
-                            </Link>}
-                        </NavbarItem>
+                        {
+                            user === undefined && token === null ? "" : <NavbarItem>
+                                {user?.role === 'admin' ? < Link color="warning" href="/admin/dashboard">
+                                    dashboard
+                                </Link> : <Link color="warning" href="/user/dashboard">
+                                    dashboard
+                                </Link>}
+                            </NavbarItem>
+                        }
                     </Drawer>
                 </NavbarContent>
 
