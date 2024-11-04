@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDeleteUserMutation, useGetAllProfileQuery, } from '../../../redux/feature/Enpoints/Enpoints';
-import { Button, Card, Descriptions, } from 'antd';
+import { Table, Tag, Tooltip, } from 'antd';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import "../../../utils/table.css"
 
 
 const UserManagement = () => {
@@ -51,48 +52,98 @@ const UserManagement = () => {
         });
     }
 
+    const columns = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+            responsive: ['xs', 'sm', 'md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+            render: (name) => <span style={{ fontWeight: 'bold', color: '' }}>{name}</span>
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            responsive: ['xs', 'sm', 'md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+            render: (email) => (
+                <a href={`mailto:${email}`} style={{ color: '' }}>
+                    {email}
+                </a>
+            )
+        },
+        {
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
+            responsive: ['sm', 'md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+            responsive: ['md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+            render: (address) => (
+                <Tooltip title={address}>
+                    <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '150px', display: 'inline-block' }}>
+                        {address}
+                    </span>
+                </Tooltip>)
+        },
+        {
+            title: 'Role',
+            dataIndex: 'role',
+            key: 'role',
+            responsive: ['xs', 'sm', 'md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+            render: (role) => (
+                <Tag color={role === 'admin' ? 'green' : 'blue'}>
+                    {role ? role.charAt(0).toUpperCase() + role.slice(1) : 'User'}
+                </Tag>
+            ),
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            responsive: ['xs', 'sm', 'md', 'lg'] as ('xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl')[],
+            render: (_, record) => (
+                <div className="flex gap-2">
+                    <button
+                        className=' bg-red-700 text-white border-none'
+                        onClick={() => handleDelete(record._id)}
+                    >
+                        Delete
+                    </button>
+                    {record.role === 'admin' ? (
+                        <button className=' bg-purple-800 text-white border-none' disabled>
+                            Admin
+                        </button>
+                    ) : (
+                        <button
+                            className='bg-pink-600 text-white border-none'
+                            onClick={() => handleAdmin(record)}
+                        >
+                            Make Admin
+                        </button>
+                    )}
+                </div>
+            ),
+        },
+    ];
 
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:ml-28'>
-            {data?.data?.map((one) => (
-                <div key={one._id}>
-                    <Card
-                        title="User Profile"
-                        style={{ maxWidth: 600, margin: '0 auto' }}
-                        className="shadow-md bg-highlight"
-                    >
-                        <Descriptions bordered column={1}>
-                            <Descriptions.Item label="Name">{one?.name}</Descriptions.Item>
-                            <Descriptions.Item label="Email">{one?.email}</Descriptions.Item>
-                            <Descriptions.Item label="Phone">{one?.phone}</Descriptions.Item>
-                            <Descriptions.Item label="Address">{one?.address}</Descriptions.Item>
-                        </Descriptions>
-                        <div className='flex justify-between mt-4'>
-                            <button
-                                className='bg-red-500 border-none text-white hover:bg-red-600 h-12'
-                                onClick={() => handleDelete(one._id)}
-                            >
-                                Delete
-                            </button>
-                            {one.role === 'admin' ? (
-                                <button className="bg-green-400 border-none text-white h-12 cursor-default" disabled>
-                                    Admin
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={() => handleAdmin(one)}
-                                    className="bg-green-500 border-none text-white hover:bg-green-600 h-12"
-                                >
-                                    Make Admin
-                                </button>
-                            )}
-                        </div>
-                    </Card>
-                </div>
-            ))}
+        <div className="lg:ml-14">
+            <Table
+                columns={columns}
+                style={{ backgroundColor: '#f0f2f5', color:'black' }}
+                dataSource={data?.data}
+                rowKey="_id"
+                pagination={{ pageSize: 5 }}
+                 className="custom-table"
+                scroll={{ x: true }}
+            />
         </div>
     );
 };
 
 export default UserManagement;
+

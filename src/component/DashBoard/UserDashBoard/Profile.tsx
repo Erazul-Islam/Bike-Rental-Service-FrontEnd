@@ -8,7 +8,6 @@ import { setUser } from '../../../redux/feature/auth/authSlice';
 const Profile = () => {
 
     const user = useSelector((state: RootState) => state.auth.user)
-    console.log(user)
 
     const [form] = Form.useForm();
     const dispatch = useDispatch()
@@ -40,33 +39,21 @@ const Profile = () => {
     return (
         <div>
             <div className="flex items-center justify-center min-h-screen  p-4 transition-colors duration-300">
-                <Card
-                    title={<h2 className="text-xl font-semibold text-white">User Profile</h2>}
-                    style={{
-                        maxWidth: 600,
-                        margin: '0 auto',
-                        borderRadius: '12px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                        background: 'linear-gradient(to right, #ff7e5f, #feb47b)', // Gradient from pink to orange
-                    }}
-                    bodyStyle={{ padding: '1.5rem', borderRadius: '12px' }}
-                    className="bg-transparent"
-                >
+                <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r from-pink-500 to-orange-500">
+                    <h2 className="text-2xl font-semibold text-white mb-4">User Profile</h2>
                     <Descriptions bordered column={1} className="text-white">
                         <Descriptions.Item label="Name">{user?.name || "N/A"}</Descriptions.Item>
                         <Descriptions.Item label="Email">{user?.email || "N/A"}</Descriptions.Item>
                         <Descriptions.Item label="Phone">{user?.phone || "N/A"}</Descriptions.Item>
                         <Descriptions.Item label="Address">{user?.address || "N/A"}</Descriptions.Item>
                     </Descriptions>
-                    <Button
-                        className="mt-6 w-full h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
+                    <button
+                        className="mt-6 w-full h-12 font-medium rounded-lg border-none bg-gradient-to-r from-pink-600 to-orange-600 text-white hover:from-pink-700 hover:to-orange-700 transition duration-200"
                         onClick={() => setIsModalVisible(true)}
-                        type="primary"
                     >
                         Update Profile
-                    </Button>
-
-                </Card>
+                    </button>
+                </div>
 
                 <Modal
                     title={<h3 className="text-2xl text-white">Update Profile</h3>}

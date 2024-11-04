@@ -1,0 +1,11 @@
+.custom-table .ant-table {
+    background-color: #f0f2f5;
+}
+
+.custom-table .ant-table-tbody > tr > td {
+    background-color: #f0f2f5; 
+}
+
+.custom-table .ant-table-thead > tr > th {
+    background-color: #e0e0e0; 
+}

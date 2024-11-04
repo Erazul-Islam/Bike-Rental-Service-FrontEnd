@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {  useAppSelector } from '../../../redux/hook';
 import { RootState } from '../../../redux/store';
-import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
+import { Button, Card, Descriptions, Divider, Form, Input, Modal, notification, Typography } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../redux/feature/auth/authSlice';
@@ -11,6 +11,7 @@ const AdminProfile = () => {
     const user = useAppSelector((state: RootState) => state.auth.user)
     console.log(user)
 
+    const {Title,Text} = Typography
 
     const [form] = Form.useForm();
     const dispatch = useDispatch()
@@ -41,18 +42,26 @@ const AdminProfile = () => {
     };
 
     return (
-        <div>
-            <Card title="Admin Profile" style={{ maxWidth: 600, margin: '0 auto' }}>
-                <Descriptions bordered column={1}>
-                    <Descriptions.Item label="Name">{user?.name}</Descriptions.Item>
-                    <Descriptions.Item label="Email">{user?.email}</Descriptions.Item>
-                    <Descriptions.Item label="Phone">{user?.phone}</Descriptions.Item>
-                    <Descriptions.Item label="Address">{user?.address}</Descriptions.Item>
-                </Descriptions>
-                <Button className='pb-4 h-12' onClick={() => setIsModalVisible(true)} type="primary">
-                    Update
-                </Button>
-            </Card>
+        <div style={{ maxWidth: 600, margin: '0 auto', padding: '20px', backgroundColor: 'pink', borderRadius: '10px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
+            <Title level={3} style={{ textAlign: 'center', marginBottom: '20px' }}>Admin Profile</Title>
+            <Divider />
+            <Descriptions bordered column={1} style={{ marginBottom: '20px' }}>
+                <Descriptions.Item label="Name">
+                    <Text>{user?.name}</Text>
+                </Descriptions.Item>
+                <Descriptions.Item label="Email">
+                    <Text>{user?.email}</Text>
+                </Descriptions.Item>
+                <Descriptions.Item label="Phone">
+                    <Text>{user?.phone}</Text>
+                </Descriptions.Item>
+                <Descriptions.Item label="Address">
+                    <Text>{user?.address}</Text>
+                </Descriptions.Item>
+            </Descriptions>
+            <button className='pb-3 h-12 bg-red-600 border-none text-white' onClick={() => setIsModalVisible(true)} >
+                Update Profile
+            </button>
             <Modal
                 title="Update Profile"
                 open={isModalVisible}
@@ -63,7 +72,7 @@ const AdminProfile = () => {
                 <Form
                     form={form}
                     layout="vertical"
-                    // initialValues={user}s
+                    initialValues={{ name: user?.name, email: user?.email, phone: user?.phone, address: user?.address }}
                     onFinish={handleSubmit}
                 >
                     <Form.Item
@@ -97,7 +106,7 @@ const AdminProfile = () => {
                         <Button className='pb-4 h-12' type="primary" htmlType="submit" loading={isLoading}>
                             Update Profile
                         </Button>
-                        <Button className='pb-4 h-12' onClick={handleCancel} >
+                        <Button className='pb-4 h-12' type="primary" onClick={handleCancel} >
                             Cancel
                         </Button>
                     </Form.Item>

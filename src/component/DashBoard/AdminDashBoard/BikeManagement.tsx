@@ -259,49 +259,49 @@ const BikeManagement = () => {
                         <Option value="Honda">Honda</Option>
                         <Option value="Platina">Platina</Option>
                     </Select>
-                    <Button className='pb-4 md:mt-0 mt-4 w-40 bg-white h-12' onClick={clearFilters}>Clear Filters</Button>
-                    <Button className="pb-4 mt-0 w-40  bg-white h-12 md:ml-4" onClick={() => setCreateVisible(true)}>Create Product</Button>
+                    <button className='pb-4 md:mt-0 mt-4 w-40 border-none text-white bg-pink-600 h-12' onClick={clearFilters}>Clear Filters</button>
+                    <button className="pb-4 mt-0 w-40 border-none text-white bg-purple-700 h-12 md:ml-4" onClick={() => setCreateVisible(true)}>Create Product</button>
                 </div>
             </div>
 
-            { loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
+            { loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
                 {
-                    filteredProducts?.map(one => (<div key={one._id} className='h-[550px] md:w-96 '>
-                        <h1 className='pt-3 pl-4 text-orange-500 text-left'>Name: {one.name}</h1>
-                        <img className='md:pl-14 pl-8 h-64' src={one.image} alt="" />
+                    filteredProducts?.map(one => (<div key={one._id} className='h-[550px] border md:w-96 '>
+                        <div className='pt-3 pl-4 text-orange-500 text-left'>Name: {one.name}</div>
+                        <img className='md:pl-14 pl-8 mt-12 h-64' src={one.image} alt="" />
                         <div className='flex justify-between pl-8 pr-8 pt-4'>
                             <div>
                                 <div className='flex gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><RiMotorbikeFill /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.name}</h2>
+                                    <div className='text-red-600 text-2xl'><RiMotorbikeFill /> </div>
+                                    <div className="text-white ">{one.name}</div>
                                 </div>
                                 <div className='flex mt-4 gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><FaCcDinersClub /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.cc}</h2>
+                                    <div className='text-red-600 text-2xl'><FaCcDinersClub /> </div>
+                                    <div className="text-white ">{one.cc}</div>
                                 </div>
                                 <div className='flex mt-4 gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><GiCalendarHalfYear /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.year}</h2>
+                                    <div className='text-red-600 text-2xl'><GiCalendarHalfYear /> </div>
+                                    <div className="text-white ">{one.year}</div>
                                 </div>
                             </div>
                             <div>
                                 <div className='flex gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.pricePerHour}</h2>
+                                    <div className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </div>
+                                    <div className="text-white ">{one.pricePerHour}</div>
                                 </div>
                                 <div className='flex mt-4 gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><MdOutlineModelTraining /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.model}</h2>
+                                    <div className='text-red-600 text-2xl'><MdOutlineModelTraining /> </div>
+                                    <div className="text-white ">{one.model}</div>
                                 </div>
                                 <div className='flex mt-4 gap-2'>
-                                    <h1 className='text-red-600 text-2xl'><TbBrandAdobe /> </h1>
-                                    <h2 className="text-yellow-500 text-xl">{one.brand}</h2>
+                                    <div className='text-red-600 text-2xl'><TbBrandAdobe /> </div>
+                                    <div className="text-white ">{one.brand}</div>
                                 </div>
                             </div>
                         </div>
                         <div className='flex justify-between pr-8'>
-                            <Button onClick={() => handleDelete(one._id)} className='bg-orange-500 mt-4 ml-8'>Delete</Button>
-                            <Button onClick={() => handleUpdate(one._id)} className='bg-orange-500 mt-4 ml-8'>Update</Button>
+                            <button onClick={() => handleDelete(one._id)} className='bg-pink-700 text-white border-none mt-4 ml-8'>Delete</button>
+                            <button onClick={() => handleUpdate(one._id)} className='bg-purple-600 text-white border-none mt-4 ml-8'>Update</button>
                         </div>
                     </div>))
                 }
