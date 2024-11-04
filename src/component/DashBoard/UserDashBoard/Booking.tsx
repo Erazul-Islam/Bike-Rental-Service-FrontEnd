@@ -22,13 +22,13 @@ const Booking = () => {
     const [isValidCoupon, setIsValidCoupon] = useState(false);
 
 
-    console.log(currentRental?.totalCost)
+    // console.log(currentRental?.totalCost)
 
     const rentals = data?.data || [];
     const amount = Number(currentRental?.totalCost)
-    console.log("amount",amount)
+    // console.log("amount",amount)
     const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100); 
-    console.log('Cents',totalCostInCents)
+    // console.log('Cents',totalCostInCents)
 
     // console.log(rentals)
 
@@ -126,42 +126,43 @@ const Booking = () => {
                 aria-label="My Rentals Tabs"
                 activeKey={activeTab}
                 onChange={setActiveTab}
+                tabBarStyle={{ color:"white" }}
                 className="mb-4"
             >
-                <TabPane style={{ width: 300, }} key="unpaid" tab="Unpaid">
+                <TabPane style={{ width: 300, color:'red'}} key="unpaid" tab="Unpaid">
                     <div className="flex flex-col gap-4">
                         {unpaidRentals.length > 0 ? (
                             unpaidRentals.map(rental => (
                                 <div key={rental._id} className="border p-4 rounded-lg shadow">
-                                    <h1 className='text-orange-500'><strong>Start Time:</strong> {new Date(rental.startTime).toLocaleString()}</h1>
-                                    <h1 className='text-orange-500'><strong>Total Cost:</strong> {rental.totalCost}</h1>
-                                    <h1 className='text-orange-500'>Admin calculate your totalCost</h1>
+                                    <div className='text-white'><strong>Start Time:</strong> {new Date(rental.startTime).toLocaleString()}</div>
+                                    <div className='text-white'><strong>Total Cost:</strong> {rental.totalCost}</div>
+                                    <div className='text-white'>Admin calculate your totalCost</div>
                                     <button
                                         onClick={() => showModal(rental)}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                                        className="bg-pink-600 text-white   rounded"
                                     >
                                         Pay
                                     </button>
                                 </div>
                             ))
                         ) : (
-                            <p>No unpaid rentals found.</p>
+                            <div>No unpaid rentals found.</div>
                         )}
                     </div>
                 </TabPane>
-                <TabPane style={{ width: 300, color: 'bisque' }} key="paid" tab="Paid">
+                <TabPane style={{ width: 400,height:400, color: 'red' }} key="paid" tab="Paid">
                     <div className="flex flex-col gap-4">
                         {paidRentals.length > 0 ? (
                             paidRentals.map(rental => (
-                                <div key={rental._id} className="border p-4 rounded-lg text-orange-500">
-                                    <h1 className='text-orange-500'><strong>Start Time:</strong> {new Date(rental.startTime).toLocaleString()}</h1>
-                                    <h1 className='text-orange-500'><strong>Return Time:</strong> {rental.returnTime ? new Date(rental.returnTime).toLocaleString() : 'Not Returned'}</h1>
-                                    <h1 className='text-orange-500'>Payement is done after discount</h1>
-                                    <h1 className='text-orange-500'><strong>Total Cost:</strong> {rental.totalCost}</h1>
+                                <div key={rental._id} className="border mt-4 rounded-lg ">
+                                    <div className='text-white mt-8 pl-8'><strong>Start Time:</strong> {new Date(rental.startTime).toLocaleString()}</div>
+                                    <div className='text-white pl-8'><strong>Return Time:</strong> {rental.returnTime ? new Date(rental.returnTime).toLocaleString() : 'Not Returned'}</div>
+                                    <div className='text-white pl-8'>Payement is done after discount</div>
+                                    <div className='text-white pl-8 mb-8'><strong>Total Cost:</strong> {rental.totalCost}</div>
                                 </div>
                             ))
                         ) : (
-                            <p>No paid rentals found.</p>
+                            <div className='text-white'>No paid rentals found.</div>
                         )}
                     </div>
                 </TabPane>

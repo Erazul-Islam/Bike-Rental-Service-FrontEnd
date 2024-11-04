@@ -50,18 +50,6 @@ const UserDashBoard = () => {
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
-                        <Switch
-                            defaultSelected={theme === 'dark'}
-                            size="lg"
-                            color="secondary"
-                            className='ml-3'
-                            thumbIcon={({ isSelected, className }) =>
-                                isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
-                            }
-                            onChange={toggleTheme}
-                        >
-
-                        </Switch>
                     </Menu>
                 </Sider>
                 <Layout>

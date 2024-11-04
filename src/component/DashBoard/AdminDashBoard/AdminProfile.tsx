@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  useAppSelector } from '../../../redux/hook';
+import { useAppSelector } from '../../../redux/hook';
 import { RootState } from '../../../redux/store';
 import { Button, Card, Descriptions, Divider, Form, Input, Modal, notification, Typography } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
@@ -11,7 +11,7 @@ const AdminProfile = () => {
     const user = useAppSelector((state: RootState) => state.auth.user)
     console.log(user)
 
-    const {Title,Text} = Typography
+    const { Title, Text } = Typography
 
     const [form] = Form.useForm();
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const AdminProfile = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const updatedUser =  await updateUserProfile(values).unwrap();
+            const updatedUser = await updateUserProfile(values).unwrap();
             dispatch(setUser(updatedUser))
             notification.success({
                 message: 'Profile Updated',
@@ -45,20 +45,22 @@ const AdminProfile = () => {
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '20px', backgroundColor: 'pink', borderRadius: '10px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
             <Title level={3} style={{ textAlign: 'center', marginBottom: '20px' }}>Admin Profile</Title>
             <Divider />
-            <Descriptions bordered column={1} style={{ marginBottom: '20px' }}>
-                <Descriptions.Item label="Name">
-                    <Text>{user?.name}</Text>
-                </Descriptions.Item>
-                <Descriptions.Item label="Email">
-                    <Text>{user?.email}</Text>
-                </Descriptions.Item>
-                <Descriptions.Item label="Phone">
-                    <Text>{user?.phone}</Text>
-                </Descriptions.Item>
-                <Descriptions.Item label="Address">
-                    <Text>{user?.address}</Text>
-                </Descriptions.Item>
-            </Descriptions>
+            <div className='shadow-lg bg-gradient-to-r from-pink-500 to-orange-500'>
+                <Descriptions bordered column={1} style={{ marginBottom: '20px' }}>
+                    <Descriptions.Item label="Name">
+                        <Text>{user?.name}</Text>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Email">
+                        <Text>{user?.email}</Text>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Phone">
+                        <Text>{user?.phone}</Text>
+                    </Descriptions.Item>
+                    <Descriptions.Item label="Address">
+                        <Text>{user?.address}</Text>
+                    </Descriptions.Item>
+                </Descriptions>
+            </div>
             <button className='pb-3 h-12 bg-red-600 border-none text-white' onClick={() => setIsModalVisible(true)} >
                 Update Profile
             </button>
@@ -67,7 +69,7 @@ const AdminProfile = () => {
                 open={isModalVisible}
                 footer={null}
                 onCancel={() => setIsModalVisible(false)}
-                // destroyOnClose={true}
+            // destroyOnClose={true}
             >
                 <Form
                     form={form}
@@ -84,21 +86,21 @@ const AdminProfile = () => {
                     <Form.Item
                         name="email"
                         label="Email"
-                        
+
                     >
                         <Input />
                     </Form.Item>
                     <Form.Item
                         name="phone"
                         label="Phone"
-                        
+
                     >
                         <Input />
                     </Form.Item>
                     <Form.Item
                         name="address"
                         label="Address"
-                        
+
                     >
                         <Input.TextArea rows={4} />
                     </Form.Item>

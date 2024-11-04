@@ -27,7 +27,8 @@ const Cart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 try {
-                    deleteCart(_id)
+                    deleteCart(_id).unwrap()
+                    cart.filter(item => item._id !== _id)
                     refetch()
                     Swal.fire({
                         title: "Deleted!",

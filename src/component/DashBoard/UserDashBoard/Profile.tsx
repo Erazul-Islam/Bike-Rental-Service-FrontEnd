@@ -38,14 +38,14 @@ const Profile = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-center min-h-screen  p-4 transition-colors duration-300">
+            <div className="flex items-center justify-center  p-4 transition-colors duration-300">
                 <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r from-pink-500 to-orange-500">
                     <h2 className="text-2xl font-semibold text-white mb-4">User Profile</h2>
-                    <Descriptions bordered column={1} className="text-white">
-                        <Descriptions.Item label="Name">{user?.name || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item label="Email">{user?.email || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item label="Phone">{user?.phone || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item label="Address">{user?.address || "N/A"}</Descriptions.Item>
+                    <Descriptions bordered column={2} className="text-white">
+                        <Descriptions.Item style={{color:'white'}} label="Name">{user?.name || "N/A"}</Descriptions.Item>
+                        <Descriptions.Item style={{color:'white'}} label="Email">{user?.email || "N/A"}</Descriptions.Item>
+                        <Descriptions.Item style={{color:'white'}} label="Phone">{user?.phone || "N/A"}</Descriptions.Item>
+                        <Descriptions.Item style={{color:'white'}} label="Address">{user?.address || "N/A"}</Descriptions.Item>
                     </Descriptions>
                     <button
                         className="mt-6 w-full h-12 font-medium rounded-lg border-none bg-gradient-to-r from-pink-600 to-orange-600 text-white hover:from-pink-700 hover:to-orange-700 transition duration-200"

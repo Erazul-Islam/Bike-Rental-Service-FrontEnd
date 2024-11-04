@@ -11,7 +11,6 @@ const ReturnBike = () => {
     const handleCalculate = async (rentalId, endTime) => {
         try {
             const response = await updateRental({ rentalId, endTime }).unwrap();
-            console.log(response)
 
             if (response.success) {
                 notification.success({
