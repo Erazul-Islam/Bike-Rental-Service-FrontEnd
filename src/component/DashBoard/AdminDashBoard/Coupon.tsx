@@ -9,14 +9,11 @@ const Coupon = () => {
 
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [visible, setVisible] = useState(false)
     const [form] = Form.useForm();
-    const [updateForm] = Form.useForm()
     const { data: allCoupon, refetch } = useGetAllCouponQuery(null)
     const [deleteCoupon] = useDeleteCouponMutation()
     const [createCoupon] = useCreateCouponMutation()
-    const [updateCoupon] = useUpdateCoupomnMutation()
-    const [currentCoupon, setCurrentCoupon] = useState(null);
+
 
 
 
@@ -59,16 +56,6 @@ const Coupon = () => {
             }
         });
     };
-
-    const openUpdateModal = (record) => {
-        setCurrentCoupon(record);
-        updateForm.setFieldsValue({
-            code: record.code,
-            discount: record.discount,
-        });
-        setVisible(true);
-    };
-
     const columns = [
         {
             title: 'Code',
@@ -84,11 +71,11 @@ const Coupon = () => {
             title: 'Action',
             key: 'action',
             render: (text, record) => (
-                <Button color='' className='h-12'
+                <button  className='h-12 text-white bg-purple-700 rounded-sm border-none'
                     onClick={() => handleDeleteCoupon(record._id)}
                 >
                     Delete
-                </Button>
+                </button>
             ),
         },
     ];
@@ -96,10 +83,9 @@ const Coupon = () => {
     return (
         <div>
             <div className=''>
-                <Button type="dashed" className='h-12' icon={<PlusOutlined />} onClick={() => setIsModalVisible(true)}>
+                <button className='h-12 text-white bg-red-700' onClick={() => setIsModalVisible(true)}>
                     Add Coupon
-                </Button>
-
+                </button>
                 <Table
                     columns={columns}
                     dataSource={allCoupon?.data}

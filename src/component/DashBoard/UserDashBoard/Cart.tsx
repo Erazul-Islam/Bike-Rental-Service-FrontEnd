@@ -49,34 +49,34 @@ const Cart = () => {
             {
                 cart?.map(one => (<div key={one._id} className='h-[550px] border shadow-lg w-96 dark:dark light:light'>
                     {/* <h1 className='pt-3 pl-4 text-cyan-500 text-left'>Name: {one.name}</h1> */}
-                    <img className='pl-14 h-64' src={one.image} alt="" />
+                    <img className='pl-14 mt-6 h-64' src={one.image} alt="" />
                     <div className='flex justify-between pl-8 pr-8 pt-4'>
                         <div>
                             <div className='flex gap-2'>
-                                <h1 className='text-red-600 text-2xl'><RiMotorbikeFill /> </h1>
-                                <h2 className="dark:text-white">{one.name}</h2>
+                                <div className='text-red-600 text-2xl'><RiMotorbikeFill /> </div>
+                                <div className="dark:text-white">{one.name}</div>
                             </div>
                             <div className='flex mt-4 gap-2'>
-                                <h1 className='text-red-600 text-2xl'><FaCcDinersClub /> </h1>
-                                <h2 className="dark:text-white">{one.cc}</h2>
+                                <div className='text-red-600 text-2xl'><FaCcDinersClub /> </div>
+                                <div className="dark:text-white">{one.cc}</div>
                             </div>
                             <div className='flex mt-4 gap-2'>
-                                <h1 className='text-red-600 text-2xl'><GiCalendarHalfYear /> </h1>
-                                <h2 className="dark:text-white">{one.year}</h2>
+                                <div className='text-red-600 text-2xl'><GiCalendarHalfYear /> </div>
+                                <div className="dark:text-white">{one.year}</div>
                             </div>
                         </div>
                         <div>
                             <div className='flex gap-2'>
-                                <h1 className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </h1>
-                                <h2 className="dark:text-white">{one.pricePerHour}</h2>
+                                <div className='text-red-600 text-2xl'><MdOutlinePriceCheck /> </div>
+                                <div className="dark:text-white">{one.pricePerHour}</div>
                             </div>
                             <div className='flex mt-4 gap-2'>
-                                <h1 className='text-red-600 text-2xl'><MdOutlineModelTraining /> </h1>
-                                <h2 className="dark:text-white">{one.model}</h2>
+                                <div className='text-red-600 text-2xl'><MdOutlineModelTraining /> </div>
+                                <div className="dark:text-white">{one.model}</div>
                             </div>
                             <div className='flex mt-4 gap-2'>
-                                <h1 className='text-red-600 text-2xl'><TbBrandAdobe /> </h1>
-                                <h2 className="dark:text-white">{one.brand}</h2>
+                                <div className='text-red-600 text-2xl'><TbBrandAdobe /> </div>
+                                <div className="dark:text-white">{one.brand}</div>
                             </div>
                         </div>
                     </div>

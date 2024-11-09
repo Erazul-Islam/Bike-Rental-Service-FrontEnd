@@ -9,7 +9,6 @@ import { setUser } from '../../../redux/feature/auth/authSlice';
 const AdminProfile = () => {
 
     const user = useAppSelector((state: RootState) => state.auth.user)
-    console.log(user)
 
     const { Title, Text } = Typography
 
@@ -21,7 +20,6 @@ const AdminProfile = () => {
 
     const handleCancel = () => {
         setIsModalVisible(false);
-
     };
 
     const handleSubmit = async (values) => {
@@ -45,10 +43,10 @@ const AdminProfile = () => {
         <div style={{ maxWidth: 600, margin: '0 auto', padding: '20px', backgroundColor: 'pink', borderRadius: '10px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}>
             <Title level={3} style={{ textAlign: 'center', marginBottom: '20px' }}>Admin Profile</Title>
             <Divider />
-            <div className='shadow-lg bg-gradient-to-r from-pink-500 to-orange-500'>
+            <div className='shadow-lg bg-gradient-to-r '>
                 <Descriptions bordered column={1} style={{ marginBottom: '20px' }}>
                     <Descriptions.Item label="Name">
-                        <Text>{user?.name}</Text>
+                        <Text >{user?.name}</Text>
                     </Descriptions.Item>
                     <Descriptions.Item label="Email">
                         <Text>{user?.email}</Text>
@@ -108,9 +106,7 @@ const AdminProfile = () => {
                         <Button className='pb-4 h-12' type="primary" htmlType="submit" loading={isLoading}>
                             Update Profile
                         </Button>
-                        <Button className='pb-4 h-12' type="primary" onClick={handleCancel} >
-                            Cancel
-                        </Button>
+                        
                     </Form.Item>
                 </Form>
             </Modal>

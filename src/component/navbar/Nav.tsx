@@ -19,14 +19,13 @@ const Nav = () => {
     };
 
     const token = useAppSelector(useCurrentToken);
-    
-
-
     let user;
 
     if (token) {
         user = verifyToken(token);
     }
+
+    console.log(user)
 
     const [theme, setTheme] = useState(() => {
         return localStorage.getItem('theme') || 'dark'
@@ -86,13 +85,15 @@ const Nav = () => {
                                 Login
                             </Link>}
                         </NavbarItem>
-                        <NavbarItem>
-                            {user?.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
-                                Dashboard
-                            </Link> : <Link color="foreground" href="/user/dashboard">
-                                Dashboard
-                            </Link>}
-                        </NavbarItem>
+                        {
+                            user === undefined ? '' : <NavbarItem>
+                                {user?.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
+                                    Dashboard
+                                </Link> : <Link color="foreground" href="/user/dashboard">
+                                    Dashboard
+                                </Link>}
+                            </NavbarItem>
+                        }
                     </NavbarContent>
                     <Switch
                         defaultSelected={theme === 'dark'}
