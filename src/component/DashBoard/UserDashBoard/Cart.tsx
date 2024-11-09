@@ -13,7 +13,7 @@ const Cart = () => {
     const { data,refetch } = useGetCartQuery(token as string)
     const [deleteCart] = useDeletecartMutation()
 
-    const cart = data?.data
+    const cart = data?.data 
 
     const handleDelete = (_id: string) => {
         Swal.fire({

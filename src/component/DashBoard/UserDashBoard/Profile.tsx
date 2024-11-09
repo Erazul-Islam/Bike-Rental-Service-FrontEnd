@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
+import { Button, Descriptions, Form, Input, Modal, notification } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { setUser } from '../../../redux/feature/auth/authSlice';
 

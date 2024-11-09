@@ -6,7 +6,7 @@ import { FaCcDinersClub } from "react-icons/fa";
 import { GiCalendarHalfYear } from "react-icons/gi";
 import { MdOutlineModelTraining } from "react-icons/md";
 import { TbBrandAdobe } from "react-icons/tb";
-import { Button, Checkbox, Modal, Select } from 'antd';
+import {  Checkbox, Modal, Select } from 'antd';
 import { TBike } from '../../../utils/global';
 import { Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
@@ -40,7 +40,7 @@ const BikeList = () => {
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            let filtered = data?.data
+            let filtered = data?.data || []
                 .filter((product: TBike) => (filters.brand ? product.brand === filters.brand : true))
                 .filter((product: TBike) => (filters.model ? product.model === filters.model : true))
             setFilteredProducts(filtered);

@@ -20,14 +20,15 @@ const Booking = () => {
     const [coupon, setCoupon] = useState('');
     const [discount, setDiscount] = useState(0);
     const [isValidCoupon, setIsValidCoupon] = useState(false);
+    
 
 
-    // console.log(currentRental?.totalCost)
+    
 
     const rentals = data?.data || [];
     const amount = Number(currentRental?.totalCost)
     // console.log("amount",amount)
-    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100); 
+    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100);
     // console.log('Cents',totalCostInCents)
 
     // console.log(rentals)
@@ -91,10 +92,10 @@ const Booking = () => {
 
     const validateCoupon = async () => {
         if (coupon === 'TAOSIF10') {
-            setDiscount(currentRental?.totalCost * 0.1); 
+            setDiscount(currentRental?.totalCost * 0.1);
             setIsValidCoupon(true);
         } else if (coupon === 'TAOSIF20)') {
-            setDiscount(currentRental?.totalCost * 0.2); 
+            setDiscount(currentRental?.totalCost * 0.2);
             setIsValidCoupon(true);
         } else if (coupon === 'TAOSIF30') {
             setDiscount(currentRental?.totalCost * 0.3);
@@ -126,10 +127,10 @@ const Booking = () => {
                 aria-label="My Rentals Tabs"
                 activeKey={activeTab}
                 onChange={setActiveTab}
-                tabBarStyle={{ color:"white" }}
+                tabBarStyle={{ color: "white" }}
                 className="mb-4"
             >
-                <TabPane style={{ width: 300, color:'red'}} key="unpaid" tab="Unpaid">
+                <TabPane style={{ width: 300, color: 'red' }} key="unpaid" tab="Unpaid">
                     <div className="flex flex-col gap-4">
                         {unpaidRentals.length > 0 ? (
                             unpaidRentals.map(rental => (
@@ -150,7 +151,7 @@ const Booking = () => {
                         )}
                     </div>
                 </TabPane>
-                <TabPane style={{ width: 400,height:400, color: 'red' }} key="paid" tab="Paid">
+                <TabPane style={{ width: 400, height: 400, color: 'red' }} key="paid" tab="Paid">
                     <div className="flex flex-col gap-4">
                         {paidRentals.length > 0 ? (
                             paidRentals.map(rental => (
@@ -177,7 +178,6 @@ const Booking = () => {
                     <Form.Item label="Coupon Code">
                         <Input value={coupon} onChange={(e) => setCoupon(e.target.value)} />
                         {isValidCoupon === true ? <h1 className='text-green-500 mt-4'>Coupon applied! Discount: {discount}</h1> : <h1 className='text-red-600 mt-4'>Use coupon</h1>}
-                        {/* <h1 className='text-green-500 mt-4'>After discount {totalCostInCents}</h1> */}
                     </Form.Item>
                     <CardElement />
                     <Button type="primary" onClick={handlePayment} className='pb-4 h-12'>

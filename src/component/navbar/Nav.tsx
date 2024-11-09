@@ -19,7 +19,7 @@ const Nav = () => {
     };
 
     const token = useAppSelector(useCurrentToken);
-    console.log("token", token)
+    
 
 
     let user;
@@ -27,8 +27,6 @@ const Nav = () => {
     if (token) {
         user = verifyToken(token);
     }
-
-    console.log("user", user)
 
     const [theme, setTheme] = useState(() => {
         return localStorage.getItem('theme') || 'dark'
@@ -147,7 +145,7 @@ const Nav = () => {
                             user === undefined && token === null ? "" : <NavbarItem>
                                 {user?.role === 'admin' ? < Link color="warning" href="/admin/dashboard">
                                     dashboard
-                                </Link> : <Link color="warning" href="/user/dashboard">
+                                </Link> : <Link color="warning" href="/user/dashboard/profile">
                                     dashboard
                                 </Link>}
                             </NavbarItem>
