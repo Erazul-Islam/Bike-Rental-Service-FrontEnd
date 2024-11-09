@@ -18,10 +18,6 @@ const AdminProfile = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
-
     const handleSubmit = async (values) => {
         try {
             const updatedUser = await updateUserProfile(values).unwrap();
@@ -67,7 +63,6 @@ const AdminProfile = () => {
                 open={isModalVisible}
                 footer={null}
                 onCancel={() => setIsModalVisible(false)}
-            // destroyOnClose={true}
             >
                 <Form
                     form={form}

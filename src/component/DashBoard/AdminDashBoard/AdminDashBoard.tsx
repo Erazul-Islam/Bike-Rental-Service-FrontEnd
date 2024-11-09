@@ -13,7 +13,7 @@ import { Switch } from '@nextui-org/react';
 import { MoonIcon } from '../../navbar/sunIcon';
 import { SunIcon } from '../../navbar/moonIcon';
 import '../../navbar/dark.css'
-import { FaCartFlatbed } from 'react-icons/fa6';
+import { FaCartFlatbed, FaChartBar } from 'react-icons/fa6';
 
 
 
@@ -59,6 +59,9 @@ const AdminDashBoard = () => {
                         </Menu.Item>
                         <Menu.Item key="cart" icon={<FaCartFlatbed />}>
                             <Link to="/admin/dashboard/cart">My cart</Link>
+                        </Menu.Item>
+                        <Menu.Item key="chart" icon={<FaChartBar />}>
+                            <Link to="/admin/dashboard/chart">Chart</Link>
                         </Menu.Item>
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>

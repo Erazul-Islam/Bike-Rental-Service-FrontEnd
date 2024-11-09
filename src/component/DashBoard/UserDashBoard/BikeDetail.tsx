@@ -65,9 +65,7 @@ const BikeDetail = () => {
                 return;
             }
 
-            const data = { name: name, email: email, amount: 200 };
-
-            const response = await createPaymentIntent(100).unwrap();
+            const response = await createPaymentIntent(5000).unwrap();
             console.log(response.data)
             const clientSecret = response?.data?.client_secret;
             console.log(clientSecret)
@@ -172,7 +170,7 @@ const BikeDetail = () => {
                 )}
             </div>
             <Modal
-                title="For Rental || Automatically Cut 100 Tk"
+                title="For Rental || Automatically Cut 500 Tk"
                 open={isModalVisible}
                 footer={null}
                 onCancel={handleCancel}
