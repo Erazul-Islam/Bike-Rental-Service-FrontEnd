@@ -30,6 +30,7 @@ export type TCoupon = {
 }
 
 export type TRental = {
+    createdAt: string | number | Date;
     _id: string
     bikeId: string,
     userId: Object | undefined
