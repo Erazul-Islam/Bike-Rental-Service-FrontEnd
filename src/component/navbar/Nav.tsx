@@ -1,4 +1,4 @@
-import { NavbarBrand, NavbarContent, NavbarItem, } from '@nextui-org/navbar';
+import { NavbarContent, NavbarItem, } from '@nextui-org/navbar';
 import { Link, Navbar, Switch } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { logout, useCurrentToken } from '../../redux/feature/auth/authSlice';
 import { verifyToken } from '../../utils/verifyToken';
 import { MoonIcon } from './sunIcon';
 import { SunIcon } from './moonIcon';
-import { MenuOutlined, } from '@ant-design/icons';
+import { MenuOutlined, MenuUnfoldOutlined, } from '@ant-design/icons';
 import { Button, Drawer } from 'antd';
 
 const Nav = () => {
@@ -56,11 +56,14 @@ const Nav = () => {
         <div>
             <Navbar isBordered>
                 <NavbarContent justify="end">
-                    <NavbarBrand className="mr-4">
+                    <NavbarItem className='md:hidden mr-32'>
                         <NavLink to='/'><img src="https://i.ibb.co/4s7JnXV/logo-1-1.png" alt="" /></NavLink>
-                    </NavbarBrand>
+                    </NavbarItem>
                     <NavbarContent className="hidden sm:flex gap-3">
                         <NavbarItem>
+                            <NavLink to='/'><img src="https://i.ibb.co/4s7JnXV/logo-1-1.png" alt="" /></NavLink>
+                        </NavbarItem>
+                        <NavbarItem style={{ marginLeft: 200 }}>
                             <Link color="foreground" href='/'>
                                 Home
                             </Link>
@@ -85,21 +88,24 @@ const Nav = () => {
                                 Login
                             </Link>}
                         </NavbarItem>
-                        {
-                            user === undefined ? '' : <NavbarItem>
-                                {user?.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
-                                    Dashboard
-                                </Link> : <Link color="foreground" href="/user/dashboard">
-                                    Dashboard
-                                </Link>}
-                            </NavbarItem>
-                        }
+                        <NavbarItem>
+                            {
+                                user === undefined ? '' : <NavbarItem>
+                                    {user?.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
+                                        Dashboard
+                                    </Link> : <Link color="foreground" href="/user/dashboard">
+                                        Dashboard
+                                    </Link>}
+                                </NavbarItem>
+                            }
+                        </NavbarItem>
+                       
                     </NavbarContent>
                     <Switch
                         defaultSelected={theme === 'dark'}
                         size="lg"
                         color="secondary"
-                        className=''
+                        className='sm:hidden'
                         thumbIcon={({ isSelected, className }) =>
                             isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
                         }
@@ -108,7 +114,7 @@ const Nav = () => {
 
                     </Switch>
                     <div className='md:hidden'>
-                        <Button className='md:hidden bg-none' type="text" icon={<MenuOutlined />} onClick={showDrawer} />
+                        <button className='md:hidden border-none mt-4 ml-4' onClick={showDrawer}> <MenuUnfoldOutlined /> </button>
                     </div>
                     <Drawer
                         title="Menu"
@@ -118,42 +124,44 @@ const Nav = () => {
                         className="md:hidden dark:dark light:light"
                     >
                         <NavbarItem>
-                            <Link color="warning" href='/'>
+                            <Link className='text-black' href='/'>
                                 Home
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link color="warning" href="/about">
+                            <Link className='text-black' href="/about">
                                 About
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link color="warning" href="/all-bike">
+                            <Link className='text-black' href="/all-bike">
                                 Bike
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link color="warning" href="/spin">
+                            <Link className='text-black' href="/spin">
                                 Spinner
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            {user ? <div className='cursor-pointer' onClick={handleLogout}>Logout</div> : <Link color="warning" href="/login">
+                            {user ? <div className='cursor-pointer' onClick={handleLogout}>Logout</div> : <Link className='text-black' href="/login">
                                 Login
                             </Link>}
                         </NavbarItem>
                         {
                             user === undefined && token === null ? "" : <NavbarItem>
-                                {user?.role === 'admin' ? < Link color="warning" href="/admin/dashboard">
+                                {user?.role === 'admin' ? < Link className='text-black' href="/admin/dashboard">
                                     dashboard
-                                </Link> : <Link color="warning" href="/user/dashboard/profile">
+                                </Link> : <Link className='text-black' href="/user/dashboard/profile">
                                     dashboard
                                 </Link>}
                             </NavbarItem>
                         }
+                        <NavbarItem>
+                            
+                        </NavbarItem>
                     </Drawer>
                 </NavbarContent>
-
             </Navbar>
         </div >
     );
