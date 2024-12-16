@@ -18,7 +18,6 @@ const Home = () => {
             <Contact />
             <Testimonial />
             <Choose />
-            {/* <Discount /> */}
             <ContactSection />
             <Footer></Footer>
         </div>

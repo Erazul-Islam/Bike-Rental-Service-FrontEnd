@@ -21,17 +21,9 @@ const Booking = () => {
     const [discount, setDiscount] = useState(0);
     const [isValidCoupon, setIsValidCoupon] = useState(false);
     
-
-
-    
-
     const rentals = data?.data || [];
-    const amount = Number(currentRental?.totalCost)
-    // console.log("amount",amount)
-    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100);
-    // console.log('Cents',totalCostInCents)
 
-    // console.log(rentals)
+    const totalCostInCents = Math.round((Number(currentRental?.totalCost) - discount) * 100);
 
     const unpaidRentals = rentals?.filter(rental => rental.isPaid === false);
     const paidRentals = rentals?.filter(rental => rental.isPaid === true);
@@ -77,7 +69,6 @@ const Booking = () => {
 
             if (error) {
                 console.error('Payment error:', error);
-                // message.error('Your Payement is Unsuccessful')
             } else if (paymentIntent?.status === 'succeeded') {
                 message.success('Your Payement is Successful')
                 await updateRental({ id: currentRental._id, data: { isPaid: true } }).unwrap();

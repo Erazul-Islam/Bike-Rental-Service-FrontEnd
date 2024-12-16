@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 const Slider = () => {
     return (
         <div>
-            <Carousel infiniteLoop autoPlay >
+            <Carousel  infiniteLoop autoPlay >
                 <div>
                     <img src="https://i.ibb.co/rHHfhdF/banner-image-168827119571643.jpg" />
                 </div>
@@ -24,7 +24,6 @@ const Slider = () => {
                 <div>
                     <img src="https://i.ibb.co/7nDmRGQ/banner-image-165838506472374.jpg" />
                 </div>
-
             </Carousel>
         </div>
     );

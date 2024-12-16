@@ -20,21 +20,10 @@ import { FaCartFlatbed, FaChartBar } from 'react-icons/fa6';
 const AdminDashBoard = () => {
 
     const user = useAppSelector((state: RootState) => state.auth.user)
-
-    const [theme, setTheme] = useState('dark')
-
-    useEffect(() => {
-        document.documentElement.classList.remove('dark', 'light');
-        document.documentElement.classList.add(theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-    };
+  
 
     return (
         <div>
-            {/* <Nav/> */}
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible>
                     <div className="logo" style={{ padding: '16px', textAlign: 'center' }}>
@@ -66,18 +55,6 @@ const AdminDashBoard = () => {
                         <Menu.Item key="home" icon={<HomeOutlined />}>
                             <Link to="/">Home</Link>
                         </Menu.Item>
-                        {/* <Switch
-                            defaultSelected={theme === 'dark'}
-                            size="lg"
-                            color="secondary"
-                            className='ml-3'
-                            thumbIcon={({ isSelected, className }) =>
-                                isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />
-                            }
-                            onChange={toggleTheme}
-                        >
-
-                        </Switch> */}
                     </Menu>
                 </Sider>
                 <Layout>

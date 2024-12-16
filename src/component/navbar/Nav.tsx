@@ -1,5 +1,5 @@
 import { NavbarContent, NavbarItem, } from '@nextui-org/navbar';
-import { Link, Navbar, Switch } from '@nextui-org/react';
+import { Avatar, Link, Navbar, Switch } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
@@ -60,7 +60,7 @@ const Nav = () => {
                         <NavLink to='/'><img src="https://i.ibb.co/4s7JnXV/logo-1-1.png" alt="" /></NavLink>
                     </NavbarItem>
                     <NavbarContent className="hidden sm:flex gap-3">
-                        <NavbarItem>
+                        <NavbarItem >
                             <NavLink to='/'><img src="https://i.ibb.co/4s7JnXV/logo-1-1.png" alt="" /></NavLink>
                         </NavbarItem>
                         <NavbarItem style={{ marginLeft: 200 }}>
@@ -99,7 +99,6 @@ const Nav = () => {
                                 </NavbarItem>
                             }
                         </NavbarItem>
-                       
                     </NavbarContent>
                     <Switch
                         defaultSelected={theme === 'dark'}

@@ -120,7 +120,7 @@ const BikeDetail = () => {
                     alt={product?.name}
                 />
 
-                <div className="md:ml-8 w-96 mt-6 md:mt-0  bg-gray-600 pt-12 pl-12 pb-12 pr-12 dark:text-white">
+                <div className="md:ml-8 w-96 mt-6 md:mt-0   pt-12 pl-12 pb-12 pr-12 dark:text-white">
                     <div className=" gap-8">
                         <div className="flex flex-col gap-4">
                             <div className="flex items-center text-xl font-semibold">
@@ -160,7 +160,7 @@ const BikeDetail = () => {
                 {user ? (
                     <button
                         onClick={() => setIsModalVisible(true)}
-                        className='w-full ml-20 md:w-1/3 h-12 bg-pink-800'
+                        className='w-full md:ml-20 md:w-1/3 h-12 bg-pink-800'
                         disabled={product?.isAvailable === false}
                     >
                         Book Now

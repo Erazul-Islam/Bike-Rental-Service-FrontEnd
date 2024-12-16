@@ -131,7 +131,7 @@ const BikeList = () => {
             </div>
 
             {
-                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-3 gap-14 lg:ml-40'>
+                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-4 gap-14 lg:ml-10'>
                     {
                         filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] border mt-4 shadow-lg w-96 dark:dark light:light'>
                             <div className='flex justify-between'>
