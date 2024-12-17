@@ -13,7 +13,7 @@ const Footer = () => {
         <div className='dark lg:ml-32 lg:mr-32 pt-40 pb-40'>
             <div className='md:flex md:justify-between'>
                 <div>
-                    <div className='text-2xl font-bold'> <span>DO YOU HAVE QUESTIONS?</span> <br /> <span className='text-red-600'>
+                    <div className='text-2xl lg:ml-0 ml-4 font-bold'> <span>DO YOU HAVE QUESTIONS?</span> <br /> <span className='text-red-600'>
                         LET'S TALK US !</span> </div>
                     <div className='flex ml-4 md:ml-0 gap-4 mt-4'>
                         <div className='text-xl'>
@@ -52,7 +52,7 @@ const Footer = () => {
                     <div className='text-2xl  ml-4 md:ml-0 '>SUBSCRIBE FOR UPDATE</div>
                     <div className='flex'>
                         <input className='h-16  ml-4 md:ml-0 rounded-sm border-none w-72 mt-10 gap-2 p-4' placeholder='Enter your email' type="text" />
-                        <button className='h-16 ml-4 md:ml-0 rounded-sm border-none text-white bg-red-600'>SUBSCRIBE</button>
+                        <button className='h-16  md:ml-0 rounded-sm border-none text-white bg-red-600'>SUBSCRIBE</button>
                     </div>
                 </div>
 

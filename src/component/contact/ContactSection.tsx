@@ -54,8 +54,8 @@ const ContactSection = () => {
                     </div>
                 </div>
                 <div className='md:mr-44'>
-                    <div className='text-4xl mt-4  font-bold'>GET IN TOUCH</div>
-                    <div className=' md:mr-12 text-left mt-10'>We welcome and value your feedback. Use the form below to send us an email with your comments, questions, or 
+                    <div className='text-4xl mt-4  text-center font-bold'>GET IN TOUCH</div>
+                    <div className=' md:mr-12 md:text-left text-center ml-4 mr-4 mt-10'>We welcome and value your feedback. Use the form below to send us an email with your comments, questions, or 
                         concerns. Every customer is welcome to request a transfer or return call from a Senior Agent or Supervisor on an  arising issue.</div>
                     <div className='mt-10 mr-8 ml-8  md:ml-0 flex gap-2'>
                         <input placeholder='Your name' className='md:h-16 md:w-1/2 pl-3  dark:dark light:light ' type="text" />

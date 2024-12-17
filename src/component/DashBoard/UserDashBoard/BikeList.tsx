@@ -6,7 +6,7 @@ import { FaCcDinersClub } from "react-icons/fa";
 import { GiCalendarHalfYear } from "react-icons/gi";
 import { MdOutlineModelTraining } from "react-icons/md";
 import { TbBrandAdobe } from "react-icons/tb";
-import {  Checkbox, Modal, Select } from 'antd';
+import { Checkbox, Modal, Select } from 'antd';
 import { TBike } from '../../../utils/global';
 import { Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
@@ -98,40 +98,52 @@ const BikeList = () => {
     return (
         <div className='mb-12 '>
             <div className='justify-center'>
-                <div className='flex items-center justify-center  ' style={{ marginBottom: 20 }}>
-                    <Select
-                        placeholder="Select Category"
-                        onChange={(value) => handleFilterChange('model', value)}
-                        value={filters.brand}
-                        style={{ width: 150, marginRight: 10, height: 48 }}
-                    >
-                        <Option value="">Model</Option>
-                        <Option value="Xixer">Xixer</Option>
-                        <Option value="MT 15">MT15</Option>
-                        <Option value="MT 14">MT14</Option>
-                    </Select>
-                    <Select
-                        placeholder="Select Brand"
-                        onChange={(value) => handleFilterChange('brand', value)}
-                        value={filters.model}
-                        style={{ width: 150, marginRight: 10, height: 48 }}
-                    >
-                        <Option value="">Brand</Option>
-                        <Option value="Suzuki">Suzuki</Option>
-                        <Option value="Yamaha">Yamaha</Option>
-                        <Option value="Honda">Honda</Option>
-                        <Option value="Platina">Platina</Option>
-                    </Select>
-                    <button className='pb-3 mt-5 text-white border-none rounded-sm text-sm bg-pink-700 h-12' onClick={clearFilters}>Clear</button>
-                    <button className='pb-3 mt-5 text bg-red-700 border-none rounded-sm text-sm text-white ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
-                        Compare ({selectedBike.length})
-                    </button>
+                <div className='md:flex items-center justify-center  ' style={{ marginBottom: 20 }}>
+                    <div className='flex ml-14'>
+                        <div className=''>
+                            <Select
+                                placeholder="Select Category"
+                                onChange={(value) => handleFilterChange('model', value)}
+                                value={filters.brand}
+                                style={{ width: 150, marginRight: 10, height: 48, backgroundColor: 'HighlightText' }}
+                            >
+                                <Option value="">Model</Option>
+                                <Option value="Xixer">Xixer</Option>
+                                <Option value="MT 15">MT15</Option>
+                                <Option value="MT 14">MT14</Option>
+                            </Select>
+                        </div>
+                        <div>
+                            <Select
+                                placeholder="Select Brand"
+                                onChange={(value) => handleFilterChange('brand', value)}
+                                value={filters.model}
+                                style={{ width: 150, marginRight: 10, height: 48, backgroundColor: 'HighlightText' }}
+                            >
+                                <Option value="">Brand</Option>
+                                <Option value="Suzuki">Suzuki</Option>
+                                <Option value="Yamaha">Yamaha</Option>
+                                <Option value="Honda">Honda</Option>
+                                <Option value="Platina">Platina</Option>
+                            </Select>
+                        </div>
+                    </div>
+                    <div className='flex ml-14'>
+                        <div>
+                            <button className='pb-3 mt-5 w-[150px] text-white border-none rounded-sm text-sm bg-pink-700 h-12' onClick={clearFilters}>Clear</button>
+                        </div>
+                        <div>
+                            <button className='pb-3 mt-5 w-[146px] text bg-red-700 border-none rounded-sm text-sm text-white ml-4 h-12' onClick={handleCompare} disabled={selectedBike.length < 2}>
+                                Compare ({selectedBike.length})
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className='text-center text-red-600 font-bold text-3xl'>Select at least two to compare</div>
             </div>
 
             {
-                loading ? <div className='flex  justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-4 gap-14 lg:ml-10'>
+                loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1 md:grid-cols-2 mr-12 lg:grid-cols-4 gap-14 ml-7 lg:ml-10'>
                     {
                         filteredProducts?.map(one => (<motion.div key={one._id} className='h-[550px] border mt-4 shadow-lg w-96 dark:dark light:light'>
                             <div className='flex justify-between'>
@@ -143,7 +155,7 @@ const BikeList = () => {
                                 <div>
                                     <div className='flex gap-2'>
                                         <div className='text-red-600 text-2xl'><RiMotorbikeFill /> </div>
-                                            <h2 className="dark:text-white">{one.name}</h2> <br />
+                                        <h2 className="dark:text-white">{one.name}</h2> <br />
                                     </div>
                                     <div className='flex mt-4 gap-2'>
                                         <div className='text-red-600 text-2xl'><FaCcDinersClub /> </div>
@@ -185,7 +197,7 @@ const BikeList = () => {
                 open={isModalVisible}
                 onCancel={handleCancel}
                 footer={null}
-                style={{backgroundColor: 'black'}}
+                style={{ backgroundColor: 'black' }}
                 width={800}
             >
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>

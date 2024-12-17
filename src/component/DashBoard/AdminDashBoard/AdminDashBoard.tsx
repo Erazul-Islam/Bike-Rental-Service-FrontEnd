@@ -14,6 +14,7 @@ import { MoonIcon } from '../../navbar/sunIcon';
 import { SunIcon } from '../../navbar/moonIcon';
 import '../../navbar/dark.css'
 import { FaCartFlatbed, FaChartBar } from 'react-icons/fa6';
+import Nav from '../../navbar/Nav';
 
 
 
@@ -24,6 +25,7 @@ const AdminDashBoard = () => {
 
     return (
         <div>
+            <Nav/>
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible>
                     <div className="logo" style={{ padding: '16px', textAlign: 'center' }}>

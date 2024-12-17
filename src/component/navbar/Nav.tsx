@@ -7,8 +7,8 @@ import { logout, useCurrentToken } from '../../redux/feature/auth/authSlice';
 import { verifyToken } from '../../utils/verifyToken';
 import { MoonIcon } from './sunIcon';
 import { SunIcon } from './moonIcon';
-import { MenuOutlined, MenuUnfoldOutlined, } from '@ant-design/icons';
-import { Button, Drawer } from 'antd';
+import {  MenuUnfoldOutlined, } from '@ant-design/icons';
+import {  Drawer } from 'antd';
 
 const Nav = () => {
 
@@ -100,7 +100,7 @@ const Nav = () => {
                             }
                         </NavbarItem>
                     </NavbarContent>
-                    <Switch
+                    {/* <Switch
                         defaultSelected={theme === 'dark'}
                         size="lg"
                         color="secondary"
@@ -111,7 +111,7 @@ const Nav = () => {
                         onChange={toggleTheme}
                     >
 
-                    </Switch>
+                    </Switch> */}
                     <div className='md:hidden'>
                         <button className='md:hidden border-none mt-4 ml-4' onClick={showDrawer}> <MenuUnfoldOutlined /> </button>
                     </div>

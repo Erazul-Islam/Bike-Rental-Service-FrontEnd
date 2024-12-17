@@ -3,12 +3,12 @@ import React from 'react';
 const Testimonial = () => {
     return (
         <div>
-            <ul><h1 className='text-3xl mt-12 mb-12 text-center'>Testimonial</h1></ul>
+            <ul><div className='text-3xl mt-12 mb-12 text-center'>Testimonial</div></ul>
             <div className='lg:ml-60 lg:mr-60 lg:flex gap-8'>
                 <div  >
                     <img className='' src="https://i.ibb.co/SnkyWZT/carnaby-gilany-u1-Ej-Amyww-I0-unsplash.jpg" alt="" />
                     <div className='flex'>
-                        <h1 className='mt-4  ml-8 md:ml-0 '>May 1 2023</h1>
+                        <div className='mt-4  ml-8 md:ml-0 '>May 1 2023</div>
                         <h2 className='mt-4  md:ml-64'>Michael </h2>
                     </div>
                     <h3 className='md:text-xl ml-8 md:ml-0 font-bold text-xl mt-3'>On Her Bike through Tanzania</h3>
@@ -17,7 +17,7 @@ const Testimonial = () => {
                 <div>
                     <img className='md:mt-0 mt-4' src="https://i.ibb.co/mvc6Yty/web-donut-e-Sz-WOpp1rgw-unsplash-1.jpg" alt="" />
                     <div className='flex ml-8 md:ml-0'>
-                        <h1 className='mt-4 '>April 4 2024</h1>
+                        <div className='mt-4 '>April 4 2024</div>
                         <h2 className='mt-4 md:ml-64'>Taosif </h2>
                     </div>
                     <h3 className='md:text-xl ml-8 md:ml-0 font-bold text-xl mt-3'>Mountain weather beats route planning
@@ -27,7 +27,7 @@ const Testimonial = () => {
                 <div>
                     <img className='md:mt-0 mt-4' src="https://i.ibb.co/L5XcCxD/sean-delshadi-lr-Tcl-BKLo-Sg-unsplash.jpg" alt="" />
                     <div className='flex ml-8 md:ml-0'>
-                        <h1 className='mt-4'>June 10 2022</h1>
+                        <div className='mt-4'>June 10 2022</div>
                         <h2 className='mt-4 md:ml-64'>Sofia</h2>
                     </div>
                     <h3 className='md:text-xl ml-8 md:ml-0 font-bold text-xl mt-3'>Winter Riding Routes That Are Awesome!
