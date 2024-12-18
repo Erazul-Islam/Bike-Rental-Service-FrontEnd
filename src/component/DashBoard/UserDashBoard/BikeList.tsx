@@ -128,7 +128,7 @@ const BikeList = () => {
                             </Select>
                         </div>
                     </div>
-                    <div className='flex ml-14'>
+                    <div className='flex lg:ml-0 ml-14'>
                         <div>
                             <button className='pb-3 mt-5 w-[150px] text-white border-none rounded-sm text-sm bg-pink-700 h-12' onClick={clearFilters}>Clear</button>
                         </div>

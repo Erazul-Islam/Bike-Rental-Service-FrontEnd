@@ -39,7 +39,7 @@ const Profile = () => {
     return (
         <div>
             <div className="flex items-center justify-center  p-4 transition-colors duration-300">
-                <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r from-pink-500 to-orange-500">
+                <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r">
                     <h2 className="text-2xl font-semibold text-white mb-4">User Profile</h2>
                     <Descriptions bordered column={2} className="text-white">
                         <Descriptions.Item style={{color:'white'}} label="Name">{user?.name || "N/A"}</Descriptions.Item>
@@ -48,7 +48,7 @@ const Profile = () => {
                         <Descriptions.Item style={{color:'white'}} label="Address">{user?.address || "N/A"}</Descriptions.Item>
                     </Descriptions>
                     <button
-                        className="mt-6 w-full h-12 font-medium rounded-lg border-none bg-gradient-to-r from-pink-600 to-orange-600 text-white hover:from-pink-700 hover:to-orange-700 transition duration-200"
+                        className="mt-6 w-full h-12 font-medium rounded-lg border-none bg-gradient-to-r  text-white "
                         onClick={() => setIsModalVisible(true)}
                     >
                         Update Profile
@@ -62,7 +62,6 @@ const Profile = () => {
                     onCancel={() => setIsModalVisible(false)}
                     destroyOnClose
                     className="transition-colors duration-300"
-                    style={{ background: 'linear-gradient(to right, #ff7e5f, #feb47b)' }} // Same gradient for modal
                 >
                     <Form
                         form={form}

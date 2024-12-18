@@ -41,9 +41,6 @@ const UserDashBoard = () => {
                         <Menu.Item key="booking" icon={<BookOutlined />}>
                             <Link to="/user/dashboard/booking">My Booking</Link>
                         </Menu.Item>
-                        <Menu.Item key="bike-list" icon={<LikeOutlined />}>
-                            <Link to="/user/dashboard/bike-list">All Bikes</Link>
-                        </Menu.Item>
                         <Menu.Item key="cart" icon={<FaCartFlatbed />}>
                             <Link to="/user/dashboard/cart">My cart</Link>
                         </Menu.Item>
