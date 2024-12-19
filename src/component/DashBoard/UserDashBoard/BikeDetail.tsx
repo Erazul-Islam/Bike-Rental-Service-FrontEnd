@@ -156,6 +156,7 @@ const BikeDetail = () => {
                     </div>
                 </div>
             </div>
+          
             <div className='text-center mt-6'>
                 {user ? (
                     <button
@@ -201,3 +202,4 @@ const BikeDetail = () => {
 };
 
 export default BikeDetail;
+

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
+import { Button, Form, Input, Modal, notification } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { setUser } from '../../../redux/feature/auth/authSlice';
 
@@ -39,36 +39,49 @@ const Profile = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-center  p-4 transition-colors duration-300">
-                <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r">
-                    <h2 className="text-2xl font-semibold text-white mb-4">User Profile</h2>
-                    <Card
-                        title="User Profile"
-                        bordered={true}
-                        style={{ width: 400 }}
-                        className="shadow-lg"
-                    >
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex justify-between">
-                                <span className="font-semibold">Name:</span>
-                                <span>{user?.name || "Not Provided"}</span>
+            <div className="flex   p-4 transition-colors duration-300">
+                <div className="">
+                    <h2 className="text-2xl ml-4 font-semibold text-white mb-4">My Profile</h2>
+                    <div className=" bg-black text-white flex items-center justify-center p-4">
+                        <div className="max-w-lg md:w-full bg-gray-900 rounded-sm shadow-lg overflow-hidden">
+                            <div className="bg-gray-800 md:p-6  flex items-center space-x-4">
+                                <img
+                                    src={user?.image}
+                                    alt={`${user?.name}'s profile`}
+                                    className="w-24 h-24 rounded-full object-cover border-4 border-gray-700"
+                                />
+                                <div>
+                                    <div className="text-2xl font-semibold">{user?.name}</div>
+                                    <div className="text-sm text-gray-400">{user?.email}</div>
+                                    <div className="text-sm text-gray-400">{user?.phone}</div>
+                                </div>
                             </div>
-                            <div className="flex justify-between">
-                                <span className="font-semibold">Email:</span>
-                                <span>{user?.email || "Not Provided"}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="font-semibold">Phone:</span>
-                                <span>{user?.phone || "Not Provided"}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="font-semibold">Address:</span>
-                                <span>{user?.address || "Not Provided"}</span>
+
+                            {/* Details Section */}
+                            <div className="p-6">
+                                <h2 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Profile Details</h2>
+                                <ul className="space-y-3">
+                                    <li>
+                                        <span className="font-medium text-gray-300">Address:</span> {user?.address}
+                                    </li>
+                                    <li>
+                                        <span className="font-medium text-gray-300">City:</span> {user?.city}
+                                    </li>
+                                    <li>
+                                        <span className="font-medium text-gray-300">Country:</span> {user?.country}
+                                    </li>
+                                    <li>
+                                        {/* <span className="font-medium text-gray-300">Member Since:</span> {(user.createdAt).toISOString()} */}
+                                    </li>
+                                    <li>
+                                        {/* <span className="font-medium text-gray-300">Last Updated:</span> {(user.updatedAt).toDateString()} */}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </Card>
+                    </div>
                     <button
-                        className="mt-6 w-full h-12 font-medium rounded-lg bg-red-600 border-none bg-gradient-to-r  text-white "
+                        className="mt-2 w-[200px] h-12 ml-4 font-medium rounded-sm bg-red-600 border-none bg-gradient-to-r  text-white "
                         onClick={() => setIsModalVisible(true)}
                     >
                         Update Profile
@@ -107,6 +120,12 @@ const Profile = () => {
                         >
                             <Input className="w-full px-4 py-2 rounded-md " />
                         </Form.Item>
+                        {/* <Form.Item
+                            name="image"
+                            label={<span className="">Image</span>}
+                        >
+                            <Input type='file' className="w-full px-4 py-2 rounded-md " />
+                        </Form.Item> */}
                         <Form.Item
                             name="address"
                             label={<span className="">Address</span>}
@@ -121,7 +140,7 @@ const Profile = () => {
                                 type="primary"
                                 htmlType="submit"
                                 loading={isLoading}
-                                className="w-full h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
+                                className="w-full  h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
                             >
                                 Update Profile
                             </Button>

@@ -190,7 +190,6 @@ const BikeList = () => {
                                 <Checkbox onChange={() => handleCheckBoxChange(one)} checked={selectedBike.includes(one)}>
                                 </Checkbox>
                                 <button onClick={() => handleAddTocart(one._id)} className=' rounded-sm pb-4 border-none text-white bg-pink-700 h-12'>Add to Cart</button>
-
                             </div>
                         </ motion.div>))
                     }
