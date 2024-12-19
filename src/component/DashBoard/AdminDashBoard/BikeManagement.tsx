@@ -73,9 +73,9 @@ const UpdateForm = ({ _id, refetch, form, initialValues, onCancel }: {
                     <Form.Item name="model" label="Model" >
                         <Input />
                     </Form.Item>
-                    <Form.Item name="image" label="Image URL">
+                    {/* <Form.Item name="image" label="Image URL">
                         <Input />
-                    </Form.Item>
+                    </Form.Item> */}
                 </div>
             </div>
         </Form>
@@ -88,7 +88,7 @@ const CreateBikeForm = ({ form, onFinish }: {
 }) => {
     return (
         <Form form={form} className='' onFinish={onFinish}>
-            <div className=''>
+            <div className='flex'>
                 <div>
                     <Form.Item name="name" label="Name" rules={[{ required: true }]}>
                         <Input />
@@ -114,7 +114,7 @@ const CreateBikeForm = ({ form, onFinish }: {
                         <Input />
                     </Form.Item>
                     <Form.Item name="image" label="Image URL" rules={[{ required: true }]}>
-                        <Input />
+                        <Input type='file' />
                     </Form.Item>
                 </div>
             </div>
@@ -184,9 +184,29 @@ const BikeManagement = () => {
         }
     }, [visible, currentProductId, data?.data, form]);
 
-    const handleCreateFinish = async (values: any) => {
+    const handleCreateFinish = async (data: any) => {
+        console.log(data)
+        const formData = new FormData();
+        formData.append('data', JSON.stringify({
+            name: data.name,
+            description: data.description,
+            pricePerHour: data.pricePerHour,
+            cc: data.cc,
+            year : data.year,
+            model : data.model,
+            brand : data.brand
+        }));
+
+        console.log(data.image)
+
+        if (data.image && data.image[0]) {
+            formData.append("image", data.image[0]);
+        }
+
+        console.log(formData)
+
         try {
-            await createBikes(values).unwrap();
+            await createBikes(formData).unwrap();
             refetch();
             Swal.fire({
                 icon: 'success',
@@ -195,7 +215,7 @@ const BikeManagement = () => {
             });
             handleCreateCancel();
         } catch (err) {
-            console.error(err);
+            console.log(err);
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -238,7 +258,7 @@ const BikeManagement = () => {
                     <Select
                         placeholder="Select Category"
                         onChange={(value) => handleFilterChange('model', value)}
-                        value={filters.brand}
+                        value={filters.model}
                         style={{ width: 150, marginRight: 10, height: 48, }}
                     >
                         <Option value="">Model</Option>
@@ -247,10 +267,10 @@ const BikeManagement = () => {
                         <Option value="MT 14">MT14</Option>
                     </Select>
                     <Select
-                        placeholder="Select Brand" 
+                        placeholder="Select Brand"
                         className='md:mt-0 mt-4'
                         onChange={(value) => handleFilterChange('brand', value)}
-                        value={filters.model}
+                        value={filters.brand}
                         style={{ width: 150, marginRight: 10, height: 48 }}
                     >
                         <Option value="">Brand</Option>
@@ -264,7 +284,7 @@ const BikeManagement = () => {
                 </div>
             </div>
 
-            { loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
+            {loading ? <div className='flex justify-center items-center h-screen'><Spinner></Spinner></div> : <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-14 lg:ml-20'>
                 {
                     filteredProducts?.map(one => (<div key={one._id} className='h-[550px] border md:w-96 '>
                         <div className='pt-3 pl-4 text-orange-500 text-left'>Name: {one.name}</div>

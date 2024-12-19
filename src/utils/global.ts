@@ -23,6 +23,11 @@ export type TBike = {
     isAvailable: boolean
 };
 
+export type TImage = {
+  image : string
+}
+
+
 export type TCoupon = {
     _id: string,
     code : string,
@@ -43,15 +48,20 @@ export type TRental = {
 };
 
 
-export type TUser = {
-    _id: string,
-    name: string,
-    role: string,
-    email: string,
-    address: string,
-    phone: string
-}
-
+export interface TUser {
+  [_id: string]: any;
+  name: string,
+  email: string,
+  password: string,
+  phone: string,
+  image : string
+  address: string,
+  country : string,
+  city : string
+  createdAt: Date,
+  updatedAt: Date,
+  role: 'admin' | 'user'
+};
 export type TResponse<T> = {
     data?: T;
     error?: TError;

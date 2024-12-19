@@ -1,8 +1,6 @@
 import React from 'react';
-import BikeForm from '../../component/Form/BikeForm';
-import { Button, Input } from '@nextui-org/react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { TUser } from '../../redux/feature/auth/authSlice';
+import { Button,  } from '@nextui-org/react';
+import {  FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useSignupMutation } from '../../redux/feature/auth/authSignup';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,21 +10,36 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const [signup] = useSignupMutation()
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<FieldValues>()
+    const { register, handleSubmit ,formState: { isSubmitting } } = useForm<FieldValues>()
 
     const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
         console.log(data)
 
+        const formData = new FormData()
+
+
+        formData.append('data', JSON.stringify({
+
+            email: data.email,
+            password: data.password,
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            role: 'user',
+        }))
+
+        if (data.image && data.image[0]) {
+            formData.append("image", data.image[0]);
+        }
+
+        console.log("image",data.image)
+        console.log("array",data.image[0])
+
+        console.log(formData)
+
         try {
-            const userInfo = {
-                email: data.email,
-                password: data.password,
-                name: data.name,
-                phone: data.phone,
-                address: data.address,
-                role: 'user',
-            }
-            const res = await signup(userInfo).unwrap()
+
+            const res = await signup(formData).unwrap()
             console.log(res.data)
 
 
@@ -90,7 +103,12 @@ const Signup = () => {
                         type="text"
                         {...register('address', { required: true })}
                     />
-
+                    <input
+                        className="w-full px-4 py-3 bg-blue-100 dark:bg-teal-700 text-blue-800 dark:text-teal-100 placeholder-blue-400 dark:placeholder-teal-300 border border-blue-300 dark:border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-teal-400 transition duration-200"
+                        placeholder="Address"
+                        type="file"
+                        {...register('image', { required: true })}
+                    />
                     <Button
                         type="submit"
                         color="secondary"

@@ -95,6 +95,10 @@ const BikeList = () => {
         }
     }
 
+    // const image = filteredProducts?.map(bike => bike.image[0].image)
+
+    console.log(filteredProducts)
+
     return (
         <div className='mb-12 '>
             <div className='justify-center'>
@@ -150,7 +154,7 @@ const BikeList = () => {
                                 <div className='pt-3 pl-4  text-left'>Name: {one.name}</div>
                                 <div className='pt-3 pr-4  text-center'> {one.isAvailable === true ? 'Available' : 'Unavailable'}</div>
                             </div>
-                            <img className='pl-14 h-64' src={one.image} alt="" />
+                            <img className='pl-14 h-64' src={one?.image} alt="" />
                             <div className='flex justify-between pl-8 pr-8 pt-4'>
                                 <div>
                                     <div className='flex gap-2'>

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
-import { Button, Descriptions, Form, Input, Modal, notification } from 'antd';
+import { Button, Card, Descriptions, Form, Input, Modal, notification } from 'antd';
 import { useUpdateUserProfileMutation } from '../../../redux/feature/Enpoints/Enpoints';
 import { setUser } from '../../../redux/feature/auth/authSlice';
 
 const Profile = () => {
 
     const user = useSelector((state: RootState) => state.auth.user)
+    console.log(user)
 
     const [form] = Form.useForm();
     const dispatch = useDispatch()
@@ -41,14 +42,33 @@ const Profile = () => {
             <div className="flex items-center justify-center  p-4 transition-colors duration-300">
                 <div className="max-w-md mx-auto p-6 rounded-lg shadow-lg bg-gradient-to-r">
                     <h2 className="text-2xl font-semibold text-white mb-4">User Profile</h2>
-                    <Descriptions bordered column={2} className="text-white">
-                        <Descriptions.Item style={{color:'white'}} label="Name">{user?.name || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item style={{color:'white'}} label="Email">{user?.email || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item style={{color:'white'}} label="Phone">{user?.phone || "N/A"}</Descriptions.Item>
-                        <Descriptions.Item style={{color:'white'}} label="Address">{user?.address || "N/A"}</Descriptions.Item>
-                    </Descriptions>
+                    <Card
+                        title="User Profile"
+                        bordered={true}
+                        style={{ width: 400 }}
+                        className="shadow-lg"
+                    >
+                        <div className="flex flex-col space-y-4">
+                            <div className="flex justify-between">
+                                <span className="font-semibold">Name:</span>
+                                <span>{user?.name || "Not Provided"}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-semibold">Email:</span>
+                                <span>{user?.email || "Not Provided"}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-semibold">Phone:</span>
+                                <span>{user?.phone || "Not Provided"}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="font-semibold">Address:</span>
+                                <span>{user?.address || "Not Provided"}</span>
+                            </div>
+                        </div>
+                    </Card>
                     <button
-                        className="mt-6 w-full h-12 font-medium rounded-lg border-none bg-gradient-to-r  text-white "
+                        className="mt-6 w-full h-12 font-medium rounded-lg bg-red-600 border-none bg-gradient-to-r  text-white "
                         onClick={() => setIsModalVisible(true)}
                     >
                         Update Profile
@@ -104,12 +124,6 @@ const Profile = () => {
                                 className="w-full h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
                             >
                                 Update Profile
-                            </Button>
-                            <Button
-                                className="w-full h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
-                                onClick={() => setIsModalVisible(false)}
-                            >
-                                Cancel
                             </Button>
                         </Form.Item>
                     </Form>

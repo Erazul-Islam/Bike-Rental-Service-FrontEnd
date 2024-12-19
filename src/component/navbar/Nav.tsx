@@ -93,7 +93,7 @@ const Nav = () => {
                                 user === undefined ? '' : <NavbarItem>
                                     {user?.role === 'admin' ? < Link color="foreground" href="/admin/dashboard">
                                         Dashboard
-                                    </Link> : <Link color="foreground" href="/user/dashboard">
+                                    </Link> : <Link color="foreground" href="/user/dashboard/profile">
                                         Dashboard
                                     </Link>}
                                 </NavbarItem>
