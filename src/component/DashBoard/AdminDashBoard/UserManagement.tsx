@@ -134,11 +134,11 @@ const UserManagement = () => {
         <div className="lg:ml-14">
             <Table
                 columns={columns}
-                style={{ backgroundColor: '#f0f2f5', color:'black' }}
+                style={{ backgroundColor: 'gray', color:'white' }}
                 dataSource={data?.data}
                 rowKey="_id"
                 pagination={{ pageSize: 5 }}
-                 className="custom-table"
+                className="custom-table"
                 scroll={{ x: true }}
             />
         </div>
