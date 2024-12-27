@@ -37,114 +37,113 @@ const AdminProfile = () => {
 
     return (
         <div>
-            <div className="md:min-h-screen  text-white px-4 py-6">
-                <div className="">
-                    <div className=" bg-black text-white  p-4">
-                        <div className="max-w-lg md:w-full bg-gray-900 rounded-sm shadow-lg overflow-hidden">
-                            <div className="bg-gray-800 md:p-6  flex items-center space-x-4">
-                                <img
-                                    src={user?.image}
-                                    alt={`${user?.name}'s profile`}
-                                    className="w-24 h-24 rounded-full object-cover border-4 border-gray-700"
-                                />
-                                <div>
-                                    <div className="text-2xl font-semibold">{user?.name}</div>
-                                    <div className="text-sm text-gray-400">{user?.email}</div>
-                                    <div className="text-sm text-gray-400">{user?.phone}</div>
-                                </div>
-                            </div>
+     <div className="min-h-screen bg-black p-4">
+            <div className="max-w-4xl mx-auto">
+                <div className="bg-gray-900 shadow-lg rounded-lg overflow-hidden">
+                    <div className="flex flex-col md:flex-row items-center bg-gray-800 p-6">
+                        <img
+                            src={user?.image || 'https://via.placeholder.com/150'}
+                            alt={`${user?.name || 'User'}'s profile`}
+                            className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-gray-700"
+                        />
+                        <div className="text-center md:text-left md:ml-6 mt-4 md:mt-0">
+                            <Title level={4} className="text-white">
+                                {user?.name || 'User Name'}
+                            </Title>
+                            <Text className="text-gray-400">{user?.email}</Text>
+                            <br />
+                            <Text className="text-gray-400">{user?.phone || 'No phone available'}</Text>
+                        </div>
+                    </div>
 
-                            {/* Details Section */}
-                            <div className="p-6">
-                                <h2 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Profile Details</h2>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <span className="font-medium text-gray-300">Address:</span> {user?.address}
-                                    </li>
-                                    <li>
-                                        <span className="font-medium text-gray-300">City:</span> {user?.city}
-                                    </li>
-                                    <li>
-                                        <span className="font-medium text-gray-300">Country:</span> {user?.country}
-                                    </li>
-                                    <li>
-                                        {/* <span className="font-medium text-gray-300">Member Since:</span> {(user.createdAt).toISOString()} */}
-                                    </li>
-                                    <li>
-                                        {/* <span className="font-medium text-gray-300">Last Updated:</span> {(user.updatedAt).toDateString()} */}
-                                    </li>
-                                </ul>
+                    <div className="p-6">
+                        <Title level={5} style={{color:"white"}} className="mb-4 border-b border-gray-300 pb-2 text-white">
+                            Profile Details
+                        </Title>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <Text strong className="text-gray-400">Address:</Text> <Text className="text-white">{user?.address || 'Not provided'}</Text>
+                            </div>
+                            <div>
+                                <Text strong className="text-gray-400">City:</Text> <Text className="text-white">{user?.city || 'Not provided'}</Text>
+                            </div>
+                            <div>
+                                <Text strong className="text-gray-400">Country:</Text> <Text className="text-white">{user?.country || 'Not provided'}</Text>
                             </div>
                         </div>
                     </div>
-                    <div className="text-center ml-4 mt-6">
-                        <button
-                            className="px-6 py-3 bg-pink-500 text-white font-medium rounded-sm shadow-md  focus:outline-none"
-                            onClick={() => setIsModalVisible(true)}
-                        >
-                            Update Profile
-                        </button>
-                    </div>
-
-                    <Modal
-                        title={<span className="text-white">Update Profile</span>}
-                        open={isModalVisible}
-                        footer={null}
-                        onCancel={() => setIsModalVisible(false)}
-                        className="rounded-lg bg-gray-900"
-                    >
-                        <Form
-                            form={form}
-                            layout="vertical"
-                            initialValues={{
-                                name: user?.name,
-                                email: user?.email,
-                                phone: user?.phone,
-                                address: user?.address,
-                                city: user?.city,
-                                country: user?.country,
-                            }}
-                            onFinish={handleSubmit}
-                        >
-                            <Form.Item name="name" label={<span className="text-black">Name</span>}>
-                                <Input placeholder="Enter your name" className=" text-black" />
-                            </Form.Item>
-                            <Form.Item name="email" label={<span className="text-black">Email</span>}>
-                                <Input placeholder="Enter your email" className=" text-black" />
-                            </Form.Item>
-                            <Form.Item name="phone" label={<span className="text-black">Phone</span>}>
-                                <Input
-                                    placeholder="Enter your phone number"
-                                    className=" text-black"
-                                />
-                            </Form.Item>
-                            <Form.Item name="address" label={<span className="text-black">Address</span>}>
-                                <Input.TextArea
-                                    rows={2}
-                                    placeholder="Enter your address"
-                                    className=" text-black"
-                                />
-                            </Form.Item>
-                            <Form.Item name="city" label={<span className="text-black">City</span>}>
-                                <Input placeholder="Enter your city" className=" text-black" />
-                            </Form.Item>
-                            <Form.Item name="country" label={<span className="text-black">Country</span>}>
-                                <Input placeholder="Enter your country" className=" text-black" />
-                            </Form.Item>
-                            <Form.Item>
-                                <Button
-                                    type="primary"
-                                    htmlType="submit"
-                                    className="w-full"
-                                    loading={isLoading}
-                                >
-                                    Update Profile
-                                </Button>
-                            </Form.Item>
-                        </Form>
-                    </Modal>
                 </div>
+
+                <div className="text-center mt-6">
+                    <Button type="primary" className='h-12 bg-blue-600' onClick={() => setIsModalVisible(true)}>
+                        Update Profile
+                    </Button>
+                </div>
+
+                <Modal
+                    title="Update Profile"
+                    open={isModalVisible}
+                    footer={null}
+                    onCancel={() => setIsModalVisible(false)}
+                >
+                    <Form
+                        form={form}
+                        layout="vertical"
+                        initialValues={{
+                            name: user?.name,
+                            email: user?.email,
+                            phone: user?.phone,
+                            address: user?.address,
+                            city: user?.city,
+                            country: user?.country,
+                        }}
+                        onFinish={handleSubmit}
+                    >
+                        <Form.Item
+                            name="name"
+                            label="Name"
+                            rules={[{ required: true, message: 'Please enter your name' }]}
+                        >
+                            <Input placeholder="Enter your name" />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="email"
+                            label="Email"
+                            rules={[{ required: true, message: 'Please enter your email' }]}
+                        >
+                            <Input placeholder="Enter your email" />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="phone"
+                            label="Phone"
+                            rules={[{ required: true, message: 'Please enter your phone number' }]}
+                        >
+                            <Input placeholder="Enter your phone number" />
+                        </Form.Item>
+
+                        <Form.Item name="address" label="Address">
+                            <Input.TextArea rows={2} placeholder="Enter your address" />
+                        </Form.Item>
+
+                        <Form.Item name="city" label="City">
+                            <Input placeholder="Enter your city" />
+                        </Form.Item>
+
+                        <Form.Item name="country" label="Country">
+                            <Input placeholder="Enter your country" />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" loading={isLoading} block>
+                                Update Profile
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Modal>
             </div>
+        </div>
         </div>
     );
 };
