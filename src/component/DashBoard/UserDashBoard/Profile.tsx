@@ -39,115 +39,104 @@ const Profile = () => {
 
     return (
         <div>
-            <div className="flex   p-4 transition-colors duration-300">
-                <div className="">
-                    <h2 className="text-2xl ml-4 font-semibold text-white mb-4">My Profile</h2>
-                    <div className=" bg-black text-white flex items-center justify-center p-4">
-                        <div className="max-w-lg md:w-full bg-gray-900 rounded-sm shadow-lg overflow-hidden">
-                            <div className="bg-gray-800 md:p-6  flex items-center space-x-4">
-                                <img
-                                    src={user?.image}
-                                    alt={`${user?.name}'s profile`}
-                                    className="w-24 h-24 rounded-full object-cover border-4 border-gray-700"
-                                />
-                                <div>
-                                    <div className="text-2xl font-semibold">{user?.name}</div>
-                                    <div className="text-sm text-gray-400">{user?.email}</div>
-                                    <div className="text-sm text-gray-400">{user?.phone}</div>
-                                </div>
-                            </div>
-
-                            {/* Details Section */}
-                            <div className="p-6">
-                                <h2 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Profile Details</h2>
-                                <ul className="space-y-3">
-                                    <li>
-                                        <span className="font-medium text-gray-300">Address:</span> {user?.address}
-                                    </li>
-                                    <li>
-                                        <span className="font-medium text-gray-300">City:</span> {user?.city}
-                                    </li>
-                                    <li>
-                                        <span className="font-medium text-gray-300">Country:</span> {user?.country}
-                                    </li>
-                                    <li>
-                                        {/* <span className="font-medium text-gray-300">Member Since:</span> {(user.createdAt).toISOString()} */}
-                                    </li>
-                                    <li>
-                                        {/* <span className="font-medium text-gray-300">Last Updated:</span> {(user.updatedAt).toDateString()} */}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+         <div className="flex flex-col items-center p-6 space-y-6 bg-black min-h-screen">
+            <h2 className="text-3xl font-semibold text-white">My Profile</h2>
+            
+            <div className="bg-gray-800 p-6 rounded-lg shadow-md max-w-lg w-full">
+                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <img
+                        src={user?.image}
+                        alt={`${user?.name}'s profile`}
+                        className="w-32 h-32 rounded-full object-cover border-4 border-gray-600"
+                    />
+                    <div className="flex flex-col items-center md:items-start space-y-2">
+                        <h3 className="text-2xl font-semibold text-white">{user?.name}</h3>
+                        <p className="text-sm text-gray-400">{user?.email}</p>
+                        <p className="text-sm text-gray-400">{user?.phone}</p>
                     </div>
-                    <button
-                        className="mt-2 w-[200px] h-12 ml-4 font-medium rounded-sm bg-red-600 border-none bg-gradient-to-r  text-white "
-                        onClick={() => setIsModalVisible(true)}
-                    >
-                        Update Profile
-                    </button>
                 </div>
 
-                <Modal
-                    title={<h3 className="text-2xl text-white">Update Profile</h3>}
-                    open={isModalVisible}
-                    footer={null}
-                    onCancel={() => setIsModalVisible(false)}
-                    destroyOnClose
-                    className="transition-colors duration-300"
+                <div className="mt-6">
+                    <h4 className="text-xl font-semibold text-white">Profile Details</h4>
+                    <ul className="mt-4 space-y-3 text-gray-400">
+                        <li>
+                            <span className="font-medium">Address:</span> {user?.address}
+                        </li>
+                        <li>
+                            <span className="font-medium">City:</span> {user?.city}
+                        </li>
+                        <li>
+                            <span className="font-medium">Country:</span> {user?.country}
+                        </li>
+                    </ul>
+                </div>
+
+                <button
+                    className="mt-6 w-full py-3 bg-gray-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-gray-700"
+                    onClick={() => setIsModalVisible(true)}
                 >
-                    <Form
-                        form={form}
-                        layout="vertical"
-                        onFinish={handleSubmit}
-                        className="space-y-4"
-                    >
-                        <Form.Item
-                            name="name"
-                            label={<span className="">Name</span>}
-                        >
-                            <Input className="w-full px-4 py-2 rounded-md " />
-                        </Form.Item>
-                        <Form.Item
-                            name="email"
-                            label={<span className="">Email</span>}
-                        >
-                            <Input className="w-full px-4 py-2 rounded-md " />
-                        </Form.Item>
-                        <Form.Item
-                            name="phone"
-                            label={<span className="">Phone</span>}
-                        >
-                            <Input className="w-full px-4 py-2 rounded-md " />
-                        </Form.Item>
-                        {/* <Form.Item
-                            name="image"
-                            label={<span className="">Image</span>}
-                        >
-                            <Input type='file' className="w-full px-4 py-2 rounded-md " />
-                        </Form.Item> */}
-                        <Form.Item
-                            name="address"
-                            label={<span className="">Address</span>}
-                        >
-                            <Input.TextArea
-                                rows={4}
-                                className="w-full px-4 py-2 rounded-md "
-                            />
-                        </Form.Item>
-                        <Form.Item className="flex justify-between space-x-4">
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                loading={isLoading}
-                                className="w-full  h-12 font-medium rounded-lg bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 transition duration-200"
-                            >
-                                Update Profile
-                            </Button>
-                        </Form.Item>
-                    </Form>
-                </Modal>
+                    Update Profile
+                </button>
             </div>
+
+            <Modal
+                title={<h3 className="text-xl text-center text-white">Update Profile</h3>}
+                open={isModalVisible}
+                footer={null}
+                onCancel={handleCancel}
+                destroyOnClose
+                className="bg-gray-800"
+            >
+                <Form
+                    form={form}
+                    layout="vertical"
+                    onFinish={handleSubmit}
+                    className="space-y-6"
+                >
+                    <Form.Item
+                        name="name"
+                        label="Name"
+                        initialValue={user?.name}
+                    >
+                        <Input className="w-full px-4 py-2 rounded-md text-gray-700" />
+                    </Form.Item>
+                    <Form.Item
+                        name="email"
+                        label="Email"
+                        initialValue={user?.email}
+                    >
+                        <Input className="w-full px-4 py-2 rounded-md text-gray-700" />
+                    </Form.Item>
+                    <Form.Item
+                        name="phone"
+                        label="Phone"
+                        initialValue={user?.phone}
+                    >
+                        <Input className="w-full px-4 py-2 rounded-md text-gray-700" />
+                    </Form.Item>
+                    <Form.Item
+                        name="address"
+                        label="Address"
+                        initialValue={user?.address}
+                    >
+                        <Input.TextArea
+                            rows={4}
+                            className="w-full px-4 py-2 rounded-md text-gray-700"
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            loading={isLoading}
+                            className="w-full py-3 bg-gray-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-gray-700"
+                        >
+                            Update Profile
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
+        </div>
         </div>
     );
 };

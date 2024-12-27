@@ -65,6 +65,11 @@ const Login = () => {
                         <strong>Email:</strong> <span className="">demo@gmail.com</span> <br />
                         <strong>Password:</strong> <span className="">123456</span>
                     </div>
+                    <span className="block sm:inline"> Use the Admin demo credentials below:</span>
+                    <div className="mt-2">
+                        <strong>Email:</strong> <span className="">admin@gmail.com</span> <br />
+                        <strong>Password:</strong> <span className="">123456</span>
+                    </div>
                 </div>
                 <input
                     className="w-full px-5 py-3 bg-blue-100 dark:bg-teal-700 text-blue-800 dark:text-teal-100 placeholder-blue-400 dark:placeholder-teal-300 border border-blue-300 dark:border-teal-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-teal-400 transition duration-200"

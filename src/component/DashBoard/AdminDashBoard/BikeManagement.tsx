@@ -114,7 +114,7 @@ const CreateBikeForm = ({ form, onFinish }: {
                         <Input />
                     </Form.Item>
                     <Form.Item name="image" label="Image URL" rules={[{ required: true }]}>
-                        <Input type='file' />
+                        <Input />
                     </Form.Item>
                 </div>
             </div>
@@ -194,16 +194,9 @@ const BikeManagement = () => {
             cc: data.cc,
             year : data.year,
             model : data.model,
-            brand : data.brand
+            brand : data.brand,
+            image : data.image
         }));
-
-        console.log(data.image)
-
-        if (data.image && data.image[0]) {
-            formData.append("image", data.image[0]);
-        }
-
-        console.log(formData)
 
         try {
             await createBikes(formData).unwrap();
