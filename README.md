@@ -65,4 +65,4 @@ This is a highly efficient project. Interesting feature is _Spinner_. A user can
 
 **Finally**
 
-If you have any query. please inform me this is my email erazul89@gmail.com
+If you have any query. please inform me this is my email erazul89@gmail.com and whatsapp 01843291218
